@@ -4,6 +4,12 @@
         .page-container {
             display: none; /* Hide all pages by default */
         }
+        .page-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
         .visible {
             display: block; /* Display only the active page */
         }
@@ -15,6 +21,7 @@
 
 <h1>Visualizer for symmetry-aware rotation representation</h1>
 <!-- Dropdown menu for page selection -->
+<div class="page-navigation">
 <label for="pageSelect">Select a symmetry class:</label>
 <select id="pageSelect" onchange="showSelectedPage()">
     <option value="page1">0 - [1, 1, 1] (T-LESS)</option>
@@ -31,6 +38,11 @@
     <option value="page12">Sphere [∞, ∞, ∞]</option>
     <option value="page13">No symmetry [1, 1, 1]</option>
 </select>
+<!-- Link to the repository -->
+<a class="repo-link" href="https://github.com/akriegler/symmetry-aware_rotation_representation" target="_blank">
+    View Repository
+</a>
+</div>
 
 <!-- Page containers -->
 <div id="page1" class="page-container">
@@ -104,11 +116,6 @@
     <h2>Page 13 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
-
-    <!-- Link to the repository -->
-    <a class="repo-link" href="https://github.com/akriegler/symmetry-aware_rotation_representation" target="_blank">
-        View Repository
-    </a>
 
 <script>
     function showSelectedPage() {
