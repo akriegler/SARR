@@ -67,8 +67,9 @@
             transition: opacity 0.3s;
             border-radius: 4px;
         }
-        .navbar-links a:hover::after {
-            opacity: 1; /* Show the background on hover */
+        .navbar-links a:hover::after,
+        .navbar-links a:visited::after {
+            opacity: 1; /* Show the background on hover or visited */
         }
         .content {
             padding: 20px;
