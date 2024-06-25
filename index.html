@@ -1,55 +1,72 @@
 <html lang="en">
 <head><meta charset="utf-8" /><title>Multi-Page Viewer</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 50px; /* Ensure content is below fixed navigation */
+        }
         .page-container {
             display: none; /* Hide all pages by default */
         }
-        .page-navigation {
+        .navbar {
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            padding: 10px 20px;
+            box-sizing: border-box;
             display: flex;
+            justify-content: space-between;
             align-items: center;
             z-index: 1000; /* Ensure it's above other content */
-            background-color: white; /* Optional: make it stand out */
-            padding: 10px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            background-color: #555;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #777;
         }
         .visible {
             display: block; /* Display only the active page */
         }
-        .repo-link {
-            margin-top: 10px;
-        }
         .content {
-            margin-top: 50px; /* Adjust to ensure content isn't hidden under fixed navigation */
             padding: 20px;
         }
     </style></head>
 <body>
 
-<h1>Visualizer for symmetry-aware rotation representation</h1>
 <!-- Dropdown menu for page selection -->
-<div class="page-navigation">
-<label for="pageSelect">Select a symmetry class:</label>
-<select id="pageSelect" onchange="showSelectedPage()">
-    <option value="page1">0 - [1, 1, 1] (T-LESS)</option>
-    <option value="page2">1 - [1, 1, 2] (T-LESS)</option>
-    <option value="page3">2 - [1, 1, 4] (T-LESS)</option>
-    <option value="page4">3 - [1, 1, ∞] (T-LESS)</option>
-    <option value="page5">4 - [1, 2, 1] (T-LESS)</option>
-    <option value="page6">Cuboid [2, 2, 2]</option>
-    <option value="page7">Cuboid [4, 2, 2]</option>
-    <option value="page8">Cuboid [2, 4, 2]</option>
-    <option value="page9">Cuboid [2, 2, 4]</option>
-    <option value="page10">Cube [4, 4, 4]</option>
-    <option value="page11">Cylinder/Torus [2, 2, ∞]</option>
-    <option value="page12">Sphere [∞, ∞, ∞]</option>
-    <option value="page13">No symmetry [1, 1, 1]</option>
-</select>
-<!-- Link to the repository -->
-<a class="repo-link" href="https://github.com/akriegler/symmetry-aware_rotation_representation" target="_blank">
-    View Repository
-</a>
+<div class="navbar">
+    <a href="#" class="navbar-brand">Visualizer for symmetry-aware rotation representation</a>
+            <div class="navbar-links">
+                <label for="pageSelect">Select a symmetry class:</label>
+                <select id="pageSelect" onchange="showSelectedPage()">
+                    <option value="page1">0 - [1, 1, 1] (T-LESS)</option>
+                    <option value="page2">1 - [1, 1, 2] (T-LESS)</option>
+                    <option value="page3">2 - [1, 1, 4] (T-LESS)</option>
+                    <option value="page4">3 - [1, 1, ∞] (T-LESS)</option>
+                    <option value="page5">4 - [1, 2, 1] (T-LESS)</option>
+                    <option value="page6">Cuboid [2, 2, 2]</option>
+                    <option value="page7">Cuboid [4, 2, 2]</option>
+                    <option value="page8">Cuboid [2, 4, 2]</option>
+                    <option value="page9">Cuboid [2, 2, 4]</option>
+                    <option value="page10">Cube [4, 4, 4]</option>
+                    <option value="page11">Cylinder/Torus [2, 2, ∞]</option>
+                    <option value="page12">Sphere [∞, ∞, ∞]</option>
+                    <option value="page13">No symmetry [1, 1, 1]</option>
+                </select>
+                <!-- Link to the repository -->
+                <a class="repo-link" href="https://github.com/akriegler/symmetry-aware_rotation_representation" target="_blank">
+                    View Repository
+                </a>
+            </div>
 </div>
 
 <!-- Page containers -->
@@ -66,62 +83,42 @@
 </div>
 
 <div id="page4" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 4 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
 <div id="page5" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 5 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
 <div id="page6" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 6 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
 <div id="page7" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 7 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
 <div id="page8" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 8 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
 <div id="page9" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 9 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
 <div id="page10" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 10 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
 <div id="page11" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 11 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
 <div id="page12" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 12 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
 <div id="page13" class="page-container content">
-    <!-- Content of page3.html goes here -->
-    <h2>Page 13 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
