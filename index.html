@@ -5,16 +5,24 @@
             display: none; /* Hide all pages by default */
         }
         .page-navigation {
+            position: fixed;
+            top: 10px;
+            left: 10px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
+            z-index: 1000; /* Ensure it's above other content */
+            background-color: white; /* Optional: make it stand out */
+            padding: 10px;
         }
         .visible {
             display: block; /* Display only the active page */
         }
         .repo-link {
             margin-top: 10px;
+        }
+        .content {
+            margin-top: 50px; /* Adjust to ensure content isn't hidden under fixed navigation */
+            padding: 20px;
         }
     </style></head>
 <body>
@@ -45,73 +53,73 @@
 </div>
 
 <!-- Page containers -->
-<div id="page1" class="page-container">
+<div id="page1" class="page-container content">
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page2" class="page-container">
+<div id="page2" class="page-container content">
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page3" class="page-container">
+<div id="page3" class="page-container content">
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page4" class="page-container">
+<div id="page4" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 4 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page5" class="page-container">
+<div id="page5" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 5 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page6" class="page-container">
+<div id="page6" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 6 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page7" class="page-container">
+<div id="page7" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 7 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page8" class="page-container">
+<div id="page8" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 8 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page9" class="page-container">
+<div id="page9" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 9 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page10" class="page-container">
+<div id="page10" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 10 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page11" class="page-container">
+<div id="page11" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 11 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page12" class="page-container">
+<div id="page12" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 12 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
 </div>
 
-<div id="page13" class="page-container">
+<div id="page13" class="page-container content">
     <!-- Content of page3.html goes here -->
     <h2>Page 13 Content</h2>
     <p>coming soon (as of 2024-06-25)</p>
