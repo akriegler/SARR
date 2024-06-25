@@ -5,6 +5,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding-top: 70px; /* Ensure content is below fixed navigation */
+            background-color: #f0f0f0; /* Optional: Light background color */
         }
         .page-container {
             display: none; /* Hide all pages by default */
@@ -22,15 +23,35 @@
             align-items: center;
             z-index: 1000; /* Ensure it's above other content */
         }
-        .navbar a {
+        .navbar-brand {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .navbar-links select {
+            padding: 8px;
+            color: white; /* Text color */
+            border: 1px solid black; /* Black border */
+            background-color: #333; /* Background color */
+            appearance: none; /* Remove default appearance */
+            cursor: pointer;
+        }
+        .navbar-links a {
             color: #fff;
             text-decoration: none;
             padding: 8px 12px;
             border-radius: 4px;
             background-color: #555;
             transition: background-color 0.3s;
+            border: 1px solid black; /* Black border */
         }
-        .navbar a:hover {
+        .navbar-links a:hover {
             background-color: #777;
         }
         .visible {
@@ -38,6 +59,7 @@
         }
         .content {
             padding: 20px;
+            margin-top: 70px; /* Ensure content starts below navbar */
         }
     </style></head>
 <body>
