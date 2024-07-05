@@ -1,6 +1,6 @@
 # Rotation Representation for Learning the 3D Orientation of Symmetric Objects
-Following ACCV submission (link)
+ACCV 2024 submission ID 70
 
 [View visualization](https://akriegler.github.io/symmetry-aware_rotation_representation)
 
-[View video](https://akriegler.github.io/symmetry-aware_rotation_representation/video/verification.mp4)
+[View video](https://github.com/akriegler/symmetry-aware_rotation_representation/tree/main/video/verification.mp4)
