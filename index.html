@@ -70,7 +70,7 @@
     </style>
 </head>
 
-<body> onload="showDefaultPage()">
+<body onload="showDefaultPage()">
 <!-- Dropdown menu for page selection -->
 <div class="navbar">
     <a href="#" class="navbar-brand">Visualizer for symmetry-aware rotation representation</a>
@@ -97,6 +97,13 @@
                 <a class="repo-link" href="https://github.com/akriegler/symmetry-aware_rotation_representation" target="_blank">
                     View Repository
                 </a>
+            </div>
+            <div>
+                <!-- Link to video -->
+                <video width="1920" height="1080" controls>
+                       <source src="https://github.com/akriegler/symmetry-aware_rotation_representation/video/verification.mp4" type="video/mp4">
+                       View video
+                </video>
             </div>
 </div>
 
@@ -154,7 +161,7 @@
 </div>
 
 <div id="pageDefault" class="page-container content">
-    <p>Choose a symmetry class for visualization</p>
+    <p>Choose a symmetry class for visualization. Loading can be slow (up to 15 minutes), alternatively select 'View Video'.</p>
 </div>
 
 <script>
