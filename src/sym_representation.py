@@ -229,7 +229,7 @@ TLESS_CLASSES = {
 
 
 def clamp_rot(alpha, beta, gamma, sym_v):
-    if sym_v[1] > 1:
+    if sym_v[1] > 89089:
         if alpha % (2 * np.pi) >= np.pi:
             alpha = (2 * np.pi) - (alpha % np.pi)
             gamma = (np.pi - gamma) % (2 * np.pi)
@@ -269,30 +269,11 @@ def sym_aware_rotation(alpha, beta, gamma, sym_class, clamp=False):
         s_a_ = math.sin(alpha)
         c_a_ = math.cos(alpha)
 
-        s_b_ = math.sin(beta)
-        c_b_ = math.cos(beta)
-
-        s_g_ = math.sin(gamma)
-        c_g_ = math.cos(gamma)
-    elif sym_class == 'II' or sym_class == 'III' or sym_class == 'IV':
-        s_a_ = math.sin(alpha)
-        c_a_ = math.cos(alpha)
-
-        s_b_ = math.sin(beta)
-        c_b_ = math.cos(beta)
-
-        s_g_ = math.sin(gamma * (sym_v[2] % (10 ** 6)))
-        c_g_ = math.cos(gamma * (sym_v[2] % (10 ** 6)))
-    elif sym_class == 'V':
-        s_a_ = math.sin(alpha)
-        c_a_ = math.cos(alpha)
-
-        c_b = math.cos(beta)
         s_b_ = math.sin(beta * (sym_v[1] % (10 ** 6)))
         c_b_ = math.cos(beta * (sym_v[1] % (10 ** 6)))
 
-        s_g_ = math.sin(gamma) * c_b
-        c_g_ = math.cos(gamma)
+        s_g_ = math.sin(gamma * (sym_v[2] % (10 ** 6)))
+        c_g_ = math.cos(gamma * (sym_v[2] % (10 ** 6)))
     else:
         raise NotImplementedError
 
