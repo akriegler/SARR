@@ -149,8 +149,8 @@ def map(alphas, betas, gammas, sym_cls):
         for beta in betas:
             for alpha in alphas:
                 r = R.from_euler('XYZ', [alpha, beta, gamma], degrees=False)
-                r_v = r.as_rotvec(degrees=False)
-                r = R.from_rotvec(r_v, degrees=False)
+                r_m = r.as_matrix()
+                r = R.from_matrix(r_m)
                 r_e = r.as_euler('XYZ', degrees=False)
                 rot_sym = sym_aware_rotation(r_e[0], r_e[1], r_e[2], sym_cls, clamp=True)
                 s_a_.append(rot_sym[0][0])
@@ -708,7 +708,7 @@ def plot_mapping_whole(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
 
 
 if __name__ == '__main__':
-    sym_classes = ['I']
+    sym_classes = ['II']
     tless_steps =  26  # For dots, datapoints, time 2 plus 1 i.e. 50 -> 101
     tless_visu_steps = 4
     so3_steps = 26  # For dots, datapoints, time 2 plus 1 i.e. 50 -> 101
