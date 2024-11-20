@@ -230,7 +230,7 @@ TLESS_CLASSES = {
 
 def clamp_rot(alpha, beta, gamma, sym_v):
     if sym_v[1] > 1:
-        if alpha % (2 * np.pi) > np.pi:
+        if alpha % (2 * np.pi) >= np.pi:
             alpha = (alpha - np.pi) % (2 * np.pi)
             gamma = (np.pi - gamma) % (2 * np.pi)
             beta *= -1
@@ -286,60 +286,21 @@ def sym_aware_rotation(alpha, beta, gamma, sym_class, clamp=False):
 def inv_sym_aware_rotation(rot_sym_mat, sym_class):
     sym_v = TLESS_SYM_CLASSES[sym_class]['sym_v']
 
-    if sym_class == 'I':
-        if rot_sym_mat[0, 0] < 0.0:
-            alpha = 2 * np.pi - math.acos(rot_sym_mat[1, 0])
-        else:
-            alpha = math.acos(rot_sym_mat[1, 0])
-
-        if rot_sym_mat[0, 1] < 0.0:
-            beta = 2 * np.pi - math.acos(rot_sym_mat[1, 1])
-        else:
-            beta = math.acos(rot_sym_mat[1, 1])
-
-        if rot_sym_mat[0, 2] < 0.0:
-            gamma = 2 * np.pi - math.acos(rot_sym_mat[1, 2])
-        else:
-            gamma = math.acos(rot_sym_mat[1, 2])
-
-    elif sym_class == 'II' or sym_class == 'III' or sym_class == 'IV':
-        if rot_sym_mat[0, 0] < 0.0:
-            alpha = 2 * np.pi - math.acos(rot_sym_mat[1, 0])
-        else:
-            alpha = math.acos(rot_sym_mat[1, 0])
-
-        if rot_sym_mat[0, 1] < 0.0:
-            beta = 2 * np.pi - math.acos(rot_sym_mat[1, 1])
-        else:
-            beta = math.acos(rot_sym_mat[1, 1])
-
-        if rot_sym_mat[0, 2] < 0.0:
-            gamma = (2 * np.pi - math.acos(rot_sym_mat[1, 2]))
-        else:
-            gamma = math.acos(rot_sym_mat[1, 2])
-        gamma /= sym_v[2]
-
-    elif sym_class == 'V':
-        if rot_sym_mat[0, 0] < 0.0:
-            alpha = 2 * np.pi - math.acos(rot_sym_mat[1, 0])
-        else:
-            alpha = math.acos(rot_sym_mat[1, 0])
-
-        if rot_sym_mat[0, 1] < 0.0:
-            beta = (2 * np.pi / sym_v[1]) - (math.acos(rot_sym_mat[1, 1]) / sym_v[1])
-      #      p = -1
-        else:
-            beta = math.acos(rot_sym_mat[1, 1])
-            beta /= sym_v[1]
-       #     p = 1
-
-        if rot_sym_mat[0, 2] < 0.0:
-            gamma = 2 * np.pi - math.acos(rot_sym_mat[1, 2])
-        else:
-            gamma = math.acos(rot_sym_mat[1, 2])
-      #  gamma *= p
+    if rot_sym_mat[0, 0] < 0.0:
+        alpha = 2 * np.pi - math.acos(rot_sym_mat[1, 0])
     else:
-        raise NotImplementedError
+        alpha = math.acos(rot_sym_mat[1, 0])
+
+    if rot_sym_mat[0, 1] < 0.0:
+        beta = 2 * np.pi - math.acos(rot_sym_mat[1, 1])
+    else:
+        beta = math.acos(rot_sym_mat[1, 1])
+
+    if rot_sym_mat[0, 2] < 0.0:
+        gamma = 2 * np.pi - math.acos(rot_sym_mat[1, 2])
+    else:
+        gamma = math.acos(rot_sym_mat[1, 2])
+
 
     return alpha, beta, gamma
 
