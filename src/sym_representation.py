@@ -229,11 +229,11 @@ TLESS_CLASSES = {
 
 
 def clamp_rot(alpha, beta, gamma, sym_v):
-    if sym_v[1] > 89089:
-        if alpha % (2 * np.pi) >= np.pi:
-            alpha = (2 * np.pi) - (alpha % np.pi)
+    if sym_v[1] > 1:
+        if alpha % (2 * np.pi) > np.pi:
+            alpha = (alpha - np.pi) % (2 * np.pi)
             gamma = (np.pi - gamma) % (2 * np.pi)
-            #beta *= -1
+            beta *= -1
         else:
             alpha = (alpha % (2 * np.pi / sym_v[0])) * ((sym_v[0] % 10 ** 6) / sym_v[0])
             beta = (beta % (2 * np.pi / sym_v[1])) * ((sym_v[1] % 10 ** 6) / sym_v[1])
@@ -265,17 +265,14 @@ def sym_aware_rotation(alpha, beta, gamma, sym_class, clamp=False):
     if clamp:
         alpha, beta, gamma = clamp_rot(alpha, beta, gamma, sym_v)
 
-    if sym_class == 'I':
-        s_a_ = math.sin(alpha)
-        c_a_ = math.cos(alpha)
+    s_a_ = math.sin(alpha)
+    c_a_ = math.cos(alpha)
 
-        s_b_ = math.sin(beta * (sym_v[1] % (10 ** 6)))
-        c_b_ = math.cos(beta * (sym_v[1] % (10 ** 6)))
+    s_b_ = math.sin(beta * (sym_v[1] % (10 ** 6)))
+    c_b_ = math.cos(beta * (sym_v[1] % (10 ** 6)))
 
-        s_g_ = math.sin(gamma * (sym_v[2] % (10 ** 6)))
-        c_g_ = math.cos(gamma * (sym_v[2] % (10 ** 6)))
-    else:
-        raise NotImplementedError
+    s_g_ = math.sin(gamma * (sym_v[2] % (10 ** 6)))
+    c_g_ = math.cos(gamma * (sym_v[2] % (10 ** 6)))
 
     x_vec = np.expand_dims(np.round(np.array([s_a_, c_a_]), 10), axis=1)
     y_vec = np.expand_dims(np.round(np.array([s_b_, c_b_]), 10), axis=1)
@@ -349,11 +346,11 @@ def inv_sym_aware_rotation(rot_sym_mat, sym_class):
 
 if __name__ == '__main__':
     sym_class = 'V'
-    alpha_1 = np.deg2rad(1)
+    alpha_1 = np.deg2rad(5)
     beta_1 = np.deg2rad(0)
     gamma_1 = np.deg2rad(0)
 
-    alpha_2 = np.deg2rad(181)
+    alpha_2 = np.deg2rad(185)
     beta_2 = np.deg2rad(0)
     gamma_2 = np.deg2rad(0)
 
