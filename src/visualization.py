@@ -704,7 +704,7 @@ def plot_mapping_whole(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
 
 
 if __name__ == '__main__':
-    sym_classes = ['I', 'II', 'III', 'IV', 'V']
+    sym_classes = ['V']
     tless_steps =  26  # For dots, datapoints, time 2 plus 1 i.e. 50 -> 101
     tless_visu_steps = 4
     so3_steps = 26  # For dots, datapoints, time 2 plus 1 i.e. 50 -> 101
