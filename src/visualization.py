@@ -148,7 +148,11 @@ def map(alphas, betas, gammas, sym_cls):
     for gamma in gammas:
         for beta in betas:
             for alpha in alphas:
-                rot_sym = sym_aware_rotation(alpha, beta, gamma, sym_cls, clamp=True)
+                r = R.from_euler('XYZ', [alpha, beta, gamma], degrees=False)
+                r_v = r.as_rotvec(degrees=False)
+                r = R.from_rotvec(r_v, degrees=False)
+                r_e = r.as_euler('XYZ', degrees=False)
+                rot_sym = sym_aware_rotation(r_e[0], r_e[1], r_e[2], sym_cls, clamp=True)
                 s_a_.append(rot_sym[0][0])
                 c_a_.append(rot_sym[1][0])
                 s_b_.append(rot_sym[0][1])
@@ -710,7 +714,7 @@ if __name__ == '__main__':
     so3_steps = 26  # For dots, datapoints, time 2 plus 1 i.e. 50 -> 101
     so3_visu_steps = 4
     colours = 'RGB'
-    subspace = 'TLESS'# ['TLESS', 'SO3', 'BOTH']  if  not TLESS, visualizes across all of SO(3) - this can take a long time to load
+    subspace = 'SO3'# ['TLESS', 'SO3', 'BOTH']  if  not TLESS, visualizes across all of SO(3) - this can take a long time to load
     #colours = 'grey'
 
     for sym_cls in sym_classes:
