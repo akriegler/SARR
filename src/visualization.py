@@ -200,20 +200,20 @@ def plot_mapping_tless(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
     scatter2 = go.Scatter3d(x=a, y=np.zeros_like(a), z=c_a_[:len(a)], mode='markers', marker=dict(size=3, opacity=1.0, color=c_a_[:len(a)], colorscale='viridis', cmin=-1, cmax=1))
     fig.add_trace(scatter2, row=2, col=1)
 
-    a1 = np.concatenate((np.linspace(0.0, np.pi / 2, steps // 2)[::visu_steps], np.array([a1[-1]])))
-    a2 = np.concatenate((np.linspace(np.pi, 6/4 * np.pi, steps // 2)[::visu_steps], np.array([a2[-1]])))
-    a_angles = np.concatenate((a1, a2), axis=0)
+    vis_a1 = a[:len(a)//2:visu_steps]
+    vis_a2 = a[len(a)//2:len(a):visu_steps]
+    vis_a = np.concatenate((vis_a1, vis_a2), axis=0)
 
-    s_a_1 = np.concatenate((s_a_[:len(a) // 2:visu_steps], np.array([s_a_[17]])))
-    s_a_2 = np.concatenate((s_a_[len(a)//2:len(a):visu_steps], np.array([s_a_[35]])))
-    s_a_ = np.concatenate((s_a_1, s_a_2), axis=0)
+    vis_s_a_1 = s_a_[:len(a)//2:visu_steps]
+    vis_s_a_2 = s_a_[len(a)//2:len(a):visu_steps]
+    vis_s_a_ = np.concatenate((vis_s_a_1, vis_s_a_2), axis=0)
 
-    c_a_1 = np.concatenate((c_a_[:len(a) // 2:visu_steps], np.array([c_a_[17]])))
-    c_a_2 = np.concatenate((c_a_[len(a)//2:len(a):visu_steps], np.array([c_a_[35]])))
-    c_a_ = np.concatenate((c_a_1, c_a_2), axis=0)
+    vis_c_a_1 = c_a_[:len(a)//2:visu_steps]
+    vis_c_a_2 = c_a_[len(a)//2:len(a):visu_steps]
+    vis_c_a_ = np.concatenate((vis_c_a_1, vis_c_a_2), axis=0)
 
     for i in range(1, 3):
-        for a_idx, alpha in enumerate(a_angles):
+        for a_idx, alpha in enumerate(vis_a):
             vertex = copy.deepcopy(vertices)
 
             r = R.from_euler('X', alpha)
@@ -221,7 +221,7 @@ def plot_mapping_tless(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
 
             # apply transformation
             vertex = np.dot(mat, vertex)
-            vertex[2] += (s_a_[a_idx] if i == 1 else c_a_[a_idx])
+            vertex[2] += (vis_s_a_[a_idx] if i == 1 else vis_c_a_[a_idx])
             vertex[0] += alpha
 
             mesh = go.Mesh3d(x=vertex[0, :], y=vertex[1, :], z=vertex[2, :], i=edges[0], j=edges[1], k=edges[2], opacity=1.0, facecolor=face_colours, flatshading=True)
@@ -234,30 +234,55 @@ def plot_mapping_tless(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
                       yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset], aspectmode='cube')
 
     ### BETA ###
-    b_angles = np.linspace(0.0, 0.0001, steps + 4)[::visu_steps]
 
-    b_y_m, b_x_m = np.meshgrid(b_angles, a_angles)
-    b_x_flat = b_x_m.flatten()
-    b_y_flat = b_y_m.flatten()
+    y_b, x_a = np.meshgrid(b, a, indexing='ij')
+    y_b_flat = y_b.flatten()
+    x_a_flat = x_a.flatten()
 
-    selected_indices = [
-        block_start + i
-        for block_start in [*range(0, 1296, 108), 648, 1296]
-        for i in sorted([j - 1 for j in range(1, 36, 3)] + [17, 35])
-    ]
-
-    s_b_ = s_b_[selected_indices]
-    c_b_ = c_b_[selected_indices]
-
-    scatter3 = go.Scatter3d(x=b_x_flat, y=b_y_flat, z=s_b_, mode='markers', marker=dict(size=3, opacity=1.0, color=s_b_, colorscale='viridis', cmin=-1, cmax=1))
+    scatter3 = go.Scatter3d(x=x_a_flat, y=y_b_flat, z=s_b_[:len(a)**2], mode='markers', marker=dict(size=3, opacity=1.0, color=s_b_, colorscale='viridis', cmin=-1, cmax=1))
     fig.add_trace(scatter3, row=1, col=2)
 
-    scatter4 = go.Scatter3d(x=b_x_flat, y=b_y_flat, z=c_b_, mode='markers', marker=dict(size=3, opacity=1.0, color=c_b_, colorscale='viridis', cmin=-1, cmax=1))
+    scatter4 = go.Scatter3d(x=x_a_flat, y=y_b_flat, z=c_b_[:len(a)**2], mode='markers', marker=dict(size=3, opacity=1.0, color=c_b_, colorscale='viridis', cmin=-1, cmax=1))
     fig.add_trace(scatter4, row=2, col=2)
 
+    vis_b1 = b[:len(b)//2:visu_steps]
+    vis_b2 = b[len(b)//2:len(b):visu_steps]
+    vis_b = np.concatenate((vis_b1, vis_b2), axis=0)
+
+    vis_s_b_ = []
+    for b_idx in range(len(b)//2 + 1):
+        if b_idx % visu_steps > 0:
+            continue
+        vis_s_b_1 = s_b_[len(b)*b_idx:len(b)*(b_idx+1)-len(b)//2:visu_steps]
+        vis_s_b_2 = s_b_[len(b)*(b_idx+1)-len(b)//2:len(b)*(b_idx+1):visu_steps]
+        vis_s_b_.append(np.concatenate((vis_s_b_1, vis_s_b_2), axis=0))
+    for b_idx in range(len(b)//2, len(b) + 1):
+        if (b_idx-1) % visu_steps > 0:
+            continue
+        vis_s_b_1 = s_b_[len(b)*b_idx:len(b)*(b_idx+1)-len(b)//2:visu_steps]
+        vis_s_b_2 = s_b_[len(b)*(b_idx+1)-len(b)//2:len(b)*(b_idx+1):visu_steps]
+        vis_s_b_.append(np.concatenate((vis_s_b_1, vis_s_b_2), axis=0))
+    vis_s_b_ = np.array(vis_s_b_).flatten()
+
+    vis_c_b_ = []
+    for b_idx in range(len(b)//2 + 1):
+        if b_idx % visu_steps > 0:
+            continue
+        vis_c_b_1 = c_b_[len(b)*b_idx:len(b)*(b_idx+1)-len(b)//2:visu_steps]
+        vis_c_b_2 = c_b_[len(b)*(b_idx+1)-len(b)//2:len(b)*(b_idx+1):visu_steps]
+        vis_c_b_.append(np.concatenate((vis_c_b_1, vis_c_b_2), axis=0))
+    for b_idx in range(len(b)//2, len(b) + 1):
+        if (b_idx-1) % visu_steps > 0:
+            continue
+        vis_c_b_1 = c_b_[len(b)*b_idx:len(b)*(b_idx+1)-len(b)//2:visu_steps]
+        vis_c_b_2 = c_b_[len(b)*(b_idx+1)-len(b)//2:len(b)*(b_idx+1):visu_steps]
+        vis_c_b_.append(np.concatenate((vis_c_b_1, vis_c_b_2), axis=0))
+    vis_c_b_ = np.array(vis_c_b_).flatten()
+
+
     for i in range(1, 3):
-        for b_idx, beta in enumerate(b_angles):
-            for a_idx, alpha in enumerate(a_angles):
+        for b_idx, beta in enumerate(vis_b):
+            for a_idx, alpha in enumerate(vis_a):
                 vertex = vertices.copy()
                 r = R.from_euler('XY', [alpha, beta])
                 mat = r.as_matrix()
@@ -266,7 +291,7 @@ def plot_mapping_tless(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
                 vertex = np.dot(mat, vertex)
                 vertex[0] += alpha
                 vertex[1] += beta
-                vertex[2] += (s_b_[a_idx + 14 * b_idx] if i == 1 else c_b_[a_idx + 14 * b_idx])
+                vertex[2] += (vis_s_b_[a_idx + len(vis_a) * b_idx] if i == 1 else vis_c_b_[a_idx + len(vis_a) * b_idx])
                 mesh = go.Mesh3d(x=vertex[0, :], y=vertex[1, :], z=vertex[2, :], i=edges[0], j=edges[1], k=edges[2], opacity=1.0, facecolor=face_colours, flatshading=True)
                 fig.add_trace(mesh, row=i, col=2)
 
@@ -277,36 +302,91 @@ def plot_mapping_tless(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
                       zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset], yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
 
     ### GAMMA ###
-    g_angles = np.linspace(0.0, 2 * np.pi, steps + 4)[::visu_steps]
-    g_z_m, g_y_m, g_x_m = np.meshgrid(g_angles, b_angles, a_angles)
-    g_x_flat = g_x_m.flatten()
-    g_y_flat = g_y_m.flatten()
-    g_z_flat = g_z_m.flatten()
+    vis_g1 = g[:len(g)//2:visu_steps]
+    vis_g2 = g[len(g)//2:len(g):visu_steps]
+    vis_g = np.concatenate((vis_g1, vis_g2), axis=0)
+    
+    vis_s_g_ = []
+    for g_idx in range(len(g)//2 + 1):
+        if g_idx % visu_steps > 0:
+            continue
+        for b_idx in range(len(b)//2 + 1):
+            if b_idx % visu_steps:
+                continue
+            vis_s_g_1 = s_g_[(g_idx*(len(g)**2))+len(b)*b_idx:(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:visu_steps]
+            vis_s_g_2 = s_g_[(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:(g_idx*(len(g)**2))+len(b)*(b_idx+1):visu_steps]
+            vis_s_g_.append(np.concatenate((vis_s_g_1, vis_s_g_2), axis=0))
+        for b_idx in range(len(b)//2, len(b) + 1):
+            if (b_idx-1) % visu_steps:
+                continue
+            vis_s_g_1 = s_g_[(g_idx*(len(g)**2))+len(b)*b_idx:(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:visu_steps]
+            vis_s_g_2 = s_g_[(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:(g_idx*(len(g)**2))+len(b)*(b_idx+1):visu_steps]
+            vis_s_g_.append(np.concatenate((vis_s_g_1, vis_s_g_2), axis=0))
+    for g_idx in range(len(g)//2, len(g) + 1):
+        if (g_idx-1) % visu_steps > 0:
+            continue
+        for b_idx in range(len(b)//2 + 1):
+            if b_idx % visu_steps:
+                continue
+            vis_s_g_1 = s_g_[(g_idx*(len(g)**2))+len(b)*b_idx:(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:visu_steps]
+            vis_s_g_2 = s_g_[(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:(g_idx*(len(g)**2))+len(b)*(b_idx+1):visu_steps]
+            vis_s_g_.append(np.concatenate((vis_s_g_1, vis_s_g_2), axis=0))
+        for b_idx in range(len(b)//2, len(b) + 1):
+            if (b_idx-1) % visu_steps:
+                continue
+            vis_s_g_1 = s_g_[(g_idx*(len(g)**2))+len(b)*b_idx:(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:visu_steps]
+            vis_s_g_2 = s_g_[(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:(g_idx*(len(g)**2))+len(b)*(b_idx+1):visu_steps]
+            vis_s_g_.append(np.concatenate((vis_s_g_1, vis_s_g_2), axis=0))
+    vis_s_g_ = np.array(vis_s_g_).flatten()
 
-    selected_blocks = [i for i in range(0, 36, 3)] + [17, 35]  # Every 3rd slice, plus 18th and 36th
-    selected_rows = [i for i in range(0, 36, 3)] + [17, 35]  # Every 3rd row, plus 18th and 36th
-    selected_slices = [i for i in range(0, 36, 3)] + [17, 35]  # Every 3rd element in a row, plus 18th and 36th
-    # To get the flat indices
-    indices = [
-        block * 1296 + row * 36 + slice_
-        for block in selected_blocks
-        for row in selected_rows
-        for slice_ in selected_slices
-    ]
-    indices.sort()
-    s_g_ = s_g_[indices]
-    c_g_ = c_g_[indices]
+    vis_c_g_ = []
+    for g_idx in range(len(g)//2 + 1):
+        if g_idx % visu_steps > 0:
+            continue
+        for b_idx in range(len(b)//2 + 1):
+            if b_idx % visu_steps > 0:
+                continue
+            vis_c_g_1 = c_g_[(g_idx*(len(g)**2))+len(b)*b_idx:(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:visu_steps]
+            vis_c_g_2 = c_g_[(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:(g_idx*(len(g)**2))+len(b)*(b_idx+1):visu_steps]
+            vis_c_g_.append(np.concatenate((vis_c_g_1, vis_c_g_2), axis=0))
+        for b_idx in range(len(b)//2, len(b) + 1):
+            if (b_idx-1) % visu_steps > 0:
+                continue
+            vis_c_g_1 = c_g_[(g_idx*(len(g)**2))+len(b)*b_idx:(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:visu_steps]
+            vis_c_g_2 = c_g_[(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:(g_idx*(len(g)**2))+len(b)*(b_idx+1):visu_steps]
+            vis_c_g_.append(np.concatenate((vis_c_g_1, vis_c_g_2), axis=0))
+    for g_idx in range(len(g)//2, len(g) + 1):
+        if (g_idx-1) % visu_steps > 0:
+            continue
+        for b_idx in range(len(b)//2 + 1):
+            if b_idx % visu_steps > 0:
+                continue
+            vis_c_g_1 = c_g_[(g_idx*(len(g)**2))+len(b)*b_idx:(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:visu_steps]
+            vis_c_g_2 = c_g_[(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:(g_idx*(len(g)**2))+len(b)*(b_idx+1):visu_steps]
+            vis_c_g_.append(np.concatenate((vis_c_g_1, vis_c_g_2), axis=0))
+        for b_idx in range(len(b)//2, len(b) + 1):
+            if (b_idx-1) % visu_steps > 0:
+                continue
+            vis_c_g_1 = c_g_[(g_idx*(len(g)**2))+len(b)*b_idx:(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:visu_steps]
+            vis_c_g_2 = c_g_[(g_idx*(len(g)**2))+len(b)*(b_idx+1)-len(b)//2:(g_idx*(len(g)**2))+len(b)*(b_idx+1):visu_steps]
+            vis_c_g_.append(np.concatenate((vis_c_g_1, vis_c_g_2), axis=0))
+    vis_c_g_ = np.array(vis_c_g_).flatten()
 
-    scatter = go.Scatter3d(x=g_x_flat, y=g_y_flat, z=g_z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_g_, colorscale='viridis', cmin=-1, cmax=1))
-    fig.add_trace(scatter, row=1, col=3)
+    z_g, y_b, x_a = np.meshgrid(g, b, a, indexing='ij')
+    z_g_flat = z_g.flatten()
+    y_flat = y_b.flatten()
+    x_flat = x_a.flatten()
 
-    scatter = go.Scatter3d(x=g_x_flat, y=g_y_flat, z=g_z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_g_, colorscale='viridis', cmin=-1, cmax=1, colorbar=dict(thickness=20)))
-    fig.add_trace(scatter, row=2, col=3)
+    scatter5 = go.Scatter3d(x=x_flat, y=y_flat, z=z_g_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_g_, colorscale='viridis', cmin=-1, cmax=1))
+    fig.add_trace(scatter5, row=1, col=3)
+
+    scatter6 = go.Scatter3d(x=x_flat, y=y_flat, z=z_g_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_g_, colorscale='viridis', cmin=-1, cmax=1, colorbar=dict(thickness=20)))
+    fig.add_trace(scatter6, row=2, col=3)
 
     for i in range(1, 3):
-        for g_idx, gamma in enumerate(g_angles):
-            for b_idx, beta in enumerate(b_angles):
-                for a_idx, alpha in enumerate(a_angles):
+        for g_idx, gamma in enumerate(vis_g):
+            for b_idx, beta in enumerate(vis_b):
+                for a_idx, alpha in enumerate(vis_a):
                     vertex = vertices.copy()
                     r = R.from_euler('XYZ', [alpha, beta, gamma])
                     mat = r.as_matrix()
@@ -341,19 +421,21 @@ def plot_mapping_whole(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
     axis_outer_bound_offset = 0.3
 
     s_titles = [
-                    rf'$s_{{{sym_cls}, \alpha}}$',
-                    rf'$s_{{{sym_cls}, \beta}}$',
-                    rf'$s_{{{sym_cls}, \gamma}}\text{{ (values are only colour-coded)}}$',
-                    rf'$c_{{{sym_cls}, \alpha}}$',
-                    rf'$c_{{{sym_cls}, \beta}}$',
-                    rf'$c_{{{sym_cls}, \gamma}}\text{{ (values are only colour-coded)}}$'
+        rf'$s_{{{sym_cls}, \alpha}}$',
+        rf'$s_{{{sym_cls}, \beta}}$',
+        rf'$s_{{{sym_cls}, \gamma}}\text{{ (values are only colour-coded)}}$',
+        rf'$c_{{{sym_cls}, \alpha}}$',
+        rf'$c_{{{sym_cls}, \beta}}$',
+        rf'$c_{{{sym_cls}, \gamma}}\text{{ (values are only colour-coded)}}$'
     ]
 
-    fig = make_subplots(rows=2, cols=3, specs=[[{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}], [{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}]], subplot_titles=s_titles, horizontal_spacing=0.01, vertical_spacing=0.02)
+    fig = make_subplots(rows=2, cols=3, specs=[[{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}],
+                                               [{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}]],
+                        subplot_titles=s_titles, horizontal_spacing=0.01, vertical_spacing=0.02)
 
-    a = np.linspace(0.0, 2*np.pi, steps)
-    b = np.linspace(0.0, 2*np.pi, steps)
-    g = np.linspace(0.0, 2*np.pi, steps)
+    a = np.linspace(0, 2 * np.pi, steps)
+    b = np.linspace(0, 2 * np.pi, steps)
+    g = np.linspace(0, 2 * np.pi, steps)
 
     s_a_, c_a_, s_b_, c_b_, s_g_, c_g_ = map(alphas=a, betas=b, gammas=g, sym_cls=sym_cls)
 
@@ -363,83 +445,98 @@ def plot_mapping_whole(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
     scatter2 = go.Scatter3d(x=a, y=np.zeros_like(a), z=c_a_[:len(a)], mode='markers', marker=dict(size=3, opacity=1.0, color=c_a_[:len(a)], colorscale='viridis', cmin=-1, cmax=1))
     fig.add_trace(scatter2, row=2, col=1)
 
-    s_a_ = np.array([s_a_[i] for i in sorted([j - 1 for j in range(1, 36, 3)] + [17, 35])])
-    c_a_ = np.array([c_a_[i] for i in sorted([j - 1 for j in range(1, 36, 3)] + [17, 35])])
+    vis_a1 = a[:len(a) // 2:visu_steps]
+    vis_a2 = a[len(a) // 2:len(a):visu_steps]
+    vis_a = np.concatenate((vis_a1, vis_a2), axis=0)
 
-    angles = a[::visu_steps]
+    vis_s_a_1 = s_a_[:len(a) // 2:visu_steps]
+    vis_s_a_2 = s_a_[len(a) // 2:len(a):visu_steps]
+    vis_s_a_ = np.concatenate((vis_s_a_1, vis_s_a_2), axis=0)
+
+    vis_c_a_1 = c_a_[:len(a) // 2:visu_steps]
+    vis_c_a_2 = c_a_[len(a) // 2:len(a):visu_steps]
+    vis_c_a_ = np.concatenate((vis_c_a_1, vis_c_a_2), axis=0)
 
     for i in range(1, 3):
-        for a_idx, alpha in enumerate(angles):
+        for a_idx, alpha in enumerate(vis_a):
             vertex = copy.deepcopy(vertices)
 
             r = R.from_euler('X', alpha)
             mat = r.as_matrix()
+
             # apply transformation
             vertex = np.dot(mat, vertex)
-            vertex[2] += (s_a_[a_idx] if i == 1 else c_a_[a_idx])
+            vertex[2] += (vis_s_a_[a_idx] if i == 1 else vis_c_a_[a_idx])
             vertex[0] += alpha
 
-            mesh = go.Mesh3d(x=vertex[0, :], y=vertex[1, :], z=vertex[2, :], i=edges[0], j=edges[1], k=edges[2], opacity=1.0, facecolor=face_colours, flatshading=True)
+            mesh = go.Mesh3d(x=vertex[0, :], y=vertex[1, :], z=vertex[2, :], i=edges[0], j=edges[1], k=edges[2],
+                             opacity=1.0, facecolor=face_colours, flatshading=True)
             fig.add_trace(mesh, row=i, col=1)
 
-
     # Update layout and axis labels
-    fig.update_scenes(row=1, col=1, yaxis_title_text='-',
-                      zaxis_title_text=f's_({sym_cls}, alpha)',
-                      xaxis_title_text='alpha', xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
+    fig.update_scenes(row=1, col=1, yaxis_title_text='-', zaxis_title_text=f's_({sym_cls}, alpha)',
+                      xaxis_title_text='alpha',
+                      xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
                       yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                      zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset], aspectmode='cube')
-    fig.update_scenes(row=2, col=1, yaxis_title_text='-',
-                      zaxis_title_text=f'c_({sym_cls}, alpha)',
-                      xaxis_title_text='alpha', xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
+                      zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset],
+                      aspectmode='cube')
+    fig.update_scenes(row=2, col=1, yaxis_title_text='-', zaxis_title_text=f'c_({sym_cls}, alpha)',
+                      xaxis_title_text='alpha',
+                      xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
                       yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                      zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset], aspectmode='cube')
+                      zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset],
+                      aspectmode='cube')
 
-    fig.show()
+    ### BETA ###
+    y_b, x_a = np.meshgrid(b, a, indexing='ij')
+    y_b_flat = y_b.flatten()
+    x_a_flat = x_a.flatten()
 
-    hugo
-
-    ######## BETA ########
-    b = np.linspace(0, 2*np.pi, steps + 1)#(0 if sym_v[1] == 10**6 else (2 * np.pi - np.deg2rad(1)) / sym_v[1]), steps + 1)
-    #b = np.array([np.pi, np.pi])
-    b_factor = np.array([math.cos(ang) for ang in b])
-
-    y_m, x_m = np.meshgrid(b, a_factor)
-
-    s_b_s = map(ang=y_m, sym_v=sym_v[1], c_b=np.ones_like(x_m), var='s')
-
-    y_m, x_m = np.meshgrid(b, a)
-
-    x_flat = x_m.flatten()
-    y_flat = y_m.flatten()
-    s_b_s_flat = s_b_s.flatten()
-
-    scatter3 = go.Scatter3d(x=x_flat, y=y_flat, z=s_b_s_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_b_s_flat, colorscale='viridis', cmin=-1, cmax=1))
+    scatter3 = go.Scatter3d(x=x_a_flat, y=y_b_flat, z=s_b_[:len(a) ** 2], mode='markers',
+                            marker=dict(size=3, opacity=1.0, color=s_b_, colorscale='viridis', cmin=-1, cmax=1))
     fig.add_trace(scatter3, row=1, col=2)
 
-    y_m, x_m = np.meshgrid(b, a_factor)
-
-    c_b_s = map(ang=y_m, sym_v=sym_v[1], var='c')
-
-    y_m, x_m = np.meshgrid(b, a)
-
-    x_flat = x_m.flatten()
-    y_flat = y_m.flatten()
-    c_b_s_flat = c_b_s.flatten()
-
-    scatter4 = go.Scatter3d(x=x_flat, y=y_flat, z=c_b_s_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_b_s_flat, colorscale='viridis', cmin=-1, cmax=1))
-
+    scatter4 = go.Scatter3d(x=x_a_flat, y=y_b_flat, z=c_b_[:len(a) ** 2], mode='markers',
+                            marker=dict(size=3, opacity=1.0, color=c_b_, colorscale='viridis', cmin=-1, cmax=1))
     fig.add_trace(scatter4, row=2, col=2)
 
-    num_cuboids = (a.shape[0] // visu_steps) + 1
-    angles = np.zeros((3, num_cuboids))
+    vis_b1 = b[:len(b) // 2:visu_steps]
+    vis_b2 = b[len(b) // 2:len(b):visu_steps]
+    vis_b = np.concatenate((vis_b1, vis_b2), axis=0)
 
-    angles[0, :] = a[::visu_steps]
-    angles[1, :] = b[::visu_steps]
+    vis_s_b_ = []
+    for b_idx in range(len(b) // 2 + 1):
+        if b_idx % visu_steps > 0:
+            continue
+        vis_s_b_1 = s_b_[len(b) * b_idx:len(b) * (b_idx + 1) - len(b) // 2:visu_steps]
+        vis_s_b_2 = s_b_[len(b) * (b_idx + 1) - len(b) // 2:len(b) * (b_idx + 1):visu_steps]
+        vis_s_b_.append(np.concatenate((vis_s_b_1, vis_s_b_2), axis=0))
+    for b_idx in range(len(b) // 2, len(b) + 1):
+        if (b_idx - 1) % visu_steps > 0:
+            continue
+        vis_s_b_1 = s_b_[len(b) * b_idx:len(b) * (b_idx + 1) - len(b) // 2:visu_steps]
+        vis_s_b_2 = s_b_[len(b) * (b_idx + 1) - len(b) // 2:len(b) * (b_idx + 1):visu_steps]
+        vis_s_b_.append(np.concatenate((vis_s_b_1, vis_s_b_2), axis=0))
+    vis_s_b_ = np.array(vis_s_b_).flatten()
+
+    vis_c_b_ = []
+    for b_idx in range(len(b) // 2 + 1):
+        if b_idx % visu_steps > 0:
+            continue
+        vis_c_b_1 = c_b_[len(b) * b_idx:len(b) * (b_idx + 1) - len(b) // 2:visu_steps]
+        vis_c_b_2 = c_b_[len(b) * (b_idx + 1) - len(b) // 2:len(b) * (b_idx + 1):visu_steps]
+        vis_c_b_.append(np.concatenate((vis_c_b_1, vis_c_b_2), axis=0))
+    for b_idx in range(len(b) // 2, len(b) + 1):
+        if (b_idx - 1) % visu_steps > 0:
+            continue
+        vis_c_b_1 = c_b_[len(b) * b_idx:len(b) * (b_idx + 1) - len(b) // 2:visu_steps]
+        vis_c_b_2 = c_b_[len(b) * (b_idx + 1) - len(b) // 2:len(b) * (b_idx + 1):visu_steps]
+        vis_c_b_.append(np.concatenate((vis_c_b_1, vis_c_b_2), axis=0))
+    vis_c_b_ = np.array(vis_c_b_).flatten()
 
     for i in range(1, 3):
-        for a_idx, alpha in enumerate(angles[0, :]):
-            for b_idx, beta in enumerate(angles[1, :]):
+        for b_idx, beta in enumerate(vis_b):
+            for a_idx, alpha in enumerate(vis_a):
                 vertex = vertices.copy()
                 r = R.from_euler('XY', [alpha, beta])
                 mat = r.as_matrix()
@@ -448,55 +545,136 @@ def plot_mapping_whole(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
                 vertex = np.dot(mat, vertex)
                 vertex[0] += alpha
                 vertex[1] += beta
-                vertex[2] += (s_b_s[a_idx * visu_steps, b_idx * visu_steps] if i == 1 else c_b_s[a_idx * visu_steps, b_idx * visu_steps])
+                vertex[2] += (vis_s_b_[a_idx + len(vis_a) * b_idx] if i == 1 else vis_c_b_[a_idx + len(vis_a) * b_idx])
                 mesh = go.Mesh3d(x=vertex[0, :], y=vertex[1, :], z=vertex[2, :], i=edges[0], j=edges[1], k=edges[2],
                                  opacity=1.0, facecolor=face_colours, flatshading=True)
                 fig.add_trace(mesh, row=i, col=2)
 
     # Update layout and axis labels
-    fig.update_scenes(row=1, col=2, zaxis_title_text=f's_{sym_cls}, beta',
-                        yaxis_title_text='beta', xaxis_title_text='alpha',
-                        zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset],
-                        yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                        xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
-    fig.update_scenes(row=2, col=2, zaxis_title_text=f'c_{sym_cls}, beta',
-                        yaxis_title_text='beta',
-                        xaxis_title_text='alpha',
-                        zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset],
-                        yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                        xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
-    #fig_2['layout']['dragmode'] = 'orbit'
+    fig.update_scenes(row=1, col=2, zaxis_title_text=f's_{sym_cls}, beta', yaxis_title_text='beta',
+                      xaxis_title_text='alpha',
+                      zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset],
+                      yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
+                      xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
+    fig.update_scenes(row=2, col=2, zaxis_title_text=f'c_{sym_cls}, beta', yaxis_title_text='beta',
+                      xaxis_title_text='alpha',
+                      zaxis_range=[-np.pi - axis_outer_bound_offset, np.pi + axis_outer_bound_offset],
+                      yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
+                      xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
 
-    ###### GAMMA ######
-    g = np.linspace(0, 2*np.pi, steps + 1)
-    #a = np.deg2rad(np.array([50, 230]))
-    z_m, y_m, x_m = np.meshgrid(g, b_factor, a_factor)
-    s_g_s = map(ang=z_m, sym_v=sym_v[2], c_b=y_m if sym_v[1] > 1 else np.ones_like(y_m), var='s')
-    c_g_s = map(ang=z_m, sym_v=sym_v[2], var='c')
-    s_g_s_flat = s_g_s.flatten()
-    c_g_s_flat = c_g_s.flatten()
+    ### GAMMA ###
+    vis_g1 = g[:len(g) // 2:visu_steps]
+    vis_g2 = g[len(g) // 2:len(g):visu_steps]
+    vis_g = np.concatenate((vis_g1, vis_g2), axis=0)
 
-    z_m, y_m, x_m = np.meshgrid(g, b, a)
+    vis_s_g_ = []
+    for g_idx in range(len(g) // 2 + 1):
+        if g_idx % visu_steps > 0:
+            continue
+        for b_idx in range(len(b) // 2 + 1):
+            if b_idx % visu_steps:
+                continue
+            vis_s_g_1 = s_g_[
+                        (g_idx * (len(g) ** 2)) + len(b) * b_idx:(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(
+                            b) // 2:visu_steps]
+            vis_s_g_2 = s_g_[(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(b) // 2:(g_idx * (len(g) ** 2)) + len(
+                b) * (b_idx + 1):visu_steps]
+            vis_s_g_.append(np.concatenate((vis_s_g_1, vis_s_g_2), axis=0))
+        for b_idx in range(len(b) // 2, len(b) + 1):
+            if (b_idx - 1) % visu_steps:
+                continue
+            vis_s_g_1 = s_g_[
+                        (g_idx * (len(g) ** 2)) + len(b) * b_idx:(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(
+                            b) // 2:visu_steps]
+            vis_s_g_2 = s_g_[(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(b) // 2:(g_idx * (len(g) ** 2)) + len(
+                b) * (b_idx + 1):visu_steps]
+            vis_s_g_.append(np.concatenate((vis_s_g_1, vis_s_g_2), axis=0))
+    for g_idx in range(len(g) // 2, len(g) + 1):
+        if (g_idx - 1) % visu_steps > 0:
+            continue
+        for b_idx in range(len(b) // 2 + 1):
+            if b_idx % visu_steps:
+                continue
+            vis_s_g_1 = s_g_[
+                        (g_idx * (len(g) ** 2)) + len(b) * b_idx:(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(
+                            b) // 2:visu_steps]
+            vis_s_g_2 = s_g_[(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(b) // 2:(g_idx * (len(g) ** 2)) + len(
+                b) * (b_idx + 1):visu_steps]
+            vis_s_g_.append(np.concatenate((vis_s_g_1, vis_s_g_2), axis=0))
+        for b_idx in range(len(b) // 2, len(b) + 1):
+            if (b_idx - 1) % visu_steps:
+                continue
+            vis_s_g_1 = s_g_[
+                        (g_idx * (len(g) ** 2)) + len(b) * b_idx:(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(
+                            b) // 2:visu_steps]
+            vis_s_g_2 = s_g_[(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(b) // 2:(g_idx * (len(g) ** 2)) + len(
+                b) * (b_idx + 1):visu_steps]
+            vis_s_g_.append(np.concatenate((vis_s_g_1, vis_s_g_2), axis=0))
+    vis_s_g_ = np.array(vis_s_g_).flatten()
 
-    x_flat = x_m.flatten()
-    y_flat = y_m.flatten()
-    z_flat = z_m.flatten()
+    vis_c_g_ = []
+    for g_idx in range(len(g) // 2 + 1):
+        if g_idx % visu_steps > 0:
+            continue
+        for b_idx in range(len(b) // 2 + 1):
+            if b_idx % visu_steps > 0:
+                continue
+            vis_c_g_1 = c_g_[
+                        (g_idx * (len(g) ** 2)) + len(b) * b_idx:(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(
+                            b) // 2:visu_steps]
+            vis_c_g_2 = c_g_[(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(b) // 2:(g_idx * (len(g) ** 2)) + len(
+                b) * (b_idx + 1):visu_steps]
+            vis_c_g_.append(np.concatenate((vis_c_g_1, vis_c_g_2), axis=0))
+        for b_idx in range(len(b) // 2, len(b) + 1):
+            if (b_idx - 1) % visu_steps > 0:
+                continue
+            vis_c_g_1 = c_g_[
+                        (g_idx * (len(g) ** 2)) + len(b) * b_idx:(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(
+                            b) // 2:visu_steps]
+            vis_c_g_2 = c_g_[(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(b) // 2:(g_idx * (len(g) ** 2)) + len(
+                b) * (b_idx + 1):visu_steps]
+            vis_c_g_.append(np.concatenate((vis_c_g_1, vis_c_g_2), axis=0))
+    for g_idx in range(len(g) // 2, len(g) + 1):
+        if (g_idx - 1) % visu_steps > 0:
+            continue
+        for b_idx in range(len(b) // 2 + 1):
+            if b_idx % visu_steps > 0:
+                continue
+            vis_c_g_1 = c_g_[
+                        (g_idx * (len(g) ** 2)) + len(b) * b_idx:(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(
+                            b) // 2:visu_steps]
+            vis_c_g_2 = c_g_[(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(b) // 2:(g_idx * (len(g) ** 2)) + len(
+                b) * (b_idx + 1):visu_steps]
+            vis_c_g_.append(np.concatenate((vis_c_g_1, vis_c_g_2), axis=0))
+        for b_idx in range(len(b) // 2, len(b) + 1):
+            if (b_idx - 1) % visu_steps > 0:
+                continue
+            vis_c_g_1 = c_g_[
+                        (g_idx * (len(g) ** 2)) + len(b) * b_idx:(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(
+                            b) // 2:visu_steps]
+            vis_c_g_2 = c_g_[(g_idx * (len(g) ** 2)) + len(b) * (b_idx + 1) - len(b) // 2:(g_idx * (len(g) ** 2)) + len(
+                b) * (b_idx + 1):visu_steps]
+            vis_c_g_.append(np.concatenate((vis_c_g_1, vis_c_g_2), axis=0))
+    vis_c_g_ = np.array(vis_c_g_).flatten()
 
-    scatter = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_g_s_flat, colorscale='viridis', cmin=-1, cmax=1))
-    fig.add_trace(scatter, row=1, col=3)
+    z_g, y_b, x_a = np.meshgrid(g, b, a, indexing='ij')
+    z_g_flat = z_g.flatten()
+    y_flat = y_b.flatten()
+    x_flat = x_a.flatten()
 
-    scatter = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_g_s_flat, colorscale='viridis', cmin=-1, cmax=1, colorbar=dict(thickness=20)))
-    fig.add_trace(scatter, row=2, col=3)
+    scatter5 = go.Scatter3d(x=x_flat, y=y_flat, z=z_g_flat, mode='markers',
+                            marker=dict(size=3, opacity=1.0, color=s_g_, colorscale='viridis', cmin=-1, cmax=1))
+    fig.add_trace(scatter5, row=1, col=3)
 
-    angles = np.zeros((3, g.shape[0] // visu_steps + 1))
-    angles[2, :] = g[::visu_steps]
-    angles[1, :] = b[::visu_steps]
-    angles[0, :] = a[::visu_steps]
+    scatter6 = go.Scatter3d(x=x_flat, y=y_flat, z=z_g_flat, mode='markers',
+                            marker=dict(size=3, opacity=1.0, color=c_g_, colorscale='viridis', cmin=-1, cmax=1,
+                                        colorbar=dict(thickness=20)))
+    fig.add_trace(scatter6, row=2, col=3)
 
     for i in range(1, 3):
-        for g_idx, gamma in enumerate(angles[2, :]):
-            for b_idx, beta in enumerate(angles[1, :]):
-                for a_idx, alpha in enumerate(angles[0, :]):
+        for g_idx, gamma in enumerate(vis_g):
+            for b_idx, beta in enumerate(vis_b):
+                for a_idx, alpha in enumerate(vis_a):
                     vertex = vertices.copy()
                     r = R.from_euler('XYZ', [alpha, beta, gamma])
                     mat = r.as_matrix()
@@ -510,28 +688,29 @@ def plot_mapping_whole(sym_cls=None, steps=50, visu_steps=5, colours='RGB'):
                     fig.add_trace(mesh, row=i, col=3)
 
     fig.update_scenes(row=1, col=3, xaxis_title_text='alpha', yaxis_title_text='beta', zaxis_title_text='gamma',
-                        xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                        yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                        zaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
+                      xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
+                      yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
+                      zaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
     fig.update_scenes(row=2, col=3, xaxis_title_text='alpha', yaxis_title_text='beta', zaxis_title_text='gamma',
-                        xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                        yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                        zaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
-    fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={sym_v} \text{{ ("XYZ" intrinsic rotation order, SO(3) space, angles in radians)}}$'
-    #fig_3['layout']['dragmode'] = 'orbit'
+                      xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
+                      yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
+                      zaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
+    fig['layout'][
+        'title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={sym_v} \text{{ ("XYZ" intrinsic rotation order, TLESS rotation subspace, angles in radians)}}$'
+    # fig_3['layout']['dragmode'] = 'orbit'
 
     fig.show()
-    #fig.write_html(f"{sym_cls}.html", include_mathjax='cdn')
+    # fig.write_html(f"{sym_cls}.html", include_mathjax='cdn')
 
 
 if __name__ == '__main__':
-    sym_classes = ['II']#, 'II', 'III', 'IV', 'V']
-    tless_steps =  36  # For dots, datapoints, time 2 plus 1 i.e. 50 -> 101
-    tless_visu_steps = 3
-    so3_steps = 32  # For dots, datapoints, time 2 plus 1 i.e. 50 -> 101
+    sym_classes = ['I']
+    tless_steps =  26  # For dots, datapoints, time 2 plus 1 i.e. 50 -> 101
+    tless_visu_steps = 4
+    so3_steps = 26  # For dots, datapoints, time 2 plus 1 i.e. 50 -> 101
     so3_visu_steps = 4
     colours = 'RGB'
-    subspace = 'BOTH'# ['TLESS', 'SO3', 'BOTH']  if  not TLESS, visualizes across all of SO(3) - this can take a long time to load
+    subspace = 'TLESS'# ['TLESS', 'SO3', 'BOTH']  if  not TLESS, visualizes across all of SO(3) - this can take a long time to load
     #colours = 'grey'
 
     for sym_cls in sym_classes:

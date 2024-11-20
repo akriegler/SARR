@@ -233,7 +233,11 @@ def clamp_rot(alpha, beta, gamma, sym_v):
         if alpha % (2 * np.pi) >= np.pi:
             alpha = (2 * np.pi) - (alpha % np.pi)
             gamma = (np.pi - gamma) % (2 * np.pi)
-            beta *= -1
+            #beta *= -1
+        else:
+            alpha = (alpha % (2 * np.pi / sym_v[0])) * ((sym_v[0] % 10 ** 6) / sym_v[0])
+            beta = (beta % (2 * np.pi / sym_v[1])) * ((sym_v[1] % 10 ** 6) / sym_v[1])
+            gamma = (gamma % (2 * np.pi / sym_v[2])) * ((sym_v[2] % 10 ** 6) / sym_v[2])
     else:
         alpha = (alpha % (2 * np.pi / sym_v[0])) * ((sym_v[0] % 10 ** 6) / sym_v[0])
         beta = (beta % (2 * np.pi / sym_v[1])) * ((sym_v[1] % 10 ** 6) / sym_v[1])
