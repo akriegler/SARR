@@ -73,35 +73,32 @@
 <body onload="showDefaultPage()">
 <!-- Dropdown menu for page selection -->
 <div class="navbar">
-    <a href="#" class="navbar-brand">Visualizer for symmetry-aware rotation representation</a>
+    <a href="#" class="navbar-brand">Visualizer for the rotation representation</a>
             <div class="navbar-links">
                 <label for="pageSelect">Select a symmetry class:</label>
                 <select id="pageSelect" onchange="showSelectedPage()">
-                    <option value="page1">0 - [1, 1, 1] (T-LESS)</option>
-                    <option value="page2">1 - [1, 1, 2] (T-LESS)</option>
-                    <option value="page3">2 - [1, 1, 4] (T-LESS)</option>
-                    <option value="page4">3 - [1, 1, ∞] (T-LESS)</option>
-                    <option value="page5">4 - [1, 2, 1] (T-LESS)</option>
-                    <option value="page6">Cuboid [2, 2, 2]</option>
-                    <option value="page7">Cuboid [4, 2, 2]</option>
-                    <option value="page8">Cuboid [2, 4, 2]</option>
-                    <option value="page9">Cuboid [2, 2, 4]</option>
-                    <option value="page10">Cube [4, 4, 4]</option>
-                    <option value="page11">Cylinder/Torus [2, 2, ∞]</option>
-                    <option value="page12">Sphere [∞, ∞, ∞]</option>
-                    <option value="page13">No symmetry [1, 1, 1]</option>
+                    <option value="page1">I - [1, 1, 1] (T-LESS)</option>
+                    <option value="page2">II - [1, 1, 2] (T-LESS)</option>
+                    <option value="page3">III - [1, 1, 4] (T-LESS)</option>
+                    <option value="page4">IV - [1, 1, ∞] (T-LESS)</option>
+                    <option value="page5">V - [1, 2, 1] (T-LESS)</option>
+                    <option value="page6">I - [1, 1, 1] (SO(3))</option>
+                    <option value="page7">II - [1, 1, 2] (SO(3))</option>
+                    <option value="page8">III - [1, 1, 4] (SO(3))</option>
+                    <option value="page9">IV - [1, 1, ∞] (SO(3))</option>
+                    <option value="page10">V - [1, 2, 1] (SO(3))</option>
                 </select>
             </div>
             <div>
                 <!-- Link to the repository -->
                 <a class="repo-link" href="https://github.com/akriegler/symmetry-aware_rotation_representation" target="_blank">
-                    View Repository
+                    Go to repository
                 </a>
             </div>
             <div>
                 <!-- Link to video -->
                 <a class="repo-link" href="https://github.com/akriegler/symmetry-aware_rotation_representation/tree/main/video/verification.mp4" target="_blank">
-                    View Video
+                    View verification video
                 </a>
             </div>
 </div>
@@ -109,79 +106,76 @@
 <!-- Page containers -->
 <div id="page1" class="page-container content">
     <p>
-    <button onclick="location.href='renders/A.html'">Open visualization.</button>
-        Loading can be slow (up to 5 minutes), alternatively select 'View Video'.
+    <button onclick="location.href='renders/I_TLESS.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
     </p>
 </div>
 
 <div id="page2" class="page-container content">
-   <p>
-    <button onclick="location.href='renders/B.html'">Open visualization.</button>
-       Loading can be slow (up to 5 minutes), alternatively select 'View Video'.
+    <p>
+    <button onclick="location.href='renders/II_TLESS.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
     </p>
 </div>
 
 <div id="page3" class="page-container content">
-   <p>
-    <button onclick="location.href='renders/C.html'">Open visualization.</button>
-       Loading can be slow (up to 5 minutes), alternatively select 'View Video'.
+    <p>
+    <button onclick="location.href='renders/III_TLESS.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
     </p>
 </div>
 
 <div id="page4" class="page-container content">
-   <p>
-    <button onclick="location.href='renders/D.html'">Open visualization.</button>
-       Loading can be slow (up to 5 minutes), alternatively select 'View Video'.
+    <p>
+    <button onclick="location.href='renders/IV_TLESS.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
     </p>
 </div>
 
 <div id="page5" class="page-container content">
-   <p>
-    <button onclick="location.href='renders/E.html'">Open visualization.</button>
-       Loading can be slow (up to 5 minutes), alternatively select 'View Video'.
+    <p>
+    <button onclick="location.href='renders/V_TLESS.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
     </p>
 </div>
 
 <div id="page6" class="page-container content">
-   <p>
-    <button onclick="location.href='renders/CUBOID.html'">Open visualization.</button>
-       Loading can be slow (up to 5 minutes), alternatively select 'View Video'.
+    <p>
+    <button onclick="location.href='renders/I_SO3.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
     </p>
 </div>
 
 <div id="page7" class="page-container content">
-    <p>coming soon (as of 2024-06-25)</p>
-</div>
-
-<div id="page8" class="page-container content">
-    <p>coming soon (as of 2024-06-25)</p>
-</div>
-
-<div id="page9" class="page-container content">
-    <p>coming soon (as of 2024-06-25)</p>
-</div>
-
-<div id="page10" class="page-container content">
-   <p>
-    <button onclick="location.href='renders/CUBE.html'">Open visualization.</button>
-       Loading can be slow (up to 5 minutes), alternatively select 'View Video'.
+    <p>
+    <button onclick="location.href='renders/II_SO3.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
     </p>
 </div>
 
-<div id="page11" class="page-container content">
-    <p>coming soon (as of 2024-06-25)</p>
+<div id="page8" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/III_SO3.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
+    </p>
 </div>
 
-<div id="page12" class="page-container content">
-    <p>coming soon (as of 2024-06-25)</p>
+<div id="page9" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/IV_SO3.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
+    </p>
 </div>
 
-<div id="page13" class="page-container content">
-    <p>coming soon (as of 2024-06-25)</p>
+<div id="page10" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/V_SO3.html'">Open visualization.</button>
+        Loading can be slow. Alternatively select 'View verificaton video'.
+    </p>
 </div>
 
 <div id="pageDefault" class="page-container content">
-    <p>Choose a symmetry class for visualization. Loading can be slow (up to 5 minutes), alternatively select 'View Video'.</p>
+    <p>Choose a symmetry class for visualization. Loading can be slow, especially for the SO3 space.  Alternatively select 'View verification video'.</p>
 </div>
 
 <script>
