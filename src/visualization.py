@@ -290,8 +290,8 @@ def plot_mapping_tless(sym_cls=None, colours='RGB'):
     fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={sym_v} \text{{ ("XYZ" intrinsic rotation order, TLESS rotation subspace, angles in radians)}}$'
     #fig_3['layout']['dragmode'] = 'orbit'
 
-    #fig.show()
-    fig.write_html(f"{sym_cls}_TLESS.html", include_mathjax='cdn')
+    fig.show()
+    #fig.write_html(f"{sym_cls}_TLESS.html", include_mathjax='cdn')
 
 
 def plot_mapping_whole(sym_cls=None, colours='RGB'):
@@ -371,14 +371,14 @@ def plot_mapping_whole(sym_cls=None, colours='RGB'):
     fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={sym_v} \text{{ ("XYZ" intrinsic rotation order, SO(3) rotation space, angles in radians)}}$'
     # fig_3['layout']['dragmode'] = 'orbit'
 
-    #fig.show()
-    fig.write_html(f"{sym_cls}_SO3.html", include_mathjax='cdn')
+    fig.show()
+    #fig.write_html(f"{sym_cls}_SO3.html", include_mathjax='cdn')
 
 
 if __name__ == '__main__':
-    sym_classes = ['I', 'II', 'III', 'IV']
+    sym_classes = ['I', 'II', 'III', 'IV', 'V']
     colours = 'RGB'
-    subspaces = ['TLESS', 'SO3']
+    subspaces = ['TLESS']#, 'SO3']
 
     for subspace in subspaces:
         for sym_cls in sym_classes:
