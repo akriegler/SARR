@@ -181,10 +181,10 @@ def plot_mapping_tless(sym_cls=None, colours='RGB'):
     s_titles = [
                     rf'$s_{{{sym_cls}, \alpha}}$',
                     rf'$s_{{{sym_cls}, \beta}}$',
-                    rf'$s_{{{sym_cls}, \gamma}}\text{{ (values are only colour-coded)}}$',
+                    rf'$s_{{{sym_cls}, \gamma}}$',
                     rf'$c_{{{sym_cls}, \alpha}}$',
                     rf'$c_{{{sym_cls}, \beta}}$',
-                    rf'$c_{{{sym_cls}, \gamma}}\text{{ (values are only colour-coded)}}$'
+                    rf'$c_{{{sym_cls}, \gamma}}$'
     ]
 
     fig = make_subplots(rows=2, cols=3, specs=[[{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}], [{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}]], subplot_titles=s_titles, horizontal_spacing=0.01, vertical_spacing=0.02)
@@ -304,10 +304,10 @@ def plot_mapping_whole(sym_cls=None, colours='RGB'):
     s_titles = [
         rf'$s_{{{sym_cls}, \alpha}}$',
         rf'$s_{{{sym_cls}, \beta}}$',
-        rf'$s_{{{sym_cls}, \gamma}}\text{{ (values are only colour-coded)}}$',
+        rf'$s_{{{sym_cls}, \gamma}}$',
         rf'$c_{{{sym_cls}, \alpha}}$',
         rf'$c_{{{sym_cls}, \beta}}$',
-        rf'$c_{{{sym_cls}, \gamma}}\text{{ (values are only colour-coded)}}$'
+        rf'$c_{{{sym_cls}, \gamma}}$'
     ]
 
     fig = make_subplots(rows=2, cols=3, specs=[[{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}], [{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}]], subplot_titles=s_titles, horizontal_spacing=0.01, vertical_spacing=0.02)
