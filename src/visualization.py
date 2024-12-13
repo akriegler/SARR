@@ -376,7 +376,7 @@ def plot_mapping_whole(sym_cls=None, colours='RGB'):
 
 
 if __name__ == '__main__':
-    sym_classes = ['II']
+    sym_classes = ['I', 'II', 'III', 'IV', 'V']
     colours = 'RGB'
     subspaces = ['TLESS']#, 'SO3']
 
