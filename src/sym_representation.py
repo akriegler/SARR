@@ -218,13 +218,13 @@ if __name__ == '__main__':
     # below is used to check the inverse mapping
     sym_class = 'IV'
 
-    alpha_1 = np.deg2rad(5)
+    alpha_1 = np.deg2rad(0)
     beta_1 = np.deg2rad(0)
-    gamma_1 = np.deg2rad(20)
+    gamma_1 = np.deg2rad(0)
 
-    alpha_2 = np.deg2rad(275)
-    beta_2 = np.deg2rad(180)
-    gamma_2 = np.deg2rad(70)
+    alpha_2 = np.deg2rad(0)
+    beta_2 = np.deg2rad(0)
+    gamma_2 = np.deg2rad(0)
 
     rot_sym_mat_1 = sym_aware_rotation(alpha_1, beta_1, gamma_1, sym_class)
     rot_sym_mat_2 = sym_aware_rotation(alpha_2, beta_2, gamma_2, sym_class)

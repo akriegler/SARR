@@ -5,8 +5,8 @@ Implementation of our rotation representation, inverse mapping and the categoriz
 
 For the visualization and visual verification run [visualization.py](./src/visualization.py)
 
-The plots have been pre-rendered into interactive html-files which can be found at: [View visualization](https://akriegler.github.io/SARR/)
+The plots have been pre-rendered into interactive html-files and the toolkit can be found at: [View visualization](https://akriegler.github.io/SARR/)
 
-(COMING SOON) A video of these plots with some explanations is available at: [View video](https://github.com/akriegler/SARR/tree/main/video/verification.mp4)
+A video of these plots with some explanations is available at: [View video](./video/supplementary_video_visualization-toolkit_symmetry_II.mp4)
 
 For questions contact Andreas Kriegler (andreas.kriegler@tuwien.ac.at)

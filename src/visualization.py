@@ -192,7 +192,7 @@ def plot_mapping_tless(sym_cls=None, colours='RGB'):
     a1 = np.deg2rad(np.arange(5, 90, 10))
     a2 = np.deg2rad(np.arange(275, 360, 10)) if sym_cls != 'V' else a1
     b1 = np.deg2rad(np.array([0]))
-    b2 = np.deg2rad(np.array([180])) if sym_cls != 'V' else b1
+    b2 = np.deg2rad(np.array([0]))
     g1 = np.deg2rad(np.arange(0, 360, 5))
     g2 = np.deg2rad(np.arange(0, 360, 5))
 
@@ -214,33 +214,33 @@ def plot_mapping_tless(sym_cls=None, colours='RGB'):
     
 
     ### ALPHA ###
-    scatter_s_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_a_1, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_s_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_a_1, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_s_1, row=1, col=1)
-    scatter_s_2= go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_a_2, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_s_2= go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_a_2, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_s_2, row=1, col=1)
-    scatter_c_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_a_1, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_c_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_a_1, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_c_1, row=2, col=1)
-    scatter_c_2= go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_a_2, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_c_2= go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_a_2, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_c_2, row=2, col=1)
 
     ### BETA ###
-    scatter_s_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_b_1, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_s_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_b_1, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_s_1, row=1, col=2)
-    scatter_s_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_b_2, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_s_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_b_2, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_s_2, row=1, col=2)
-    scatter_c_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_b_1, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_c_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_b_1, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_c_1, row=2, col=2)
-    scatter_c_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_b_2, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_c_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_b_2, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_c_2, row=2, col=2)
 
     ### GAMMA ###
-    scatter_s_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_g_1, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_s_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_g_1, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_s_1, row=1, col=3)
-    scatter_s_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_g_2, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_s_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_g_2, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_s_2, row=1, col=3)
-    scatter_c_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_g_1, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_c_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_g_1, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_c_1, row=2, col=3)
-    scatter_c_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_g_2, colorscale='viridis', cmin=-1, cmax=1, colorbar=dict(thickness=20)))
+    scatter_c_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_g_2, colorscale='viridis', cmin=-1, cmax=1, showscale=True, colorbar=dict(thickness=20)), showlegend=False)
     fig.add_trace(scatter_c_2, row=2, col=3)
 
     for j in range(1, 4):
@@ -325,21 +325,21 @@ def plot_mapping_whole(sym_cls=None, colours='RGB'):
     x_flat = x_grid.flatten()
 
     ### ALPHA ###
-    scatter_s = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_a, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_s = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_a, colorscale='viridis', cmin=-1, cmax=1, showscale=False))
     fig.add_trace(scatter_s, row=1, col=1)
-    scatter_c = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_a, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_c = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_a, colorscale='viridis', cmin=-1, cmax=1, showscale=False))
     fig.add_trace(scatter_c, row=2, col=1)
 
     ### BETA ###
-    scatter_s = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_b, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_s = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_b, colorscale='viridis', cmin=-1, cmax=1, showscale=False))
     fig.add_trace(scatter_s, row=1, col=2)
-    scatter_c = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_b, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_c = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_b, colorscale='viridis', cmin=-1, cmax=1, showscale=False))
     fig.add_trace(scatter_c, row=2, col=2)
 
     ### GAMMA ###
-    scatter_s = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_g, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_s = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_g, colorscale='viridis', cmin=-1, cmax=1, showscale=False))
     fig.add_trace(scatter_s, row=1, col=3)
-    scatter_c = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_g, colorscale='viridis', cmin=-1, cmax=1))
+    scatter_c = go.Scatter3d(x=x_flat, y=y_flat, z=z_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_g, colorscale='viridis', cmin=-1, cmax=1, showscale=False))
     fig.add_trace(scatter_c, row=2, col=3)
 
     for j in range(1, 4):
@@ -376,7 +376,7 @@ def plot_mapping_whole(sym_cls=None, colours='RGB'):
 
 
 if __name__ == '__main__':
-    sym_classes = ['I', 'II', 'III', 'IV', 'V']
+    sym_classes = ['II']
     colours = 'RGB'
     subspaces = ['TLESS']#, 'SO3']
 
@@ -390,5 +390,5 @@ if __name__ == '__main__':
                 print(f'Plots of the six parameters that make up our representation S_{sym_cls}, with kappa_{sym_cls}, SO(3) rotation space')
             else:
                 raise NotImplementedError
-            time.sleep(60)
+            time.sleep(30)
 
