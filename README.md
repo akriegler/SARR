@@ -1,4 +1,4 @@
-# Towards Symmetry-sensitive Pose Estimation: A Rotation Representation for the Symmetric Objects in T-LESS
+# Towards Symmetry-sensitive Pose Estimation: A Rotation Representation for Symmetric Object Classes
 
 Implementation of our rotation representation, inverse mapping and the categorization of symmetry classes  are available in [sym_representation.py](./src/sym_representation.py)
 
