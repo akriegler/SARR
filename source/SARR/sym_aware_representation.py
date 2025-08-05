@@ -1,0 +1,174 @@
+import math
+
+import numpy as np
+
+from scipy.spatial.transform import Rotation
+
+from utils import clamp_rot, clamp_rot_adv
+
+atol = 0.0000000001
+
+
+def map_R_to_canonic_R(R, sym_v, clamp=False):
+    rot_sym_mat = map_R_to_sarr(R, sym_v, clamp)
+    R = map_sarr_to_R(rot_sym_mat, sym_v, clamp)
+
+    return R, rot_sym_mat
+
+
+def map_R_to_sarr(R, sym_v=None, clamp=False):
+    alpha, beta, gamma = map_R_to_euler(R)
+    rot_sym_mat = sym_aware_rotation(alpha, beta, gamma, sym_v, clamp=clamp)
+
+    return rot_sym_mat
+
+
+def map_R_to_euler(R, sym_v=None, clamp=False):
+    if sym_v is None:
+        sym_v = [1, 1, 1]
+    R = Rotation.from_matrix(R)
+    alpha, beta, gamma = R.as_euler('XYZ', degrees=False)
+    if clamp:
+        alpha, beta, gamma = clamp_rot(alpha, beta, gamma, sym_v=sym_v)
+
+    return alpha, beta, gamma
+
+
+def map_sarr_to_R(rot_sym_mat, sym_v, clamp=False):
+    alpha, beta, gamma = inv_sym_aware_rotation(rot_sym_mat, sym_v)
+
+    if clamp:
+        alpha, beta, gamma = clamp_rot(alpha, beta, gamma, sym_v)
+
+    R = rotation_matrix((alpha, beta, gamma))
+
+    return R
+
+
+# From regular euler angles construct sym aware representation
+# ASSUMES INTRINSIC XYZ ORDER
+def sym_aware_rotation(alpha, beta, gamma, sym_class, clamp=False):
+    if sym_class is None:
+        sym_v = [1, 1, 1]
+    else:
+        if type(sym_class) is np.ndarray:
+            sym_v = sym_class
+        else:
+            sym_v = SYMMETRY_CLASSES[sym_class]['sym_v']
+        # print('before:', sym_class, alpha, beta, gamma)
+        # print('before:', sym_class, alpha, beta, gamma)
+
+    if clamp:
+        alpha, beta, gamma = clamp_rot_adv(alpha, beta, gamma, sym_v)
+
+    #print(alpha, beta, gamma)
+    #print('************')
+    c_a = math.cos(alpha)
+    c_b = math.cos(beta)
+    c_g = math.cos(gamma)
+
+    if max(sym_v) == 1:
+        s_a_ = math.sin(alpha)
+        c_a_ = math.cos(alpha)
+
+        s_b_ = math.sin(beta)
+        c_b_ = math.cos(beta)
+
+        s_g_ = math.sin(gamma)
+        c_g_ = math.cos(gamma)
+    elif sym_v[2] > 1 and sym_v[0] == 1 and sym_v[1] == 1:
+        s_a_ = math.sin(alpha)
+        c_a_ = math.cos(alpha)
+
+        s_b_ = math.sin(beta)
+        c_b_ = math.cos(beta)
+
+        s_g_ = math.sin(gamma * (sym_v[2] % (10 ** 3)))
+        c_g_ = math.cos(gamma * (sym_v[2] % (10 ** 3)))
+    elif sym_v[1] > 1 and sym_v[0] == 1 and sym_v[2] == 1:
+        s_a_ = math.sin(alpha)
+        c_a_ = math.cos(alpha)
+
+        s_b_ = math.sin(beta * (sym_v[1] % (10 ** 3)))
+        c_b_ = math.cos(beta * (sym_v[1] % (10 ** 3)))
+
+        s_g_ = math.sin(gamma) * c_b
+        c_g_ = math.cos(gamma)
+    elif sym_v[0] > 1 and sym_v[1] == 1 and sym_v[2] == 1:
+        s_a_ = math.sin(alpha * (sym_v[0] % (10 ** 3)))
+        c_a_ = math.cos(alpha * (sym_v[0] % (10 ** 3)))
+
+        s_b_ = math.sin(beta) * c_a
+        c_b_ = math.cos(beta)
+
+        s_g_ = math.sin(gamma) * c_a
+        c_g_ = math.cos(gamma)
+    elif np.any(sym_v == 1):
+        raise NotImplementedError
+    else:
+        s_a_ = math.sin(alpha * (sym_v[0] % (10 ** 3)))
+        c_a_ = math.cos(alpha * (sym_v[0] % (10 ** 3)))
+
+        s_b_ = math.sin(beta * (sym_v[1] % (10 ** 3))) * c_a
+        c_b_ = math.cos(beta * (sym_v[1] % (10 ** 3)))
+
+        s_g_ = math.sin(gamma * (sym_v[2] % (10 ** 3))) * c_a * c_b
+        c_g_ = math.cos(gamma * (sym_v[2] % (10 ** 3)))
+
+    x_vec = np.expand_dims(np.round(np.array([s_a_, c_a_]), 10), axis=1)
+    y_vec = np.expand_dims(np.round(np.array([s_b_, c_b_]), 10), axis=1)
+    z_vec = np.expand_dims(np.round(np.array([s_g_, c_g_]), 10), axis=1)
+
+    rot_sym_mat = np.concatenate((x_vec, y_vec, z_vec), axis=1)
+
+    return rot_sym_mat
+
+
+def inv_sym_aware_rotation(rot_sym_mat, sym_class):
+    sym_v = TLESS_SYM_CLASSES[sym_class]['sym_v']
+
+    if rot_sym_mat[0, 0] < 0.0:
+        alpha = 2 * np.pi - math.acos(rot_sym_mat[1, 0])
+    else:
+        alpha = math.acos(rot_sym_mat[1, 0])
+
+    if rot_sym_mat[0, 1] < 0.0:
+        beta = 2 * np.pi - math.acos(rot_sym_mat[1, 1])
+    else:
+        beta = math.acos(rot_sym_mat[1, 1])
+
+    if rot_sym_mat[0, 2] < 0.0:
+        gamma = 2 * np.pi - math.acos(rot_sym_mat[1, 2])
+    else:
+        gamma = math.acos(rot_sym_mat[1, 2])
+
+    beta /= sym_v[1]
+    gamma /= sym_v[2]
+
+    return alpha, beta, gamma
+
+
+if __name__ == '__main__':
+    # below is used to check the inverse mapping
+    sym_class = 'IV'
+
+    alpha_1 = np.deg2rad(0)
+    beta_1 = np.deg2rad(0)
+    gamma_1 = np.deg2rad(0)
+
+    alpha_2 = np.deg2rad(0)
+    beta_2 = np.deg2rad(0)
+    gamma_2 = np.deg2rad(0)
+
+    rot_sym_mat_1 = sym_aware_rotation(alpha_1, beta_1, gamma_1, sym_class)
+    rot_sym_mat_2 = sym_aware_rotation(alpha_2, beta_2, gamma_2, sym_class)
+    alpha_1_c, beta_1_c, gamma_1_c = inv_sym_aware_rotation(rot_sym_mat_1, sym_class)
+    alpha_2_c, beta_2_c, gamma_2_c = inv_sym_aware_rotation(rot_sym_mat_2, sym_class)
+    print(alpha_1, beta_1, gamma_1)
+    print(alpha_2, beta_2, gamma_2)
+    print('----')
+    print(rot_sym_mat_1)
+    print(rot_sym_mat_2)
+    print('----')
+    print(alpha_1_c, beta_1_c, gamma_1_c)
+    print(alpha_2_c, beta_2_c, gamma_2_c)
