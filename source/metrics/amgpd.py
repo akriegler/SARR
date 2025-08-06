@@ -6,7 +6,7 @@ import numpy as np
 
 from scipy.optimize import linear_sum_assignment
 
-from utils import easydict_constructor, rotational_error, unpack_csv_gt, unpack_csv_pred
+from source.utils.utils import easydict_constructor, rotational_error, unpack_csv_gt, unpack_csv_pred
 
 
 T_LESS_sym_cls_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30]

@@ -3,8 +3,8 @@ import numpy as np
 
 from scipy.optimize import linear_sum_assignment
 
-from global_utils.misc import easydict_constructor
-from global_utils.eval.metrics.metrics import rotational_error
+from source.utils.utils import easydict_constructor
+from source.utils.utils import rotational_error
 
 tless_path = 'NULL'
 itodd_path = 'NULL'
