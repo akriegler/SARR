@@ -1,5 +1,14 @@
 # Towards Symmetry-sensitive Pose Estimation: A Rotation Representation for Symmetric Object Classes
 
+## Setup
+Create a virtual environment and install dependencies. For example
+```
+python -m venv SARR_env
+.\SARR_env\Scripts\activate
+pip install -r requirements.txt
+```
+
+## Usage
 Implementation of our rotation representation, inverse mapping and the categorization of symmetry classes  are available in [sym_representation.py](source/sym_representation.py)
 
 For the visualization and visual verification run [visualization.py](source/visualization.py)
