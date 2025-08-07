@@ -134,7 +134,7 @@ def unpack_csv_gt(file, task):
                 raise ValueError("A line does not have 7 comma-sep. elements: {}".format(line))
             elif line_id == 1 and header in line:
                 continue
-            elif obj_id == prev_obj_id and prev_img_id == img_id  and task == 'siso':
+            elif obj_id == prev_obj_id and prev_img_id == img_id  and task == 'SiSo':
                 continue
             prev_obj_id = obj_id
             prev_img_id  = img_id
@@ -177,9 +177,9 @@ def unpack_csv_pred(file, gt_rotations, task, foreign=False):
                 raise ValueError("A line does not have 7 comma-sep. elements: {}".format(line))
             elif line_id == 1 and header in line:
                 continue
-            elif obj_id == prev_obj_id and prev_img_id == img_id and task == 'siso':
+            elif obj_id == prev_obj_id and prev_img_id == img_id and task == 'SiSo':
                 continue
-            elif line.split(',')[7].split(' ')[0] == 'nan':
+            elif line.split(',')[4 if foreign else 7].split(' ')[0] == 'nan':
                 continue
             if f'{scene_id}-{img_id}-{obj_id}' in gt_rotations:
                 R = np.array(list(map(float, elems[4 if foreign else 7].split())), np.float64)

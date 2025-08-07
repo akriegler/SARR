@@ -1,7 +1,7 @@
+import os
 import copy
 import yaml
 import json
-
 import numpy as np
 
 from scipy.optimize import linear_sum_assignment
@@ -10,10 +10,11 @@ from source.utils.utils import easydict_constructor, rotational_error, unpack_cs
 
 
 T_LESS_sym_cls_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30]
-tless_path = 'NULL'
+tless_path = '/mnt/01_Disk/krieglera/RAL/tless'
+itodd_path = '/mnt/01_Disk/krieglera/RAL/itodd'
 
 def get_test_targets():
-    with open(tless_path + r'\base\test_targets_bop19.json', 'r') as f:
+    with open(tless_path + r'base/test_targets_bop19.json', 'r') as f:
         yaml.add_constructor('tag:yaml.org,2002:python/object/new:easydict.EasyDict', easydict_constructor)
         test_targets_raw = yaml.load(f, Loader=yaml.FullLoader)
 
@@ -22,6 +23,47 @@ def get_test_targets():
         test_targets.append(f"{str(entry['scene_id'])}-{str(entry['im_id'])}-{str(entry['obj_id'])}")
 
     return test_targets
+
+
+def get_erot_matches(gt_rots, gt_trans, gt_cls, pd_rots, pd_trans, pd_cls):
+    for (k, img_gt_rots), (_, img_gt_trans) in zip(gt_rots.items(), gt_trans.items()):
+        try:
+            img_pd_rots = pd_rots[k]
+            img_pd_cls = pd_cls[k]
+        except KeyError:
+            img_pd_rots = []
+            img_pd_cls = []
+        img_cost_mat = np.zeros((len(img_gt_rots), len(img_pd_rots)), dtype=np.float64)
+        for i, gt_rot in enumerate(img_gt_rots):
+            for j, pd_rot in enumerate(img_pd_rots):
+                img_cost_mat[i, j] = rotational_error(gt_rot, pd_rot)
+        row_ind, col_ind = linear_sum_assignment(img_cost_mat)
+        new_entry_rot = []
+        new_entry_trans = []
+        new_entry_cls = []
+        col_ind = list(col_ind)
+        row_ind = list(row_ind)
+        for gt_index in range(len(img_gt_rots)):
+            if gt_index not in row_ind:
+                new_entry_rot.append(None)
+                new_entry_trans.append(None)
+                new_entry_cls.append(None)
+            else:
+                try:
+                    ind = col_ind.pop(0)
+                    new_entry_rot.append(img_pd_rots[ind])
+                    new_entry_trans.append(img_gt_trans[gt_index])
+                    new_entry_cls.append(img_pd_cls[ind])
+                except IndexError:
+                    new_entry_rot.append(None)
+                    new_entry_trans.append(None)
+                    new_entry_cls.append(None)
+
+        pd_rots[k] = new_entry_rot
+        pd_trans[k] = new_entry_trans
+        pd_cls[k] = new_entry_cls
+
+    return gt_rots, gt_trans, gt_cls, pd_rots, pd_trans, pd_cls
 
 
 def calc_amgpd_distance(R_gt, t_gt, R_pred, t_pred, model_points):
@@ -190,25 +232,71 @@ def load_grouped_primitives(json_path):
 
 
 def main():
-    eval_files = \
+    eval_files_tless_other = \
         [
-        #r'F:\IJCV\tless\results\hodan-iros15\hodan-iros15_tless-test.csv',
-        #
-        #r'F:\IJCV\tless\results\kriegler-ijcv25\canon\object\sarr\canon-object-sarr_tless-test.csv',
+            'results/T-LESS/others/hodan-iros15_tless-test-primesense.csv',
+            'results/T-LESS/others/sundermeyer-ijcv19icp_tless-test.csv',
+            'results/T-LESS/others/gdrnpp-pbrreal-rgbd-mmodel_tless-test.csv',
+            'results/T-LESS/others/zebraposesat-effnetb4-refineddefaultdetections-2023_tless-test.csv',
+            'results/T-LESS/others/modalocclusion-rgbd_tless-test.csv',
+            'results/T-LESS/others/gpose2023_tless-test.csv',
+            'results/T-LESS/others/sc6d-pbr_tless-test.csv',
+            'results/T-LESS/others/drost-cvpr10-3d-only_tless-test.csv',
+            'results/T-LESS/others/vidal-sensors18_tless-test.csv',
+            'results/T-LESS/others/zte-ppf_tless-test.csv',
+            'results/T-LESS/others/leroy-fuseocclu-depth_tless-test.csv'
         ]
+    eval_files_tless_ours = \
+        [
+            'results/T-LESS/ours/6d/canonic/6d-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/6d/canonic/6d-canon-object_tless-test.csv',
+            'results/T-LESS/ours/6d/canonic/6d-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/6d/default/6d-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/6d/default/6d-default-object_tless-test.csv',
+            'results/T-LESS/ours/6d/default/6d-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/euler/canonic/euler-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/euler/canonic/euler-canon-object_tless-test.csv',
+            'results/T-LESS/ours/euler/canonic/euler-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/euler/default/euler-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/euler/default/euler-default-object_tless-test.csv',
+            'results/T-LESS/ours/euler/default/euler-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/quaternion/canonic/quat-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/quaternion/canonic/quat-canon-object_tless-test.csv',
+            'results/T-LESS/ours/quaternion/canonic/quat-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/quaternion/default/quat-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/quaternion/default/quat-default-object_tless-test.csv',
+            'results/T-LESS/ours/quaternion/default/quat-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-object_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/default/rotmat-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/default/rotmat-default-object_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/default/rotmat-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/canonic/trig-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/canonic/trig-canon-object_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/canonic/trig-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/default/trig-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/default/trig-default-object_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/default/trig-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-canon-object_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/SARR/gtsymcls-sarr-canon-datasetnohm_tless-test.csv',
+        ]
+    gt_file = os.path.join(os.getcwd(), 'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
+    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_ours]  # eval_files_tless_other, eval_files_tless_ours
 
-    gt_file = tless_path + r'\results\gt\gt_tless_bop19_canonic-test.csv'
-
-    model_groups_list = load_grouped_primitives(tless_path + r'\ES6D\tless_gp.json')
-    for e_file in eval_files:
+    model_groups_list = load_grouped_primitives(tless_path + r'/ES6D/tless_gp.json')
+    for e_file in eval_file_full_paths:
         print('--------------------------------')
-        res_file = e_file.replace(e_file.split('\\')[-1], 'amgpd_results.txt')
-        for task in ['siso', 'vivo']:
+        #res_file = e_file.replace(e_file.split('//')[-1], 'amgpd_results.txt')
+        name = e_file.split('/')[-1]
+        print(name)
+        for task in ['SiSo', 'ViVo']:
             gt_rots, gt_trans, gt_cls = unpack_csv_gt(gt_file, task)
-            pd_rots, pd_trans, pd_cls = unpack_csv_pred(e_file, gt_rots, task, foreign=False if 'kriegler' in e_file else True)
+            pd_rots, pd_trans, pd_cls = unpack_csv_pred(e_file, gt_rots, task, foreign=True if 'others' in e_file else False)
 
             gt_rots, gt_trans, gt_cls, pd_rots, pd_trans, pd_cls = get_erot_matches(gt_rots, gt_trans, gt_cls, pd_rots, pd_trans, pd_cls)
-
             cls_add_dis, cls_adds_dis = calc_amgpd(gt_rots, gt_trans, gt_cls, pd_rots, pd_trans, pd_cls, model_groups_list, n_cls=31)
 
             sym_cls_ids = T_LESS_sym_cls_ids
@@ -216,12 +304,11 @@ def main():
             results = summarize_amgpd(cls_add_dis, cls_adds_dis, sym_cls_ids)
 
             for k, v in results.items():
-                name = e_file.split('\\')[-1]
-                string = f"{task}-{name}: {k}: {np.round(v/100, 3)}"
+                string = f"{task}: {k}: {100 * np.round(v/100, decimals=3):.1f}"
                 if k == r'Overall A(M)GPD(-S) AUC':
                     print(string)
-                with open(res_file, 'a') as f:
-                    f.write(string + '\n')
+                #with open(res_file, 'a') as f:
+                 #   f.write(string + '/n')
 
 if __name__ == "__main__":
     main()
