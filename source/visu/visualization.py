@@ -317,9 +317,9 @@ def plot_mapping_whole(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
 
     fig = make_subplots(rows=2, cols=3, specs=[[{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}], [{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}]], subplot_titles=s_titles, horizontal_spacing=0.01, vertical_spacing=0.02)
 
-    a = np.deg2rad(np.arange(0, 360, 10))
-    b = np.deg2rad(np.arange(0, 360, 10))
-    g = np.deg2rad(np.arange(0, 360, 10))
+    a = np.deg2rad(np.arange(0, 360, 20))
+    b = np.deg2rad(np.arange(0, 360, 20))
+    g = np.deg2rad(np.arange(0, 360, 20))
 
     t = [(a, b, g) for a, b, g in itertools.product(a, b, g)]
     s_a, c_a, s_b, c_b, s_g, c_g = map_to_sym_representation(t, sym_v=sym_v)
