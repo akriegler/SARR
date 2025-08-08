@@ -22,7 +22,6 @@ def main(f_path, f_mod_path):
             R = elems[4]
             t = elems[5]
             R = np.array([float(entry) for entry in R.split(' ')]).reshape(3, 3)
-            t = np.array([float(entry) for entry in t.split(' ')])
             sym_v = ITODD_OBJECTS[int(obj_id)]['sym_v']
             R_new = map_R_to_canonic_R(R, sym_v, clamp=True)
             flattened_matrix = [str(np.round(entry, 8)) for row in R_new for entry in row]

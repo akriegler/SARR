@@ -18,17 +18,25 @@ A video showcasing these plots for symmetry class II and giving a high-level exp
 
 
 ###  Example mapping
-Implementation of our rotation representation, inverse mapping and the categorization of symmetry classes  are available in [sym_representation.py](source/sym_representation.py)
+Implementation of the SARR representation and inverse mapping are available in [sym_aware_representation.py](source/SARR/sym_aware_representation.py)
 
+For example, we used SARR to calculate symmetry-resolved (canonic) rotation matrices as ground-truths:
+```
+$ python -m source.utils.tless_gt_mapping
+```
+or
+```
+$ python -m source.utils.itodd_gt_mapping
+```
 
 ### Reproducing results
 Set the path to the datasets and run 
 ```
-python -m source.metrics.cosine
+$ python -m source.metrics.cosine
 ```
 for the AR_C metric or 
 ```
-python -m source.metrics.amgpd
+$ python -m source.metrics.amgpd
 ```
 for the AR_G metric (only T-LESS is supported).
 
