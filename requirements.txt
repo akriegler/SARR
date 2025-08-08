@@ -2,3 +2,5 @@ numpy
 scipy
 easydict
 pyyaml
+plotly
+scipy

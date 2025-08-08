@@ -8,10 +8,12 @@ import plotly.graph_objects as go
 from scipy.spatial.transform import Rotation as R
 from plotly.subplots import make_subplots
 
-from sym_representation import *
+from source.SARR.sym_aware_representation import *
+from source.utils.dataset_definitions import TLESS_OBJECTS
 
 
-def set_obj_visu_params_tless(sym_class, colours='RGB'):
+def set_obj_visu_params_tless(obj_cls, colours='RGB'):
+    sym_cls = TLESS_OBJECTS[obj_cls]['sym_cls']
     # this function defines the colours and shapes of the polygons used in the visualization
     p_z_color = [0, 0, 255]
     n_z_color = [0, 0, 128]
@@ -37,7 +39,7 @@ def set_obj_visu_params_tless(sym_class, colours='RGB'):
     else:
         face_colours = [127, 127, 127]
 
-    if sym_class == 'I':
+    if sym_cls == 'I':
         edges = np.array([[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2, 15, 8, 8, 8, 12, 12, 14, 14, 12, 8, 11, 10, 23, 16, 16, 16, 20, 20, 22, 22, 20, 16, 19, 18],
                                        [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11, 19, 20, 17, 18, 21, 22, 21, 18, 16, 17, 22, 19],
                                        [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14, 16, 23, 18, 19, 22, 23, 17, 17, 21, 21, 23, 22]])
@@ -50,7 +52,7 @@ def set_obj_visu_params_tless(sym_class, colours='RGB'):
         vertices[1] *= 0.5
         vertices[2] *= 0.75
 
-    elif sym_class == 'II':
+    elif sym_cls == 'II':
         edges = np.array([[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2, 15, 8, 8, 8, 12, 12, 14, 14, 12, 8, 11, 10],
                                        [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11],
                                        [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14]])
@@ -63,7 +65,7 @@ def set_obj_visu_params_tless(sym_class, colours='RGB'):
         vertices[1] *= 0.5
         vertices[2] *= 0.75
 
-    elif sym_class == 'III':
+    elif sym_cls == 'III':
         edges = np.array([[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2, 15, 8, 8, 8, 12, 12, 14, 14, 12, 8, 11, 10],
                                        [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11],
                                        [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14]])
@@ -76,7 +78,7 @@ def set_obj_visu_params_tless(sym_class, colours='RGB'):
         vertices[1] *= 0.4
         vertices[2] *= 0.75
 
-    elif sym_class == 'IV':
+    elif sym_cls == 'IV':
         num_points = 16
         height = 3
         radius = 1
@@ -120,7 +122,7 @@ def set_obj_visu_params_tless(sym_class, colours='RGB'):
                                    n_y_p_x_color, n_y_p_xx_color, p_x_color, p_xxy_color, p_xy_color, p_xyy_color, p_y_color, p_yy_n_x_color, p_y_n_x_color, p_y_n_xx_color, n_x_color, n_xxy_color, n_xy_color, n_xyy_color, n_y_color,
                                    n_yy_p_x_color, n_y_p_x_color, n_y_p_xx_color]
 
-    elif sym_class == 'V':
+    elif sym_cls == 'V':
         edges = np.array([[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2, 15, 8, 8, 8, 12, 12, 14, 14, 12, 8, 11, 10],
                                         [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11],
                                         [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14]])
@@ -138,7 +140,7 @@ def set_obj_visu_params_tless(sym_class, colours='RGB'):
     return vertices, edges, face_colours
 
 
-def map_to_sym_representation(rots, sym_cls):
+def map_to_sym_representation(rots, sym_v):
     # This maps to our representation
     s_a_ = []
     c_a_ = []
@@ -152,7 +154,7 @@ def map_to_sym_representation(rots, sym_cls):
         alpha = rot[0]
         beta = rot[1]
         gamma = rot[2]
-        rot_sym = sym_aware_rotation(alpha, beta, gamma, sym_cls)
+        rot_sym = sym_aware_rotation(alpha, beta, gamma, sym_v)
         s_a_.append(rot_sym[0][0])
         c_a_.append(rot_sym[1][0])
         s_b_.append(rot_sym[0][1])
@@ -171,10 +173,11 @@ def map_to_sym_representation(rots, sym_cls):
     return s_a_, c_a_, s_b_, c_b_, s_g_, c_g_
 
 
-def plot_mapping_tless(sym_cls=None, colours='RGB'):
+def plot_mapping_tless(obj_cls=None, colours='RGB', drag_mode=None, save_html=False):
+    sym_cls = TLESS_OBJECTS[obj_cls]['sym_cls']
     ### SETUP ###
-    sym_v = TLESS_SYM_CLASSES[sym_cls]['sym_v']
-    vertices, edges, face_colours = set_obj_visu_params_tless(sym_cls, colours)
+    sym_v = TLESS_OBJECTS[obj_cls]['sym_v']
+    vertices, edges, face_colours = set_obj_visu_params_tless(obj_cls, colours)
     vertices /= 5
     axis_outer_bound_offset = 0.3
 
@@ -199,8 +202,8 @@ def plot_mapping_tless(sym_cls=None, colours='RGB'):
     t1 = [(a, b, g) for a, b, g in itertools.product(a1, b1, g1)]
     t2 = [(a, b, g) for a, b, g in itertools.product(a2, b2, g2)]
 
-    s_a_1, c_a_1, s_b_1, c_b_1, s_g_1, c_g_1 = map_to_sym_representation(t1, sym_cls=sym_cls)
-    s_a_2, c_a_2, s_b_2, c_b_2, s_g_2, c_g_2 = map_to_sym_representation(t2, sym_cls=sym_cls)
+    s_a_1, c_a_1, s_b_1, c_b_1, s_g_1, c_g_1 = map_to_sym_representation(t1, sym_v=sym_v)
+    s_a_2, c_a_2, s_b_2, c_b_2, s_g_2, c_g_2 = map_to_sym_representation(t2, sym_v=sym_v)
 
     x_grid_1, y_grid_1, z_grid_1 = np.meshgrid(a1, b1, g1, indexing='ij')
     z1_flat = z_grid_1.flatten()
@@ -287,17 +290,19 @@ def plot_mapping_tless(sym_cls=None, colours='RGB'):
                               yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
                               zaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
 
-    fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={sym_v} \text{{ ("XYZ" intrinsic rotation order, TLESS rotation subspace, angles in radians)}}$'
-    #fig_3['layout']['dragmode'] = 'orbit'
+    fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={sym_v} \text{{ ("XYZ" intrinsic rotation order, T-LESS rotation subspace, angles in radians)}}$'
+    fig['layout']['dragmode'] = drag_mode
 
     fig.show()
-    #fig.write_html(f"{sym_cls}_TLESS.html", include_mathjax='cdn')
+    if save_html:
+        fig.write_html(f"{sym_cls}_TLESS.html", include_mathjax='cdn')
 
 
-def plot_mapping_whole(sym_cls=None, colours='RGB'):
+def plot_mapping_whole(obj_cls=None, colours='RGB', drag_mode=None, save_html=False):
     ### SETUP ###
-    sym_v = TLESS_SYM_CLASSES[sym_cls]['sym_v']
-    vertices, edges, face_colours = set_obj_visu_params_tless(sym_cls, colours)
+    sym_v = TLESS_SYM_CLASSES[obj_cls]['sym_v']
+    sym_cls = TLESS_OBJECTS[obj_cls]['sym_cls']
+    vertices, edges, face_colours = set_obj_visu_params_tless(obj_cls, colours)
     vertices /= 5
     axis_outer_bound_offset = 0.3
 
@@ -317,7 +322,7 @@ def plot_mapping_whole(sym_cls=None, colours='RGB'):
     g = np.deg2rad(np.arange(0, 360, 20))
 
     t = [(a, b, g) for a, b, g in itertools.product(a, b, g)]
-    s_a, c_a, s_b, c_b, s_g, c_g = map_to_sym_representation(t, sym_cls=sym_cls)
+    s_a, c_a, s_b, c_b, s_g, c_g = map_to_sym_representation(t, sym_v=sym_v)
     
     x_grid, y_grid, z_grid = np.meshgrid(a, b, g, indexing='ij')
     z_flat = z_grid.flatten()
@@ -369,26 +374,29 @@ def plot_mapping_whole(sym_cls=None, colours='RGB'):
                               yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
                               zaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
     fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={sym_v} \text{{ ("XYZ" intrinsic rotation order, SO(3) rotation space, angles in radians)}}$'
-    # fig_3['layout']['dragmode'] = 'orbit'
+    fig['layout']['dragmode'] = drag_mode
 
     fig.show()
-    #fig.write_html(f"{sym_cls}_SO3.html", include_mathjax='cdn')
+    if save_html:
+        fig.write_html(f"{sym_cls}_SO3.html", include_mathjax='cdn')
 
 
 if __name__ == '__main__':
-    sym_classes = ['I', 'II', 'III', 'IV', 'V']
+    obj_classes = [21, 11, 27, 2, 23]
     colours = 'RGB'
-    subspaces = ['TLESS']#, 'SO3']
+    subspaces = ['T-LESS']#, 'SO3']
+    drag_mode = None  # None, 'orbit'
+    save_html = True
 
     for subspace in subspaces:
-        for sym_cls in sym_classes:
-            if subspace == 'TLESS':
-                plot_mapping_tless(sym_cls=sym_cls, colours=colours)
-                print(f'Plots of the six parameters that make up our representation S_{sym_cls}, with kappa_{sym_cls}, TLESS rotation space')
+        for obj_cls in obj_classes:
+            if subspace == 'T-LESS':
+                plot_mapping_tless(obj_cls=obj_cls, colours=colours, drag_mode=drag_mode, save_html=save_html)
+                print(f'Plots of the six parameters that make up our representation for object {obj_cls}, T-LESS rotation space')
             elif subspace == 'SO3':
-                plot_mapping_whole(sym_cls=sym_cls, colours=colours)
-                print(f'Plots of the six parameters that make up our representation S_{sym_cls}, with kappa_{sym_cls}, SO(3) rotation space')
+                plot_mapping_whole(obj_cls=obj_cls, colours=colours, drag_mode=drag_mode, save_html=save_html)
+                print(f'Plots of the six parameters that make up our representation for object {obj_cls}, SO(3) rotation space')
             else:
                 raise NotImplementedError
-            time.sleep(30)
+            #time.sleep(30)
 
