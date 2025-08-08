@@ -192,7 +192,7 @@ def main():
             #print(np.mean(e_rot, axis=0))
 
             recalls = []
-            for e_th in [2, 5, 10, 15, 25, 40]:
+            for e_th in [2, 5, 10, 15, 25, 40]:  # thresholds taken from DOI: 10.1109/IRC55401.2022.00040
                 recalls.append(calc_erot_recall(e_rot, e_th))
 
             string = f"{task}: AR: {100 * np.round(np.array(recalls).mean(), decimals=3):.1f}"
@@ -200,7 +200,6 @@ def main():
 
             #with open(res_file, 'a') as f:
             #    f.write(string)
-
 
 if __name__ == "__main__":
     main()

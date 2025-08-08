@@ -113,12 +113,12 @@ def calc_amgpd(gt_rots, gt_trans, gt_clss, pd_rots, pd_trans, pd_clss, model_gro
         except KeyError:
             print(k)
         for gt_rot, gt_t, gt_cls, pd_rot, pd_t, pd_cls in zip(img_gt_rots, img_gt_trans, img_gt_cls, img_pd_rots, img_pd_trans, img_pd_cls):
-            cls_add_dis, cls_adds_dis = evaluate_amgpd(cls_add_dis, cls_adds_dis, gt_rot, gt_t, gt_cls, pd_rot, pd_t, pd_cls, model_groups_list, n_cls=31)
+            cls_add_dis, cls_adds_dis = evaluate_amgpd(cls_add_dis, cls_adds_dis, gt_rot, gt_t, gt_cls, pd_rot, pd_t, pd_cls, model_groups_list)
 
     return cls_add_dis, cls_adds_dis
 
 
-def evaluate_amgpd(cls_add_dis, cls_adds_dis, gt_rot, gt_trans, gt_cls, pd_rot, pd_trans, pd_cls, model_groups_list, n_cls=31):
+def evaluate_amgpd(cls_add_dis, cls_adds_dis, gt_rot, gt_trans, gt_cls, pd_rot, pd_trans, pd_cls, model_groups_list):
     """
     Returns cls_add_dis and cls_adds_dis lists just like the original.
     """
@@ -285,7 +285,7 @@ def main():
     gt_file = os.path.join(os.getcwd(), 'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
     eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_ours]  # eval_files_tless_other, eval_files_tless_ours
 
-    model_groups_list = load_grouped_primitives(tless_path + r'/ES6D/tless_gp.json')
+    model_groups_list = load_grouped_primitives(tless_path + r'/ES6D/tless_gp.json')  # Source: https://github.com/GANWANSHUI/ES6D/blob/master/datasets/tless/tless_gp.json
     for e_file in eval_file_full_paths:
         print('--------------------------------')
         #res_file = e_file.replace(e_file.split('//')[-1], 'amgpd_results.txt')

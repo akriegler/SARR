@@ -11,7 +11,7 @@ ITODD_OBJECTS = {
         'sym_v': np.array([1, 1, 1]),
         'sym_permutations': [np.eye(3, dtype=np.float64)],
         'dims': np.array([0.051, 0.045278, 0.021518])},
-    2: { # in BOP it has a 1_1_3 symmetry with a translation shift.
+    2: { # in BOP it has a quasi 1_1_3 symmetry with a translation shift.
         'og_id': 2,
         'cnet_id': 1,
         'obj_str': 'adapter_plate_triangular',
@@ -35,7 +35,7 @@ ITODD_OBJECTS = {
         'obj_str': 'bracket_big',
         'sym_id': 0,
         'sym_str': '1_1_1',
-        'sym_v':np.array([1,1,1]),  # actually this object has a symmetry, but its non-periodic in a way). the matrix below (after I) gives it, its (-180, 0, 90)
+        'sym_v':np.array([1,1,1]),  # actually this object has a symmetry, but its non-periodic in a way. the matrix below (after I) gives it, its (-180, 0, 90)
         'sym_permutations': [np.eye(3, dtype=np.float64), np.array([[0, -1, 0],[-1, 0, 0],[0, 0, -1]], dtype=np.float64)],
         'dims':np.array([0.0905,0.0905,0.0653153])},
     5: { # in BOP has permutation  matrices

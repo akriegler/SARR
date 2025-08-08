@@ -19,11 +19,6 @@ def rotation_matrix(theta, order='XYZ'):
     https://en.wikipedia.org/wiki/Euler_angles#cite_note-4
     and
     https://ntrs.nasa.gov/api/citations/19770019231/downloads/19770019231.pdf
-    BUT (!) - Blender actually does the rotations from O_obj = O_world = I but in reverse order than the one
-    given in the object definition. So if you set object-order 'ZYX' in Blender the 'XYZ' matrices from those
-    sources are correct.
-    Since this leads to even more confusion, instead I have decided to adopt the ZYX matrices as is, but switch
-    the usage of cx <-> cz & sx <-> sz
     input
         theta1, theta2, theta3 = rotation angles in rotation order (degrees)
         order = rotation order of x,y,z　e.g. XZY rotation -- 'xzy'
@@ -34,7 +29,7 @@ def rotation_matrix(theta, order='XYZ'):
     cx, cy, cz = np.cos(theta)
     sx, sy, sz = np.sin(theta)
 
-    if order == 'XYZ':  # intrinsic order NOT Blender order
+    if order == 'XYZ':
         matrix = np.array([[cy * cz, -cy * sz, sy],
                            [cx * sz + cz * sx * sy, cx * cz - sx * sy * sz, -cy * sx],
                            [sx * sz - cx * cz * sy, cz * sx + cx * sy * sz, cx * cy]], dtype=float)
@@ -80,65 +75,6 @@ def clamp_rot_adv(alpha, beta, gamma, sym_v=None):
     gamma = angs[2]
 
     return alpha, beta, gamma
-
-
-# Modified from https://github.com/THU-DA-6D-Pose-Group/GDR-Net/blob/main/core/utils/utils.py#L97
-def egocentric_to_allocentric(R_ego, t, cam_ray=(0, 0, 1.0)):
-    # Compute rotation between ray to object centroid and optical center ray
-    cam_ray = np.asarray(cam_ray)
-    obj_ray = t.copy() / np.linalg.norm(t)
-    angle = math.acos(cam_ray.dot(obj_ray))
-
-    # Rotate back by that amount
-    if angle > 0:
-        rot_mat = axangle2mat(axis=np.cross(cam_ray, obj_ray), angle=-angle)
-        allo_rot = np.dot(rot_mat, R_ego)
-    else:
-        allo_rot = R_ego.copy()
-
-    return allo_rot
-
-
-# Source: https://github.com/matthew-brett/transforms3d/blob/main/transforms3d/axangles.py
-def axangle2mat(axis, angle, is_normalized=False):
-    ''' Rotation matrix for rotation angle `angle` around `axis`
-
-    Parameters
-    ----------
-    axis : 3 element sequence
-       vector specifying axis for rotation.
-    angle : scalar
-       angle of rotation in radians.
-    is_normalized : bool, optional
-       True if `axis` is already normalized (has norm of 1).  Default False.
-
-    Returns
-    -------
-    mat : array shape (3,3)
-       rotation matrix for specified rotation
-
-    Notes
-    -----
-    From: http://en.wikipedia.org/wiki/Rotation_matrix#Axis_and_angle
-    '''
-    x, y, z = axis
-    if not is_normalized:
-        n = math.sqrt(x*x + y*y + z*z)
-        x = x/n
-        y = y/n
-        z = z/n
-
-    c = math.cos(angle); s = math.sin(angle); C = 1-c
-    xs = x*s;   ys = y*s;   zs = z*s
-    xC = x*C;   yC = y*C;   zC = z*C
-    xyC = x*yC; yzC = y*zC; zxC = z*xC
-
-    arr =  np.array([
-        [ x*xC+c,   xyC-zs,   zxC+ys ],
-        [ xyC+zs,   y*yC+c,   yzC-xs ],
-        [ zxC-ys,   yzC+xs,   z*zC+c ] ], dtype=np.float64)
-
-    return arr
 
 
 def rotational_error(gt_rot_mat, pd_rot_mat):
