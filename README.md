@@ -12,7 +12,7 @@ $ pip install -r requirements.txt
 ### Visualization toolkit
 For the  visual verification and exploration of the SARR representation run [visualization.py](source/visu/visualization.py)
 
-Plots for the T-LESS symmetry classes and many 3D geometric primitives have been pre-rendered into interactive html-files for the visualization toolkit:  [SARR visualizer](https://akriegler.github.io/SARR/)
+Plots for the T-LESS symmetry classes have been pre-rendered into interactive html-files for the visualization toolkit:  [SARR visualizer](https://akriegler.github.io/SARR/)
 
 A video showcasing these plots for symmetry class II and giving a high-level explanation is available at: [Plot video](supplementary/supplementary_video_visualization-toolkit_symmetry_II.mp4)
 

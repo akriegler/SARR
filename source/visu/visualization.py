@@ -295,12 +295,12 @@ def plot_mapping_tless(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
 
     fig.show()
     if save_html:
-        fig.write_html(f"{sym_cls}_TLESS.html", include_mathjax='cdn')
+        fig.write_html(f"{sym_cls}_T-LESS.html", include_mathjax='cdn')
 
 
 def plot_mapping_whole(obj_cls=None, colours='RGB', drag_mode=None, save_html=False):
     ### SETUP ###
-    sym_v = TLESS_SYM_CLASSES[obj_cls]['sym_v']
+    sym_v = TLESS_OBJECTS[obj_cls]['sym_v']
     sym_cls = TLESS_OBJECTS[obj_cls]['sym_cls']
     vertices, edges, face_colours = set_obj_visu_params_tless(obj_cls, colours)
     vertices /= 5
@@ -378,25 +378,24 @@ def plot_mapping_whole(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
 
     fig.show()
     if save_html:
-        fig.write_html(f"{sym_cls}_SO3.html", include_mathjax='cdn')
+        fig.write_html(f"{sym_cls}_SO(3).html", include_mathjax='cdn')
 
 
 if __name__ == '__main__':
-    obj_classes = [21, 11, 27, 2, 23]
-    colours = 'RGB'
-    subspaces = ['T-LESS']#, 'SO3']
-    drag_mode = None  # None, 'orbit'
-    save_html = True
+    obj_classes = [21, 11, 27, 2, 23]  # see source.utils.dataset_definitions.py
+    colours = 'RGB'  # 'RGB', 'GREY'
+    subspaces = ['SO(3)']  # 'T-LESS', 'SO(3)'
+    drag_mode = None   # None, 'orbit'
+    save_html = True  # True, False
 
     for subspace in subspaces:
         for obj_cls in obj_classes:
             if subspace == 'T-LESS':
                 plot_mapping_tless(obj_cls=obj_cls, colours=colours, drag_mode=drag_mode, save_html=save_html)
-                print(f'Plots of the six parameters that make up our representation for object {obj_cls}, T-LESS rotation space')
-            elif subspace == 'SO3':
+            elif subspace == 'SO(3)':
                 plot_mapping_whole(obj_cls=obj_cls, colours=colours, drag_mode=drag_mode, save_html=save_html)
-                print(f'Plots of the six parameters that make up our representation for object {obj_cls}, SO(3) rotation space')
             else:
                 raise NotImplementedError
-            #time.sleep(30)
 
+            print(f'Plots of the six parameters that make up our representation for object {obj_cls}, {subspace} rotation space')
+            #time.sleep(30)  # sometimes useful for SO(3) space
