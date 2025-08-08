@@ -384,7 +384,7 @@ def plot_mapping_whole(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
 if __name__ == '__main__':
     obj_classes = [21, 11, 27, 2, 23]  # see source.utils.dataset_definitions.py
     colours = 'RGB'  # 'RGB', 'GREY'
-    subspaces = ['T-LESS', 'SO(3)']  # 'T-LESS', 'SO(3)'
+    subspaces = ['T-LESS']  # 'T-LESS', 'SO(3)'
     drag_mode = None   # None, 'orbit'
     save_html = True  # True, False
 
