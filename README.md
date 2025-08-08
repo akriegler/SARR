@@ -18,7 +18,7 @@ $ python -m source.visu.visualization
 
 Plots for the T-LESS symmetry classes have been pre-rendered into interactive html-files, accessible via the visualization toolkit:  [SARR visualizer](https://akriegler.github.io/SARR/)
 
-A video showcasing these plots for symmetry class II and giving a high-level explanation is available here: [explanation video](supplementary/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4)
+A video showcasing these plots for symmetry class II and giving a high-level explanation is available here: [explanation video](video/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4)
 
 
 ###  SARR representation mapping
