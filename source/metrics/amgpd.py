@@ -11,7 +11,6 @@ from source.utils.utils import easydict_constructor, rotational_error, unpack_cs
 
 T_LESS_sym_cls_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30]
 tless_path = '/mnt/01_Disk/krieglera/RAL/tless'
-itodd_path = '/mnt/01_Disk/krieglera/RAL/itodd'
 
 def get_test_targets():
     with open(tless_path + r'base/test_targets_bop19.json', 'r') as f:
@@ -248,40 +247,40 @@ def main():
         ]
     eval_files_tless_ours = \
         [
-            'results/T-LESS/ours/6d/canonic/6d-canon-dataset_tless-test.csv',
-            'results/T-LESS/ours/6d/canonic/6d-canon-object_tless-test.csv',
-            'results/T-LESS/ours/6d/canonic/6d-canon-symmetry_tless-test.csv',
-            'results/T-LESS/ours/6d/default/6d-default-dataset_tless-test.csv',
-            'results/T-LESS/ours/6d/default/6d-default-object_tless-test.csv',
-            'results/T-LESS/ours/6d/default/6d-default-symmetry_tless-test.csv',
-            'results/T-LESS/ours/euler/canonic/euler-canon-dataset_tless-test.csv',
-            'results/T-LESS/ours/euler/canonic/euler-canon-object_tless-test.csv',
-            'results/T-LESS/ours/euler/canonic/euler-canon-symmetry_tless-test.csv',
-            'results/T-LESS/ours/euler/default/euler-default-dataset_tless-test.csv',
             'results/T-LESS/ours/euler/default/euler-default-object_tless-test.csv',
             'results/T-LESS/ours/euler/default/euler-default-symmetry_tless-test.csv',
-            'results/T-LESS/ours/quaternion/canonic/quat-canon-dataset_tless-test.csv',
-            'results/T-LESS/ours/quaternion/canonic/quat-canon-object_tless-test.csv',
-            'results/T-LESS/ours/quaternion/canonic/quat-canon-symmetry_tless-test.csv',
-            'results/T-LESS/ours/quaternion/default/quat-default-dataset_tless-test.csv',
-            'results/T-LESS/ours/quaternion/default/quat-default-object_tless-test.csv',
-            'results/T-LESS/ours/quaternion/default/quat-default-symmetry_tless-test.csv',
-            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-dataset_tless-test.csv',
-            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-object_tless-test.csv',
-            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-symmetry_tless-test.csv',
-            'results/T-LESS/ours/rotation-matrix/default/rotmat-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/euler/default/euler-default-dataset_tless-test.csv',
             'results/T-LESS/ours/rotation-matrix/default/rotmat-default-object_tless-test.csv',
             'results/T-LESS/ours/rotation-matrix/default/rotmat-default-symmetry_tless-test.csv',
-            'results/T-LESS/ours/trigonometric/canonic/trig-canon-dataset_tless-test.csv',
-            'results/T-LESS/ours/trigonometric/canonic/trig-canon-object_tless-test.csv',
-            'results/T-LESS/ours/trigonometric/canonic/trig-canon-symmetry_tless-test.csv',
-            'results/T-LESS/ours/trigonometric/default/trig-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/default/rotmat-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/6d/default/6d-default-object_tless-test.csv',
+            'results/T-LESS/ours/6d/default/6d-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/6d/default/6d-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/quaternion/default/quat-default-object_tless-test.csv',
+            'results/T-LESS/ours/quaternion/default/quat-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/quaternion/default/quat-default-dataset_tless-test.csv',
             'results/T-LESS/ours/trigonometric/default/trig-default-object_tless-test.csv',
             'results/T-LESS/ours/trigonometric/default/trig-default-symmetry_tless-test.csv',
-            'results/T-LESS/ours/SARR/sarr-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/default/trig-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/euler/canonic/euler-canon-object_tless-test.csv',
+            'results/T-LESS/ours/euler/canonic/euler-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/euler/canonic/euler-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-object_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/6d/canonic/6d-canon-object_tless-test.csv',
+            'results/T-LESS/ours/6d/canonic/6d-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/6d/canonic/6d-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/quaternion/canonic/quat-canon-object_tless-test.csv',
+            'results/T-LESS/ours/quaternion/canonic/quat-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/quaternion/canonic/quat-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/canonic/trig-canon-object_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/canonic/trig-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/canonic/trig-canon-dataset_tless-test.csv',
             'results/T-LESS/ours/SARR/sarr-canon-object_tless-test.csv',
             'results/T-LESS/ours/SARR/sarr-canon-symmetry_tless-test.csv',
             'results/T-LESS/ours/SARR/gtsymcls-sarr-canon-datasetnohm_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-canon-dataset_tless-test.csv'
         ]
     gt_file = os.path.join(os.getcwd(), 'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
     eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_ours]  # eval_files_tless_other, eval_files_tless_ours

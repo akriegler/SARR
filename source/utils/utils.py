@@ -4,11 +4,49 @@ import numpy as np
 
 from easydict import EasyDict as edict
 
+atol = 0.0000000001
+
 
 def easydict_constructor(loader, node):
     fields = loader.construct_mapping(node, deep=False)
 
     return edict(fields)
+
+
+def rotation_matrix(theta, order='XYZ'):
+    """
+    NOTE: These rotatin matrices correspond to the rotations around Tait-Bryan angles as given by
+    https://en.wikipedia.org/wiki/Euler_angles#cite_note-4
+    and
+    https://ntrs.nasa.gov/api/citations/19770019231/downloads/19770019231.pdf
+    BUT (!) - Blender actually does the rotations from O_obj = O_world = I but in reverse order than the one
+    given in the object definition. So if you set object-order 'ZYX' in Blender the 'XYZ' matrices from those
+    sources are correct.
+    Since this leads to even more confusion, instead I have decided to adopt the ZYX matrices as is, but switch
+    the usage of cx <-> cz & sx <-> sz
+    input
+        theta1, theta2, theta3 = rotation angles in rotation order (degrees)
+        order = rotation order of x,y,z　e.g. XZY rotation -- 'xzy'
+    output
+        3x3 rotation matrix (numpy array)
+    """
+
+    cx, cy, cz = np.cos(theta)
+    sx, sy, sz = np.sin(theta)
+
+    if order == 'XYZ':  # intrinsic order NOT Blender order
+        matrix = np.array([[cy * cz, -cy * sz, sy],
+                           [cx * sz + cz * sx * sy, cx * cz - sx * sy * sz, -cy * sx],
+                           [sx * sz - cx * cz * sy, cz * sx + cx * sy * sz, cx * cy]], dtype=float)
+    elif order == 'ZYX':
+        matrix = np.array([[cy * cx, cx * sz * sy - cz * sx, cz * cx * sy + sz * sx],
+                           [cy * sx, cz * cx + sz * sy * sx, cz * sy * sx - cx * sz],
+                           [-sy, cy * sz, cz * cy]], dtype=float)
+    else:
+        print('weird order')
+        raise NotImplementedError
+
+    return matrix
 
 
 def clamp_rot(alpha, beta, gamma, sym_v=None):
