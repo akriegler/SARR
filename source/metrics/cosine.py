@@ -137,43 +137,43 @@ def main():
         [
             #'results/ITODD/ours/euler/default/euler-default-object_itodd-test.csv',
             #'results/ITODD/ours/euler/default/euler-default-symmetry_itodd-test.csv',
-            #'results/ITODD/ours/euler/default/euler-default-dataset_itodd-test.csv',
+            'results/ITODD/ours/euler/default/euler-default-dataset_itodd-test.csv',
             #'results/ITODD/ours/rotation-matrix/default/rotmat-default-object_itodd-test.csv',
             #'results/ITODD/ours/rotation-matrix/default/rotmat-default-symmetry_itodd-test.csv',
-            #'results/ITODD/ours/rotation-matrix/default/rotmat-default-dataset_itodd-test.csv',
+            'results/ITODD/ours/rotation-matrix/default/rotmat-default-dataset_itodd-test.csv',
             #'results/ITODD/ours/6d/default/6d-default-object_itodd-test.csv',
             #'results/ITODD/ours/6d/default/6d-default-symmetry_itodd-test.csv',
-            #'results/ITODD/ours/6d/default/6d-default-dataset_itodd-test.csv',
+            'results/ITODD/ours/6d/default/6d-default-dataset_itodd-test.csv',
             #'results/ITODD/ours/quaternion/default/quat-default-object_itodd-test.csv',
             #'results/ITODD/ours/quaternion/default/quat-default-symmetry_itodd-test.csv',
-            #'results/ITODD/ours/quaternion/default/quat-default-dataset_itodd-test.csv',
+            'results/ITODD/ours/quaternion/default/quat-default-dataset_itodd-test.csv',
             #'results/ITODD/ours/trigonometric/default/trig-default-object_itodd-test.csv',
             #'results/ITODD/ours/trigonometric/default/trig-default-symmetry_itodd-test.csv',
-            #'results/ITODD/ours/trigonometric/default/trig-default-dataset_itodd-test.csv',
-            #'results/ITODD/ours/euler/canonic/euler-canon-object_itodd-test.csv',
-            #'results/ITODD/ours/euler/canonic/euler-canon-symmetry_itodd-test.csv',
-            #'results/ITODD/ours/euler/canonic/euler-canon-dataset_itodd-test.csv',
-            'results/ITODD/ours/rotation-matrix/canonic/rotmat-canon-object_itodd-test.csv',
-            'results/ITODD/ours/rotation-matrix/canonic/rotmat-canon-symmetry_itodd-test.csv',
-            'results/ITODD/ours/rotation-matrix/canonic/rotmat-canon-dataset_itodd-test.csv',
-            'results/ITODD/ours/6d/canonic/6d-canon-object_itodd-test.csv',
+            'results/ITODD/ours/trigonometric/default/trig-default-dataset_itodd-test.csv',
+            'results/ITODD/ours/euler/canonic/euler-canon-object_itodd-test.csv',
+            'results/ITODD/ours/euler/canonic/euler-canon-symmetry_itodd-test.csv',
+            'results/ITODD/ours/euler/canonic/euler-canon-dataset_itodd-test.csv',
+            #'results/ITODD/ours/rotation-matrix/canonic/rotmat-canon-object_itodd-test.csv',
+            #'results/ITODD/ours/rotation-matrix/canonic/rotmat-canon-symmetry_itodd-test.csv',
+            #'results/ITODD/ours/rotation-matrix/canonic/rotmat-canon-dataset_itodd-test.csv',
+            #'results/ITODD/ours/6d/canonic/6d-canon-object_itodd-test.csv',
             #'results/ITODD/ours/6d/canonic/6d-canon-symmetry_itodd-test.csv',
-            'results/ITODD/ours/6d/canonic/6d-canon-dataset_itodd-test.csv',
+            #'results/ITODD/ours/6d/canonic/6d-canon-dataset_itodd-test.csv',
             #'results/ITODD/ours/quaternion/canonic/quat-canon-object_itodd-test.csv',
             #'results/ITODD/ours/quaternion/canonic/quat-canon-symmetry_itodd-test.csv',
             #'results/ITODD/ours/quaternion/canonic/quat-canon-dataset_itodd-test.csv',
             #'results/ITODD/ours/trigonometric/canonic/trig-canon-object_itodd-test.csv',
             #'results/ITODD/ours/trigonometric/canonic/trig-canon-symmetry_itodd-test.csv',
             #'results/ITODD/ours/trigonometric/canonic/trig-canon-dataset_itodd-test.csv',
-            'results/ITODD/ours/SARR/sarr-canon-object_itodd-test.csv',
-            'results/ITODD/ours/SARR/sarr-canon-symmetry_itodd-test.csv',
-            'results/ITODD/ours/SARR/gtsymcls-sarr-canon-datasetnohm_itodd-test.csv',
+            #'results/ITODD/ours/SARR/sarr-canon-object_itodd-test.csv',
+            #'results/ITODD/ours/SARR/sarr-canon-symmetry_itodd-test.csv',
+            #'results/ITODD/ours/SARR/gtsymcls-sarr-canon-datasetnohm_itodd-test.csv',
             #'results/ITODD/ours/SARR/sarr-canon-dataset_itodd-test.csv'
         ]
     gt_file_itodd = os.path.join(os.getcwd(), 'results/ITODD/gt/itodd_gt_bop19_canonic-val.csv')
 
-    gt_file = gt_file_tless  #gt_file_tless, gt_file_itodd
-    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_ours]    #  eval_files_tless_other, eval_files_tless_ours, eval_files_itodd_other, eval_files_itodd_ours
+    gt_file = gt_file_itodd  #gt_file_tless, gt_file_itodd
+    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_itodd_ours]    #  eval_files_tless_other, eval_files_tless_ours, eval_files_itodd_other, eval_files_itodd_ours
 
     for e_file in eval_file_full_paths:
         print('--------------------------------')
