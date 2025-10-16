@@ -88,7 +88,12 @@ def main():
             'results/T-LESS/others/drost-cvpr10-3d-only_tless-test.csv',
             'results/T-LESS/others/vidal-sensors18_tless-test.csv',
             'results/T-LESS/others/zte-ppf_tless-test.csv',
-            'results/T-LESS/others/leroy-fuseocclu-depth_tless-test.csv'
+            'results/T-LESS/others/leroy-fuseocclu-depth_tless-test.csv',
+            'results/wang_hcce/rgb/wang-hcceposebf_tless-test.csv',
+            'results/labbe/labbe-cosypose_tless-test.csv',
+            'results/moon/moon-genflow_tless-test.csv',
+            'results/su/rgb/su-zebrapose_tless-test.csv',
+            'results/leroy/rgb/leroy-modalocclusionrgb_tless-test.csv'
         ]
     eval_files_tless_ours = \
         [
@@ -172,8 +177,8 @@ def main():
         ]
     gt_file_itodd = os.path.join(os.getcwd(), 'results/ITODD/gt/itodd_gt_bop19_canonic-val.csv')
 
-    gt_file = gt_file_itodd  #gt_file_tless, gt_file_itodd
-    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_itodd_ours]    #  eval_files_tless_other, eval_files_tless_ours, eval_files_itodd_other, eval_files_itodd_ours
+    gt_file = gt_file_tless  #gt_file_tless, gt_file_itodd
+    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_other]    #  eval_files_tless_other, eval_files_tless_ours, eval_files_itodd_other, eval_files_itodd_ours
 
     for e_file in eval_file_full_paths:
         print('--------------------------------')
