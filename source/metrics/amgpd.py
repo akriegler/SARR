@@ -244,6 +244,9 @@ def main():
             'results/T-LESS/others/vidal-sensors18_tless-test.csv',
             'results/T-LESS/others/zte-ppf_tless-test.csv',
             'results/T-LESS/others/leroy-fuseocclu-depth_tless-test.csv'
+            'results/T-LESS/others/crt6d_tless-test_c5df9a60-bd17-48ec-8d3c-5cec9a3a841d.csv',
+            'results/T-LESS/others/leroy-fuseocclu-rgb_tless-test_718f9cef-ba39-47da-9425-953a959f0dd8.csv',
+            'results/T-LESS/others/gpose2023-rgb_tless-test_b07822bb-5c59-473d-9559-59f78896295d.csv'
         ]
     eval_files_tless_ours = \
         [

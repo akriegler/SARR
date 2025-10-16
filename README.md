@@ -42,7 +42,7 @@ for the AR_C metric or
 ```
 $ python -m source.metrics.amgpd
 ```
-for the AR_G metric.
+for the AR_G metric. (If you obtain different numbers, sort the columns in the .csv files as follows: scene_id, img_id and obj_id smallest to largest; score largest to smallest; in that order)
 
 A(M)GPD is only supported for the T-LESS dataset. The A(M)GPD calculation in [amgpd.py](source/metrics/amgpd.py) is our own reimplementation of [this script](https://github.com/GANWANSHUI/ES6D/blob/master/lib/tless_gadd_evaluator.py).
 
