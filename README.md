@@ -1,5 +1,7 @@
 # Towards Symmetry-sensitive Pose Estimation: A Rotation Representation for Symmetric Object Classes
 
+Under review at IJCV
+
 ## Setup
 Create a virtual environment and install dependencies:
 ```
