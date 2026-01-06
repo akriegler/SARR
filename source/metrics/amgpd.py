@@ -283,7 +283,7 @@ def main():
             'results/T-LESS/ours/SARR/sarr-canon-object_tless-test.csv',
             'results/T-LESS/ours/SARR/sarr-canon-symmetry_tless-test.csv',
             'results/T-LESS/ours/SARR/gtsymcls-sarr-canon-datasetnohm_tless-test.csv',
-            'results/T-LESS/ours/SARR/sarr-canon-dataset_tless-test.csv'
+            'results/T-LESS/ours/SARR/sarr-canon-dataset_tless-test.csv',
             'results/T-LESS/ours/SARR/sarr-canon-object-rgb_tless-test.csv',
             'results/T-LESS/ours/SARR/sarr-canon-symmetry-rgb_tless-test.csv',
             'results/T-LESS/ours/SARR/gtsymcls-sarr-canon-datasetnohm-rgb_tless-test.csv',

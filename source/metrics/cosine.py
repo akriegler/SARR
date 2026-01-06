@@ -189,8 +189,8 @@ def main():
         ]
     gt_file_itodd = os.path.join(os.getcwd(), 'results/ITODD/gt/itodd_gt_bop19_canonic-val.csv')
 
-    gt_file = gt_file_tless  #gt_file_tless, gt_file_itodd
-    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_ours]    #  eval_files_tless_other, eval_files_tless_ours, eval_files_itodd_other, eval_files_itodd_ours
+    gt_file = gt_file_itodd  #gt_file_tless, gt_file_itodd
+    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_itodd_ours]    #  eval_files_tless_other, eval_files_tless_ours, eval_files_itodd_other, eval_files_itodd_ours
 
     for e_file in eval_file_full_paths:
         print('--------------------------------')
