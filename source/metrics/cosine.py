@@ -94,7 +94,7 @@ def main():
             'results/T-LESS/others/moon-genflow_tless-test.csv',
             'results/T-LESS/others/su-zebraposergb_tless-test.csv',
             'results/T-LESS/others/su-zebraposergbd_tless-test.csv'
-            'results/T-LESS/others/leroy-modalocclusionrgb_tless-test.csv'
+            'results/T-LESS/others/leroy-modalocclusionrgb_tless-test.csv',
             'results/T-LESS/others/crt6d_tless-test_c5df9a60-bd17-48ec-8d3c-5cec9a3a841d.csv',
             'results/T-LESS/others/leroy-fuseocclu-rgb_tless-test_718f9cef-ba39-47da-9425-953a959f0dd8.csv',
             'results/T-LESS/others/gpose2023-rgb_tless-test_b07822bb-5c59-473d-9559-59f78896295d.csv'
@@ -134,7 +134,11 @@ def main():
             'results/T-LESS/ours/SARR/sarr-canon-object_tless-test.csv',
             'results/T-LESS/ours/SARR/sarr-canon-symmetry_tless-test.csv',
             'results/T-LESS/ours/SARR/gtsymcls-sarr-canon-datasetnohm_tless-test.csv',
-            'results/T-LESS/ours/SARR/sarr-canon-dataset_tless-test.csv'
+            'results/T-LESS/ours/SARR/sarr-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-canon-object-rgb_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-canon-symmetry-rgb_tless-test.csv',
+            'results/T-LESS/ours/SARR/gtsymcls-sarr-canon-datasetnohm-rgb_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-canon-dataset-rgb_tless-test.csv'
         ]
     gt_file_tless = os.path.join(os.getcwd(), 'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
 
@@ -177,12 +181,16 @@ def main():
             'results/ITODD/ours/SARR/sarr-canon-object_itodd-test.csv',
             'results/ITODD/ours/SARR/sarr-canon-symmetry_itodd-test.csv',
             'results/ITODD/ours/SARR/gtsymcls-sarr-canon-datasetnohm_itodd-test.csv',
-            'results/ITODD/ours/SARR/sarr-canon-dataset_itodd-test.csv'
+            'results/ITODD/ours/SARR/sarr-canon-dataset_itodd-test.csv',
+            'results/ITODD/ours/SARR/sarr-canon-object-rgb_itodd-test.csv',
+            'results/ITODD/ours/SARR/sarr-canon-symmetry-rgb_itodd-test.csv',
+            'results/ITODD/ours/SARR/gtsymcls-sarr-canon-datasetnohm-rgb_itodd-test.csv',
+            'results/ITODD/ours/SARR/sarr-canon-dataset-rgb_itodd-test.csv'
         ]
     gt_file_itodd = os.path.join(os.getcwd(), 'results/ITODD/gt/itodd_gt_bop19_canonic-val.csv')
 
     gt_file = gt_file_tless  #gt_file_tless, gt_file_itodd
-    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_other]    #  eval_files_tless_other, eval_files_tless_ours, eval_files_itodd_other, eval_files_itodd_ours
+    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_ours]    #  eval_files_tless_other, eval_files_tless_ours, eval_files_itodd_other, eval_files_itodd_ours
 
     for e_file in eval_file_full_paths:
         print('--------------------------------')
