@@ -2,27 +2,14 @@ import os
 import copy
 import yaml
 import json
+
 import numpy as np
 
 from scipy.optimize import linear_sum_assignment
 
 from source.utils.utils import easydict_constructor, rotational_error, unpack_csv_gt, unpack_csv_pred
 
-
 T_LESS_sym_cls_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30]
-tless_path = '/mnt/01_Disk/krieglera/RAL/tless'
-
-def get_test_targets():
-    with open(tless_path + r'base/test_targets_bop19.json', 'r') as f:
-        yaml.add_constructor('tag:yaml.org,2002:python/object/new:easydict.EasyDict', easydict_constructor)
-        test_targets_raw = yaml.load(f, Loader=yaml.FullLoader)
-
-    test_targets = []
-    for entry in test_targets_raw:
-        test_targets.append(f"{str(entry['scene_id'])}-{str(entry['im_id'])}-{str(entry['obj_id'])}")
-
-    return test_targets
-
 
 def get_erot_matches(gt_rots, gt_trans, gt_cls, pd_rots, pd_trans, pd_cls):
     for (k, img_gt_rots), (_, img_gt_trans) in zip(gt_rots.items(), gt_trans.items()):
@@ -243,62 +230,62 @@ def main():
             'results/T-LESS/others/drost-cvpr10-3d-only_tless-test.csv',
             'results/T-LESS/others/vidal-sensors18_tless-test.csv',
             'results/T-LESS/others/zte-ppf_tless-test.csv',
-            'results/T-LESS/others/leroy-fuseocclu-depth_tless-test.csv'
+            'results/T-LESS/others/leroy-fuseocclu-depth_tless-test.csv',
             'results/T-LESS/others/crt6d_tless-test_c5df9a60-bd17-48ec-8d3c-5cec9a3a841d.csv',
             'results/T-LESS/others/leroy-fuseocclu-rgb_tless-test_718f9cef-ba39-47da-9425-953a959f0dd8.csv',
             'results/T-LESS/others/gpose2023-rgb_tless-test_b07822bb-5c59-473d-9559-59f78896295d.csv'
         ]
     eval_files_tless_ours = \
         [
-            # 'results/T-LESS/ours/euler/default/euler-default-object_tless-test.csv',
-            # 'results/T-LESS/ours/euler/default/euler-default-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/euler/default/euler-default-dataset_tless-test.csv',
-            # 'results/T-LESS/ours/rotation-matrix/default/rotmat-default-object_tless-test.csv',
-            # 'results/T-LESS/ours/rotation-matrix/default/rotmat-default-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/rotation-matrix/default/rotmat-default-dataset_tless-test.csv',
-            # 'results/T-LESS/ours/6d/default/6d-default-object_tless-test.csv',
-            # 'results/T-LESS/ours/6d/default/6d-default-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/6d/default/6d-default-dataset_tless-test.csv',
-            # 'results/T-LESS/ours/quaternion/default/quat-default-object_tless-test.csv',
-            # 'results/T-LESS/ours/quaternion/default/quat-default-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/quaternion/default/quat-default-dataset_tless-test.csv',
-            # 'results/T-LESS/ours/trigonometric/default/trig-default-object_tless-test.csv',
-            # 'results/T-LESS/ours/trigonometric/default/trig-default-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/trigonometric/default/trig-default-dataset_tless-test.csv',
-            # 'results/T-LESS/ours/euler/canonic/euler-canon-object_tless-test.csv',
-            # 'results/T-LESS/ours/euler/canonic/euler-canon-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/euler/canonic/euler-canon-dataset_tless-test.csv',
-            # 'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-object_tless-test.csv',
-            # 'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-dataset_tless-test.csv',
-            # 'results/T-LESS/ours/6d/canonic/6d-canon-object_tless-test.csv',
-            # 'results/T-LESS/ours/6d/canonic/6d-canon-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/6d/canonic/6d-canon-dataset_tless-test.csv',
-            # 'results/T-LESS/ours/quaternion/canonic/quat-canon-object_tless-test.csv',
-            # 'results/T-LESS/ours/quaternion/canonic/quat-canon-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/quaternion/canonic/quat-canon-dataset_tless-test.csv',
-            # 'results/T-LESS/ours/trigonometric/canonic/trig-canon-object_tless-test.csv',
-            # 'results/T-LESS/ours/trigonometric/canonic/trig-canon-symmetry_tless-test.csv',
-            # 'results/T-LESS/ours/trigonometric/canonic/trig-canon-dataset_tless-test.csv',
-            #'results/T-LESS/ours/SARR/sarr-object_tless-test.csv',
-            #'results/T-LESS/ours/SARR/sarr-symmetry_tless-test.csv',
-            #'results/T-LESS/ours/SARR/sarr-datasetnohm_tless-test.csv',
-            #'results/T-LESS/ours/SARR/sarr-dataset_tless-test.csv'
+            'results/T-LESS/ours/euler/default/euler-default-object_tless-test.csv',
+            'results/T-LESS/ours/euler/default/euler-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/euler/default/euler-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/default/rotmat-default-object_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/default/rotmat-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/default/rotmat-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/6d/default/6d-default-object_tless-test.csv',
+            'results/T-LESS/ours/6d/default/6d-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/6d/default/6d-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/quaternion/default/quat-default-object_tless-test.csv',
+            'results/T-LESS/ours/quaternion/default/quat-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/quaternion/default/quat-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/default/trig-default-object_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/default/trig-default-symmetry_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/default/trig-default-dataset_tless-test.csv',
+            'results/T-LESS/ours/euler/canonic/euler-canon-object_tless-test.csv',
+            'results/T-LESS/ours/euler/canonic/euler-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/euler/canonic/euler-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-object_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/rotation-matrix/canonic/rotmat-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/6d/canonic/6d-canon-object_tless-test.csv',
+            'results/T-LESS/ours/6d/canonic/6d-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/6d/canonic/6d-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/quaternion/canonic/quat-canon-object_tless-test.csv',
+            'results/T-LESS/ours/quaternion/canonic/quat-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/quaternion/canonic/quat-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/canonic/trig-canon-object_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/canonic/trig-canon-symmetry_tless-test.csv',
+            'results/T-LESS/ours/trigonometric/canonic/trig-canon-dataset_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-object_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-symmetry_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-dataset_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-datasetast_tless-test.csv',
             'results/T-LESS/ours/SARR/sarr-object-rgb_tless-test.csv',
             'results/T-LESS/ours/SARR/sarr-symmetry-rgb_tless-test.csv',
-            'results/T-LESS/ours/SARR/sarr-datasetnohm-rgb_tless-test.csv',
-            'results/T-LESS/ours/SARR/sarr-dataset-rgb_tless-test.csv'
+            'results/T-LESS/ours/SARR/sarr-dataset-rgb_tless-test.csv',
+            'results/T-LESS/ours/SARR/sarr-datasetast-rgb_tless-test.csv'
         ]
     gt_file = os.path.join(os.getcwd(), 'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
-    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_ours]  # eval_files_tless_other, eval_files_tless_ours
+    eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_other]  # eval_files_tless_other, eval_files_tless_ours
 
-    model_groups_list = load_grouped_primitives(tless_path + r'/ES6D/tless_gp.json')  # Source: https://github.com/GANWANSHUI/ES6D/blob/master/datasets/tless/tless_gp.json
+    model_groups_list = load_grouped_primitives(os.path.join(os.getcwd(), 'results/T-LESS/others/ES6D_tless_gp.json'))  # Source: https://github.com/GANWANSHUI/ES6D/blob/master/datasets/tless/tless_gp.json
     for e_file in eval_file_full_paths:
-        print('--------------------------------')
-        #res_file = e_file.replace(e_file.split('//')[-1], 'amgpd_results.txt')
+        print('------------------------------------------------')
+        res_file = e_file.replace(e_file.split('//')[-1], f'T-LESS_amgpd_results_{"ours" if "ours" in e_file else "others"}.txt')
         name = e_file.split('/')[-1]
         print(name)
-        for task in ['SiSo', 'ViVo']:
+        for task in ['siso', 'vivo']:
             gt_rots, gt_trans, gt_cls = unpack_csv_gt(gt_file, task)
             pd_rots, pd_trans, pd_cls = unpack_csv_pred(e_file, gt_rots, task, foreign=True if 'others' in e_file else False)
 
@@ -309,13 +296,20 @@ def main():
 
             results = summarize_amgpd(cls_add_dis, cls_adds_dis, sym_cls_ids)
 
-            for k, v in results.items():
-                string = f"{task}: {k}: {100 * np.round(v/100, decimals=3):.1f}"
-                if k == r'Overall A(M)GPD(-S) AUC':
-                    print(string)
-                #with open(res_file, 'a') as f:
-                 #   f.write(string + '/n')
+            with open(res_file, 'a') as f:
+                string = name.split('_')[0]
+                f.write(string + '\n')
+                for k, v in results.items():
+                    string = f"{task}: {k}: {100 * np.round(v/100, decimals=3):.1f}"
+                    if k == r'Overall A(M)GPD(-S) AUC':
+                        print(string)
+                    f.write(string + '\n')
+                string = '------------------------------------------------'
+                f.write(string + '\n')
+        with open(res_file, 'a') as f:
+            string = '------------------------------------------------'
+            f.write(string + '\n')
 
 if __name__ == "__main__":
-    print('Dont sort the CSV result files for this metric! This can skew SiSo scores.')
+    print('Dont sort the CSV result files for this metric. This can skew SiSo scores since only the first instance per image is considered.')
     main()

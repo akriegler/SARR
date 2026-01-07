@@ -1,0 +1,266 @@
+hodan-iros15
+siso: A(M)GPD AUC: 65.1
+siso: A(M)GPD-S AUC: 65.1
+siso: A(M)GPD(-S) AUC: 65.1
+siso: <2cm A(M)GPD: 55.0
+siso: <2cm A(M)GPD-S: 55.0
+siso: <2cm A(M)GPD(-S): 55.0
+siso: Overall A(M)GPD(-S) AUC: 66.2
+------------------------------------------------
+hodan-iros15
+vivo: A(M)GPD AUC: 64.3
+vivo: A(M)GPD-S AUC: 64.3
+vivo: A(M)GPD(-S) AUC: 64.3
+vivo: <2cm A(M)GPD: 53.0
+vivo: <2cm A(M)GPD-S: 53.0
+vivo: <2cm A(M)GPD(-S): 53.0
+vivo: Overall A(M)GPD(-S) AUC: 65.4
+------------------------------------------------
+------------------------------------------------
+sundermeyer-ijcv19icp
+siso: A(M)GPD AUC: 61.6
+siso: A(M)GPD-S AUC: 61.6
+siso: A(M)GPD(-S) AUC: 61.6
+siso: <2cm A(M)GPD: 43.6
+siso: <2cm A(M)GPD-S: 43.6
+siso: <2cm A(M)GPD(-S): 43.6
+siso: Overall A(M)GPD(-S) AUC: 62.4
+------------------------------------------------
+sundermeyer-ijcv19icp
+vivo: A(M)GPD AUC: 63.1
+vivo: A(M)GPD-S AUC: 63.1
+vivo: A(M)GPD(-S) AUC: 63.1
+vivo: <2cm A(M)GPD: 44.5
+vivo: <2cm A(M)GPD-S: 44.5
+vivo: <2cm A(M)GPD(-S): 44.5
+vivo: Overall A(M)GPD(-S) AUC: 64.7
+------------------------------------------------
+------------------------------------------------
+gdrnpp-pbrreal-rgbd-mmodel
+siso: A(M)GPD AUC: 91.8
+siso: A(M)GPD-S AUC: 91.8
+siso: A(M)GPD(-S) AUC: 91.8
+siso: <2cm A(M)GPD: 87.0
+siso: <2cm A(M)GPD-S: 87.0
+siso: <2cm A(M)GPD(-S): 87.0
+siso: Overall A(M)GPD(-S) AUC: 90.7
+------------------------------------------------
+gdrnpp-pbrreal-rgbd-mmodel
+vivo: A(M)GPD AUC: 89.8
+vivo: A(M)GPD-S AUC: 89.8
+vivo: A(M)GPD(-S) AUC: 89.8
+vivo: <2cm A(M)GPD: 84.2
+vivo: <2cm A(M)GPD-S: 84.2
+vivo: <2cm A(M)GPD(-S): 84.2
+vivo: Overall A(M)GPD(-S) AUC: 87.3
+------------------------------------------------
+------------------------------------------------
+zebraposesat-effnetb4-refineddefaultdetections-2023
+siso: A(M)GPD AUC: 92.0
+siso: A(M)GPD-S AUC: 92.0
+siso: A(M)GPD(-S) AUC: 92.0
+siso: <2cm A(M)GPD: 88.8
+siso: <2cm A(M)GPD-S: 88.8
+siso: <2cm A(M)GPD(-S): 88.8
+siso: Overall A(M)GPD(-S) AUC: 91.2
+------------------------------------------------
+zebraposesat-effnetb4-refineddefaultdetections-2023
+vivo: A(M)GPD AUC: 88.8
+vivo: A(M)GPD-S AUC: 88.8
+vivo: A(M)GPD(-S) AUC: 88.8
+vivo: <2cm A(M)GPD: 83.7
+vivo: <2cm A(M)GPD-S: 83.7
+vivo: <2cm A(M)GPD(-S): 83.7
+vivo: Overall A(M)GPD(-S) AUC: 87.2
+------------------------------------------------
+------------------------------------------------
+modalocclusion-rgbd
+siso: A(M)GPD AUC: 91.4
+siso: A(M)GPD-S AUC: 91.4
+siso: A(M)GPD(-S) AUC: 91.4
+siso: <2cm A(M)GPD: 86.8
+siso: <2cm A(M)GPD-S: 86.8
+siso: <2cm A(M)GPD(-S): 86.8
+siso: Overall A(M)GPD(-S) AUC: 90.4
+------------------------------------------------
+modalocclusion-rgbd
+vivo: A(M)GPD AUC: 89.4
+vivo: A(M)GPD-S AUC: 89.4
+vivo: A(M)GPD(-S) AUC: 89.4
+vivo: <2cm A(M)GPD: 83.6
+vivo: <2cm A(M)GPD-S: 83.6
+vivo: <2cm A(M)GPD(-S): 83.6
+vivo: Overall A(M)GPD(-S) AUC: 87.6
+------------------------------------------------
+------------------------------------------------
+gpose2023
+siso: A(M)GPD AUC: 92.0
+siso: A(M)GPD-S AUC: 92.0
+siso: A(M)GPD(-S) AUC: 92.0
+siso: <2cm A(M)GPD: 87.7
+siso: <2cm A(M)GPD-S: 87.7
+siso: <2cm A(M)GPD(-S): 87.7
+siso: Overall A(M)GPD(-S) AUC: 91.1
+------------------------------------------------
+gpose2023
+vivo: A(M)GPD AUC: 88.9
+vivo: A(M)GPD-S AUC: 88.9
+vivo: A(M)GPD(-S) AUC: 88.9
+vivo: <2cm A(M)GPD: 83.1
+vivo: <2cm A(M)GPD-S: 83.1
+vivo: <2cm A(M)GPD(-S): 83.1
+vivo: Overall A(M)GPD(-S) AUC: 86.8
+------------------------------------------------
+------------------------------------------------
+sc6d-pbr
+siso: A(M)GPD AUC: 87.1
+siso: A(M)GPD-S AUC: 87.1
+siso: A(M)GPD(-S) AUC: 87.1
+siso: <2cm A(M)GPD: 80.5
+siso: <2cm A(M)GPD-S: 80.5
+siso: <2cm A(M)GPD(-S): 80.5
+siso: Overall A(M)GPD(-S) AUC: 85.9
+------------------------------------------------
+sc6d-pbr
+vivo: A(M)GPD AUC: 88.0
+vivo: A(M)GPD-S AUC: 88.0
+vivo: A(M)GPD(-S) AUC: 88.0
+vivo: <2cm A(M)GPD: 81.5
+vivo: <2cm A(M)GPD-S: 81.5
+vivo: <2cm A(M)GPD(-S): 81.5
+vivo: Overall A(M)GPD(-S) AUC: 86.0
+------------------------------------------------
+------------------------------------------------
+drost-cvpr10-3d-only
+siso: A(M)GPD AUC: 64.8
+siso: A(M)GPD-S AUC: 64.8
+siso: A(M)GPD(-S) AUC: 64.8
+siso: <2cm A(M)GPD: 55.6
+siso: <2cm A(M)GPD-S: 55.6
+siso: <2cm A(M)GPD(-S): 55.6
+siso: Overall A(M)GPD(-S) AUC: 64.2
+------------------------------------------------
+drost-cvpr10-3d-only
+vivo: A(M)GPD AUC: 64.7
+vivo: A(M)GPD-S AUC: 64.7
+vivo: A(M)GPD(-S) AUC: 64.7
+vivo: <2cm A(M)GPD: 54.7
+vivo: <2cm A(M)GPD-S: 54.7
+vivo: <2cm A(M)GPD(-S): 54.7
+vivo: Overall A(M)GPD(-S) AUC: 63.8
+------------------------------------------------
+------------------------------------------------
+vidal-sensors18
+siso: A(M)GPD AUC: 74.4
+siso: A(M)GPD-S AUC: 74.4
+siso: A(M)GPD(-S) AUC: 74.4
+siso: <2cm A(M)GPD: 66.4
+siso: <2cm A(M)GPD-S: 66.4
+siso: <2cm A(M)GPD(-S): 66.4
+siso: Overall A(M)GPD(-S) AUC: 74.0
+------------------------------------------------
+vidal-sensors18
+vivo: A(M)GPD AUC: 74.1
+vivo: A(M)GPD-S AUC: 74.1
+vivo: A(M)GPD(-S) AUC: 74.1
+vivo: <2cm A(M)GPD: 64.8
+vivo: <2cm A(M)GPD-S: 64.8
+vivo: <2cm A(M)GPD(-S): 64.8
+vivo: Overall A(M)GPD(-S) AUC: 71.5
+------------------------------------------------
+------------------------------------------------
+zte-ppf
+siso: A(M)GPD AUC: 75.2
+siso: A(M)GPD-S AUC: 75.2
+siso: A(M)GPD(-S) AUC: 75.2
+siso: <2cm A(M)GPD: 68.0
+siso: <2cm A(M)GPD-S: 68.0
+siso: <2cm A(M)GPD(-S): 68.0
+siso: Overall A(M)GPD(-S) AUC: 73.8
+------------------------------------------------
+zte-ppf
+vivo: A(M)GPD AUC: 76.2
+vivo: A(M)GPD-S AUC: 76.2
+vivo: A(M)GPD(-S) AUC: 76.2
+vivo: <2cm A(M)GPD: 68.1
+vivo: <2cm A(M)GPD-S: 68.1
+vivo: <2cm A(M)GPD(-S): 68.1
+vivo: Overall A(M)GPD(-S) AUC: 74.5
+------------------------------------------------
+------------------------------------------------
+leroy-fuseocclu-depth
+siso: A(M)GPD AUC: 83.8
+siso: A(M)GPD-S AUC: 83.8
+siso: A(M)GPD(-S) AUC: 83.8
+siso: <2cm A(M)GPD: 75.3
+siso: <2cm A(M)GPD-S: 75.3
+siso: <2cm A(M)GPD(-S): 75.3
+siso: Overall A(M)GPD(-S) AUC: 83.4
+------------------------------------------------
+leroy-fuseocclu-depth
+vivo: A(M)GPD AUC: 83.9
+vivo: A(M)GPD-S AUC: 83.9
+vivo: A(M)GPD(-S) AUC: 83.9
+vivo: <2cm A(M)GPD: 75.0
+vivo: <2cm A(M)GPD-S: 75.0
+vivo: <2cm A(M)GPD(-S): 75.0
+vivo: Overall A(M)GPD(-S) AUC: 82.0
+------------------------------------------------
+------------------------------------------------
+crt6d
+siso: A(M)GPD AUC: 84.9
+siso: A(M)GPD-S AUC: 84.9
+siso: A(M)GPD(-S) AUC: 84.9
+siso: <2cm A(M)GPD: 75.5
+siso: <2cm A(M)GPD-S: 75.5
+siso: <2cm A(M)GPD(-S): 75.5
+siso: Overall A(M)GPD(-S) AUC: 83.7
+------------------------------------------------
+crt6d
+vivo: A(M)GPD AUC: 83.0
+vivo: A(M)GPD-S AUC: 83.0
+vivo: A(M)GPD(-S) AUC: 83.0
+vivo: <2cm A(M)GPD: 71.6
+vivo: <2cm A(M)GPD-S: 71.6
+vivo: <2cm A(M)GPD(-S): 71.6
+vivo: Overall A(M)GPD(-S) AUC: 80.9
+------------------------------------------------
+------------------------------------------------
+leroy-fuseocclu-rgb
+siso: A(M)GPD AUC: 91.0
+siso: A(M)GPD-S AUC: 91.0
+siso: A(M)GPD(-S) AUC: 91.0
+siso: <2cm A(M)GPD: 85.8
+siso: <2cm A(M)GPD-S: 85.8
+siso: <2cm A(M)GPD(-S): 85.8
+siso: Overall A(M)GPD(-S) AUC: 90.0
+------------------------------------------------
+leroy-fuseocclu-rgb
+vivo: A(M)GPD AUC: 89.7
+vivo: A(M)GPD-S AUC: 89.7
+vivo: A(M)GPD(-S) AUC: 89.7
+vivo: <2cm A(M)GPD: 83.5
+vivo: <2cm A(M)GPD-S: 83.5
+vivo: <2cm A(M)GPD(-S): 83.5
+vivo: Overall A(M)GPD(-S) AUC: 88.3
+------------------------------------------------
+------------------------------------------------
+gpose2023-rgb
+siso: A(M)GPD AUC: 91.4
+siso: A(M)GPD-S AUC: 91.4
+siso: A(M)GPD(-S) AUC: 91.4
+siso: <2cm A(M)GPD: 86.5
+siso: <2cm A(M)GPD-S: 86.5
+siso: <2cm A(M)GPD(-S): 86.5
+siso: Overall A(M)GPD(-S) AUC: 90.6
+------------------------------------------------
+gpose2023-rgb
+vivo: A(M)GPD AUC: 88.1
+vivo: A(M)GPD-S AUC: 88.1
+vivo: A(M)GPD(-S) AUC: 88.1
+vivo: <2cm A(M)GPD: 82.1
+vivo: <2cm A(M)GPD-S: 82.1
+vivo: <2cm A(M)GPD(-S): 82.1
+vivo: Overall A(M)GPD(-S) AUC: 85.6
+------------------------------------------------
+------------------------------------------------

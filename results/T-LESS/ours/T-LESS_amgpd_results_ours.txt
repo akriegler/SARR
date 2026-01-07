@@ -1,0 +1,722 @@
+euler-default-object
+siso: A(M)GPD AUC: 52.4
+siso: A(M)GPD-S AUC: 52.4
+siso: A(M)GPD(-S) AUC: 52.4
+siso: <2cm A(M)GPD: 30.7
+siso: <2cm A(M)GPD-S: 30.7
+siso: <2cm A(M)GPD(-S): 30.7
+siso: Overall A(M)GPD(-S) AUC: 54.1
+------------------------------------------------
+euler-default-object
+vivo: A(M)GPD AUC: 52.3
+vivo: A(M)GPD-S AUC: 52.3
+vivo: A(M)GPD(-S) AUC: 52.3
+vivo: <2cm A(M)GPD: 29.4
+vivo: <2cm A(M)GPD-S: 29.4
+vivo: <2cm A(M)GPD(-S): 29.4
+vivo: Overall A(M)GPD(-S) AUC: 54.9
+------------------------------------------------
+------------------------------------------------
+euler-default-symmetry
+siso: A(M)GPD AUC: 46.0
+siso: A(M)GPD-S AUC: 46.0
+siso: A(M)GPD(-S) AUC: 46.0
+siso: <2cm A(M)GPD: 22.9
+siso: <2cm A(M)GPD-S: 22.9
+siso: <2cm A(M)GPD(-S): 22.9
+siso: Overall A(M)GPD(-S) AUC: 47.1
+------------------------------------------------
+euler-default-symmetry
+vivo: A(M)GPD AUC: 46.5
+vivo: A(M)GPD-S AUC: 46.5
+vivo: A(M)GPD(-S) AUC: 46.5
+vivo: <2cm A(M)GPD: 21.6
+vivo: <2cm A(M)GPD-S: 21.6
+vivo: <2cm A(M)GPD(-S): 21.6
+vivo: Overall A(M)GPD(-S) AUC: 49.1
+------------------------------------------------
+------------------------------------------------
+euler-default-dataset
+siso: A(M)GPD AUC: 49.2
+siso: A(M)GPD-S AUC: 49.2
+siso: A(M)GPD(-S) AUC: 49.2
+siso: <2cm A(M)GPD: 27.6
+siso: <2cm A(M)GPD-S: 27.6
+siso: <2cm A(M)GPD(-S): 27.6
+siso: Overall A(M)GPD(-S) AUC: 49.7
+------------------------------------------------
+euler-default-dataset
+vivo: A(M)GPD AUC: 49.3
+vivo: A(M)GPD-S AUC: 49.3
+vivo: A(M)GPD(-S) AUC: 49.3
+vivo: <2cm A(M)GPD: 26.3
+vivo: <2cm A(M)GPD-S: 26.3
+vivo: <2cm A(M)GPD(-S): 26.3
+vivo: Overall A(M)GPD(-S) AUC: 52.0
+------------------------------------------------
+------------------------------------------------
+rotmat-default-object
+siso: A(M)GPD AUC: 46.6
+siso: A(M)GPD-S AUC: 46.6
+siso: A(M)GPD(-S) AUC: 46.6
+siso: <2cm A(M)GPD: 23.7
+siso: <2cm A(M)GPD-S: 23.7
+siso: <2cm A(M)GPD(-S): 23.7
+siso: Overall A(M)GPD(-S) AUC: 46.1
+------------------------------------------------
+rotmat-default-object
+vivo: A(M)GPD AUC: 46.6
+vivo: A(M)GPD-S AUC: 46.6
+vivo: A(M)GPD(-S) AUC: 46.6
+vivo: <2cm A(M)GPD: 23.0
+vivo: <2cm A(M)GPD-S: 23.0
+vivo: <2cm A(M)GPD(-S): 23.0
+vivo: Overall A(M)GPD(-S) AUC: 44.9
+------------------------------------------------
+------------------------------------------------
+rotmat-default-symmetry
+siso: A(M)GPD AUC: 44.8
+siso: A(M)GPD-S AUC: 44.8
+siso: A(M)GPD(-S) AUC: 44.8
+siso: <2cm A(M)GPD: 24.0
+siso: <2cm A(M)GPD-S: 24.0
+siso: <2cm A(M)GPD(-S): 24.0
+siso: Overall A(M)GPD(-S) AUC: 46.8
+------------------------------------------------
+rotmat-default-symmetry
+vivo: A(M)GPD AUC: 44.2
+vivo: A(M)GPD-S AUC: 44.2
+vivo: A(M)GPD(-S) AUC: 44.2
+vivo: <2cm A(M)GPD: 21.9
+vivo: <2cm A(M)GPD-S: 21.9
+vivo: <2cm A(M)GPD(-S): 21.9
+vivo: Overall A(M)GPD(-S) AUC: 48.8
+------------------------------------------------
+------------------------------------------------
+rotmat-default-dataset
+siso: A(M)GPD AUC: 41.2
+siso: A(M)GPD-S AUC: 41.2
+siso: A(M)GPD(-S) AUC: 41.2
+siso: <2cm A(M)GPD: 20.6
+siso: <2cm A(M)GPD-S: 20.6
+siso: <2cm A(M)GPD(-S): 20.6
+siso: Overall A(M)GPD(-S) AUC: 41.7
+------------------------------------------------
+rotmat-default-dataset
+vivo: A(M)GPD AUC: 41.4
+vivo: A(M)GPD-S AUC: 41.4
+vivo: A(M)GPD(-S) AUC: 41.4
+vivo: <2cm A(M)GPD: 19.5
+vivo: <2cm A(M)GPD-S: 19.5
+vivo: <2cm A(M)GPD(-S): 19.5
+vivo: Overall A(M)GPD(-S) AUC: 43.7
+------------------------------------------------
+------------------------------------------------
+6d-default-object
+siso: A(M)GPD AUC: 34.9
+siso: A(M)GPD-S AUC: 34.9
+siso: A(M)GPD(-S) AUC: 34.9
+siso: <2cm A(M)GPD: 11.1
+siso: <2cm A(M)GPD-S: 11.1
+siso: <2cm A(M)GPD(-S): 11.1
+siso: Overall A(M)GPD(-S) AUC: 35.1
+------------------------------------------------
+6d-default-object
+vivo: A(M)GPD AUC: 35.2
+vivo: A(M)GPD-S AUC: 35.2
+vivo: A(M)GPD(-S) AUC: 35.2
+vivo: <2cm A(M)GPD: 10.8
+vivo: <2cm A(M)GPD-S: 10.8
+vivo: <2cm A(M)GPD(-S): 10.8
+vivo: Overall A(M)GPD(-S) AUC: 38.3
+------------------------------------------------
+------------------------------------------------
+6d-default-symmetry
+siso: A(M)GPD AUC: 36.4
+siso: A(M)GPD-S AUC: 36.4
+siso: A(M)GPD(-S) AUC: 36.4
+siso: <2cm A(M)GPD: 14.4
+siso: <2cm A(M)GPD-S: 14.4
+siso: <2cm A(M)GPD(-S): 14.4
+siso: Overall A(M)GPD(-S) AUC: 38.1
+------------------------------------------------
+6d-default-symmetry
+vivo: A(M)GPD AUC: 35.6
+vivo: A(M)GPD-S AUC: 35.6
+vivo: A(M)GPD(-S) AUC: 35.6
+vivo: <2cm A(M)GPD: 13.8
+vivo: <2cm A(M)GPD-S: 13.8
+vivo: <2cm A(M)GPD(-S): 13.8
+vivo: Overall A(M)GPD(-S) AUC: 40.3
+------------------------------------------------
+------------------------------------------------
+6d-default-dataset
+siso: A(M)GPD AUC: 33.7
+siso: A(M)GPD-S AUC: 33.7
+siso: A(M)GPD(-S) AUC: 33.7
+siso: <2cm A(M)GPD: 6.7
+siso: <2cm A(M)GPD-S: 6.7
+siso: <2cm A(M)GPD(-S): 6.7
+siso: Overall A(M)GPD(-S) AUC: 34.5
+------------------------------------------------
+6d-default-dataset
+vivo: A(M)GPD AUC: 33.5
+vivo: A(M)GPD-S AUC: 33.5
+vivo: A(M)GPD(-S) AUC: 33.5
+vivo: <2cm A(M)GPD: 6.2
+vivo: <2cm A(M)GPD-S: 6.2
+vivo: <2cm A(M)GPD(-S): 6.2
+vivo: Overall A(M)GPD(-S) AUC: 37.6
+------------------------------------------------
+------------------------------------------------
+quat-default-object
+siso: A(M)GPD AUC: 50.4
+siso: A(M)GPD-S AUC: 50.4
+siso: A(M)GPD(-S) AUC: 50.4
+siso: <2cm A(M)GPD: 21.9
+siso: <2cm A(M)GPD-S: 21.9
+siso: <2cm A(M)GPD(-S): 21.9
+siso: Overall A(M)GPD(-S) AUC: 52.3
+------------------------------------------------
+quat-default-object
+vivo: A(M)GPD AUC: 49.4
+vivo: A(M)GPD-S AUC: 49.4
+vivo: A(M)GPD(-S) AUC: 49.4
+vivo: <2cm A(M)GPD: 20.3
+vivo: <2cm A(M)GPD-S: 20.3
+vivo: <2cm A(M)GPD(-S): 20.3
+vivo: Overall A(M)GPD(-S) AUC: 52.3
+------------------------------------------------
+------------------------------------------------
+quat-default-symmetry
+siso: A(M)GPD AUC: 51.2
+siso: A(M)GPD-S AUC: 51.2
+siso: A(M)GPD(-S) AUC: 51.2
+siso: <2cm A(M)GPD: 25.2
+siso: <2cm A(M)GPD-S: 25.2
+siso: <2cm A(M)GPD(-S): 25.2
+siso: Overall A(M)GPD(-S) AUC: 52.6
+------------------------------------------------
+quat-default-symmetry
+vivo: A(M)GPD AUC: 51.1
+vivo: A(M)GPD-S AUC: 51.1
+vivo: A(M)GPD(-S) AUC: 51.1
+vivo: <2cm A(M)GPD: 23.9
+vivo: <2cm A(M)GPD-S: 23.9
+vivo: <2cm A(M)GPD(-S): 23.9
+vivo: Overall A(M)GPD(-S) AUC: 53.2
+------------------------------------------------
+------------------------------------------------
+quat-default-dataset
+siso: A(M)GPD AUC: 29.1
+siso: A(M)GPD-S AUC: 29.1
+siso: A(M)GPD(-S) AUC: 29.1
+siso: <2cm A(M)GPD: 7.0
+siso: <2cm A(M)GPD-S: 7.0
+siso: <2cm A(M)GPD(-S): 7.0
+siso: Overall A(M)GPD(-S) AUC: 30.6
+------------------------------------------------
+quat-default-dataset
+vivo: A(M)GPD AUC: 29.6
+vivo: A(M)GPD-S AUC: 29.6
+vivo: A(M)GPD(-S) AUC: 29.6
+vivo: <2cm A(M)GPD: 6.2
+vivo: <2cm A(M)GPD-S: 6.2
+vivo: <2cm A(M)GPD(-S): 6.2
+vivo: Overall A(M)GPD(-S) AUC: 35.3
+------------------------------------------------
+------------------------------------------------
+trig-default-object
+siso: A(M)GPD AUC: 55.7
+siso: A(M)GPD-S AUC: 55.7
+siso: A(M)GPD(-S) AUC: 55.7
+siso: <2cm A(M)GPD: 30.1
+siso: <2cm A(M)GPD-S: 30.1
+siso: <2cm A(M)GPD(-S): 30.1
+siso: Overall A(M)GPD(-S) AUC: 56.7
+------------------------------------------------
+trig-default-object
+vivo: A(M)GPD AUC: 55.5
+vivo: A(M)GPD-S AUC: 55.5
+vivo: A(M)GPD(-S) AUC: 55.5
+vivo: <2cm A(M)GPD: 28.7
+vivo: <2cm A(M)GPD-S: 28.7
+vivo: <2cm A(M)GPD(-S): 28.7
+vivo: Overall A(M)GPD(-S) AUC: 56.5
+------------------------------------------------
+------------------------------------------------
+trig-default-symmetry
+siso: A(M)GPD AUC: 47.6
+siso: A(M)GPD-S AUC: 47.6
+siso: A(M)GPD(-S) AUC: 47.6
+siso: <2cm A(M)GPD: 24.7
+siso: <2cm A(M)GPD-S: 24.7
+siso: <2cm A(M)GPD(-S): 24.7
+siso: Overall A(M)GPD(-S) AUC: 49.0
+------------------------------------------------
+trig-default-symmetry
+vivo: A(M)GPD AUC: 47.2
+vivo: A(M)GPD-S AUC: 47.2
+vivo: A(M)GPD(-S) AUC: 47.2
+vivo: <2cm A(M)GPD: 23.2
+vivo: <2cm A(M)GPD-S: 23.2
+vivo: <2cm A(M)GPD(-S): 23.2
+vivo: Overall A(M)GPD(-S) AUC: 49.8
+------------------------------------------------
+------------------------------------------------
+trig-default-dataset
+siso: A(M)GPD AUC: 56.8
+siso: A(M)GPD-S AUC: 56.8
+siso: A(M)GPD(-S) AUC: 56.8
+siso: <2cm A(M)GPD: 34.4
+siso: <2cm A(M)GPD-S: 34.4
+siso: <2cm A(M)GPD(-S): 34.4
+siso: Overall A(M)GPD(-S) AUC: 58.1
+------------------------------------------------
+trig-default-dataset
+vivo: A(M)GPD AUC: 56.5
+vivo: A(M)GPD-S AUC: 56.5
+vivo: A(M)GPD(-S) AUC: 56.5
+vivo: <2cm A(M)GPD: 33.1
+vivo: <2cm A(M)GPD-S: 33.1
+vivo: <2cm A(M)GPD(-S): 33.1
+vivo: Overall A(M)GPD(-S) AUC: 57.4
+------------------------------------------------
+------------------------------------------------
+euler-canon-object
+siso: A(M)GPD AUC: 54.4
+siso: A(M)GPD-S AUC: 54.4
+siso: A(M)GPD(-S) AUC: 54.4
+siso: <2cm A(M)GPD: 35.3
+siso: <2cm A(M)GPD-S: 35.3
+siso: <2cm A(M)GPD(-S): 35.3
+siso: Overall A(M)GPD(-S) AUC: 56.1
+------------------------------------------------
+euler-canon-object
+vivo: A(M)GPD AUC: 54.7
+vivo: A(M)GPD-S AUC: 54.7
+vivo: A(M)GPD(-S) AUC: 54.7
+vivo: <2cm A(M)GPD: 34.5
+vivo: <2cm A(M)GPD-S: 34.5
+vivo: <2cm A(M)GPD(-S): 34.5
+vivo: Overall A(M)GPD(-S) AUC: 56.9
+------------------------------------------------
+------------------------------------------------
+euler-canon-symmetry
+siso: A(M)GPD AUC: 52.3
+siso: A(M)GPD-S AUC: 52.3
+siso: A(M)GPD(-S) AUC: 52.3
+siso: <2cm A(M)GPD: 32.8
+siso: <2cm A(M)GPD-S: 32.8
+siso: <2cm A(M)GPD(-S): 32.8
+siso: Overall A(M)GPD(-S) AUC: 53.9
+------------------------------------------------
+euler-canon-symmetry
+vivo: A(M)GPD AUC: 53.2
+vivo: A(M)GPD-S AUC: 53.2
+vivo: A(M)GPD(-S) AUC: 53.2
+vivo: <2cm A(M)GPD: 32.4
+vivo: <2cm A(M)GPD-S: 32.4
+vivo: <2cm A(M)GPD(-S): 32.4
+vivo: Overall A(M)GPD(-S) AUC: 56.4
+------------------------------------------------
+------------------------------------------------
+euler-canon-dataset
+siso: A(M)GPD AUC: 53.0
+siso: A(M)GPD-S AUC: 53.0
+siso: A(M)GPD(-S) AUC: 53.0
+siso: <2cm A(M)GPD: 30.6
+siso: <2cm A(M)GPD-S: 30.6
+siso: <2cm A(M)GPD(-S): 30.6
+siso: Overall A(M)GPD(-S) AUC: 53.5
+------------------------------------------------
+euler-canon-dataset
+vivo: A(M)GPD AUC: 53.2
+vivo: A(M)GPD-S AUC: 53.2
+vivo: A(M)GPD(-S) AUC: 53.2
+vivo: <2cm A(M)GPD: 29.6
+vivo: <2cm A(M)GPD-S: 29.6
+vivo: <2cm A(M)GPD(-S): 29.6
+vivo: Overall A(M)GPD(-S) AUC: 54.5
+------------------------------------------------
+------------------------------------------------
+rotmat-canon-object
+siso: A(M)GPD AUC: 62.9
+siso: A(M)GPD-S AUC: 62.9
+siso: A(M)GPD(-S) AUC: 62.9
+siso: <2cm A(M)GPD: 45.0
+siso: <2cm A(M)GPD-S: 45.0
+siso: <2cm A(M)GPD(-S): 45.0
+siso: Overall A(M)GPD(-S) AUC: 64.1
+------------------------------------------------
+rotmat-canon-object
+vivo: A(M)GPD AUC: 63.4
+vivo: A(M)GPD-S AUC: 63.4
+vivo: A(M)GPD(-S) AUC: 63.4
+vivo: <2cm A(M)GPD: 44.0
+vivo: <2cm A(M)GPD-S: 44.0
+vivo: <2cm A(M)GPD(-S): 44.0
+vivo: Overall A(M)GPD(-S) AUC: 63.7
+------------------------------------------------
+------------------------------------------------
+rotmat-canon-symmetry
+siso: A(M)GPD AUC: 62.8
+siso: A(M)GPD-S AUC: 62.8
+siso: A(M)GPD(-S) AUC: 62.8
+siso: <2cm A(M)GPD: 47.7
+siso: <2cm A(M)GPD-S: 47.7
+siso: <2cm A(M)GPD(-S): 47.7
+siso: Overall A(M)GPD(-S) AUC: 63.7
+------------------------------------------------
+rotmat-canon-symmetry
+vivo: A(M)GPD AUC: 63.3
+vivo: A(M)GPD-S AUC: 63.3
+vivo: A(M)GPD(-S) AUC: 63.3
+vivo: <2cm A(M)GPD: 46.6
+vivo: <2cm A(M)GPD-S: 46.6
+vivo: <2cm A(M)GPD(-S): 46.6
+vivo: Overall A(M)GPD(-S) AUC: 64.1
+------------------------------------------------
+------------------------------------------------
+rotmat-canon-dataset
+siso: A(M)GPD AUC: 50.8
+siso: A(M)GPD-S AUC: 50.8
+siso: A(M)GPD(-S) AUC: 50.8
+siso: <2cm A(M)GPD: 30.3
+siso: <2cm A(M)GPD-S: 30.3
+siso: <2cm A(M)GPD(-S): 30.3
+siso: Overall A(M)GPD(-S) AUC: 51.3
+------------------------------------------------
+rotmat-canon-dataset
+vivo: A(M)GPD AUC: 51.4
+vivo: A(M)GPD-S AUC: 51.4
+vivo: A(M)GPD(-S) AUC: 51.4
+vivo: <2cm A(M)GPD: 29.4
+vivo: <2cm A(M)GPD-S: 29.4
+vivo: <2cm A(M)GPD(-S): 29.4
+vivo: Overall A(M)GPD(-S) AUC: 52.9
+------------------------------------------------
+------------------------------------------------
+6d-canon-object
+siso: A(M)GPD AUC: 58.1
+siso: A(M)GPD-S AUC: 58.1
+siso: A(M)GPD(-S) AUC: 58.1
+siso: <2cm A(M)GPD: 39.5
+siso: <2cm A(M)GPD-S: 39.5
+siso: <2cm A(M)GPD(-S): 39.5
+siso: Overall A(M)GPD(-S) AUC: 58.4
+------------------------------------------------
+6d-canon-object
+vivo: A(M)GPD AUC: 59.0
+vivo: A(M)GPD-S AUC: 59.0
+vivo: A(M)GPD(-S) AUC: 59.0
+vivo: <2cm A(M)GPD: 39.6
+vivo: <2cm A(M)GPD-S: 39.6
+vivo: <2cm A(M)GPD(-S): 39.6
+vivo: Overall A(M)GPD(-S) AUC: 56.7
+------------------------------------------------
+------------------------------------------------
+6d-canon-symmetry
+siso: A(M)GPD AUC: 62.3
+siso: A(M)GPD-S AUC: 62.3
+siso: A(M)GPD(-S) AUC: 62.3
+siso: <2cm A(M)GPD: 46.0
+siso: <2cm A(M)GPD-S: 46.0
+siso: <2cm A(M)GPD(-S): 46.0
+siso: Overall A(M)GPD(-S) AUC: 63.3
+------------------------------------------------
+6d-canon-symmetry
+vivo: A(M)GPD AUC: 62.9
+vivo: A(M)GPD-S AUC: 62.9
+vivo: A(M)GPD(-S) AUC: 62.9
+vivo: <2cm A(M)GPD: 44.9
+vivo: <2cm A(M)GPD-S: 44.9
+vivo: <2cm A(M)GPD(-S): 44.9
+vivo: Overall A(M)GPD(-S) AUC: 63.9
+------------------------------------------------
+------------------------------------------------
+6d-canon-dataset
+siso: A(M)GPD AUC: 64.7
+siso: A(M)GPD-S AUC: 64.7
+siso: A(M)GPD(-S) AUC: 64.7
+siso: <2cm A(M)GPD: 50.0
+siso: <2cm A(M)GPD-S: 50.0
+siso: <2cm A(M)GPD(-S): 50.0
+siso: Overall A(M)GPD(-S) AUC: 65.0
+------------------------------------------------
+6d-canon-dataset
+vivo: A(M)GPD AUC: 64.9
+vivo: A(M)GPD-S AUC: 64.9
+vivo: A(M)GPD(-S) AUC: 64.9
+vivo: <2cm A(M)GPD: 48.9
+vivo: <2cm A(M)GPD-S: 48.9
+vivo: <2cm A(M)GPD(-S): 48.9
+vivo: Overall A(M)GPD(-S) AUC: 64.2
+------------------------------------------------
+------------------------------------------------
+quat-canon-object
+siso: A(M)GPD AUC: 59.0
+siso: A(M)GPD-S AUC: 59.0
+siso: A(M)GPD(-S) AUC: 59.0
+siso: <2cm A(M)GPD: 37.3
+siso: <2cm A(M)GPD-S: 37.3
+siso: <2cm A(M)GPD(-S): 37.3
+siso: Overall A(M)GPD(-S) AUC: 60.2
+------------------------------------------------
+quat-canon-object
+vivo: A(M)GPD AUC: 59.1
+vivo: A(M)GPD-S AUC: 59.1
+vivo: A(M)GPD(-S) AUC: 59.1
+vivo: <2cm A(M)GPD: 36.2
+vivo: <2cm A(M)GPD-S: 36.2
+vivo: <2cm A(M)GPD(-S): 36.2
+vivo: Overall A(M)GPD(-S) AUC: 59.6
+------------------------------------------------
+------------------------------------------------
+quat-canon-symmetry
+siso: A(M)GPD AUC: 60.8
+siso: A(M)GPD-S AUC: 60.8
+siso: A(M)GPD(-S) AUC: 60.8
+siso: <2cm A(M)GPD: 42.2
+siso: <2cm A(M)GPD-S: 42.2
+siso: <2cm A(M)GPD(-S): 42.2
+siso: Overall A(M)GPD(-S) AUC: 61.6
+------------------------------------------------
+quat-canon-symmetry
+vivo: A(M)GPD AUC: 61.4
+vivo: A(M)GPD-S AUC: 61.4
+vivo: A(M)GPD(-S) AUC: 61.4
+vivo: <2cm A(M)GPD: 41.2
+vivo: <2cm A(M)GPD-S: 41.2
+vivo: <2cm A(M)GPD(-S): 41.2
+vivo: Overall A(M)GPD(-S) AUC: 62.6
+------------------------------------------------
+------------------------------------------------
+quat-canon-dataset
+siso: A(M)GPD AUC: 55.8
+siso: A(M)GPD-S AUC: 55.8
+siso: A(M)GPD(-S) AUC: 55.8
+siso: <2cm A(M)GPD: 34.9
+siso: <2cm A(M)GPD-S: 34.9
+siso: <2cm A(M)GPD(-S): 34.9
+siso: Overall A(M)GPD(-S) AUC: 56.8
+------------------------------------------------
+quat-canon-dataset
+vivo: A(M)GPD AUC: 55.9
+vivo: A(M)GPD-S AUC: 55.9
+vivo: A(M)GPD(-S) AUC: 55.9
+vivo: <2cm A(M)GPD: 33.7
+vivo: <2cm A(M)GPD-S: 33.7
+vivo: <2cm A(M)GPD(-S): 33.7
+vivo: Overall A(M)GPD(-S) AUC: 57.2
+------------------------------------------------
+------------------------------------------------
+trig-canon-object
+siso: A(M)GPD AUC: 63.4
+siso: A(M)GPD-S AUC: 63.4
+siso: A(M)GPD(-S) AUC: 63.4
+siso: <2cm A(M)GPD: 46.8
+siso: <2cm A(M)GPD-S: 46.8
+siso: <2cm A(M)GPD(-S): 46.8
+siso: Overall A(M)GPD(-S) AUC: 63.9
+------------------------------------------------
+trig-canon-object
+vivo: A(M)GPD AUC: 63.4
+vivo: A(M)GPD-S AUC: 63.4
+vivo: A(M)GPD(-S) AUC: 63.4
+vivo: <2cm A(M)GPD: 45.7
+vivo: <2cm A(M)GPD-S: 45.7
+vivo: <2cm A(M)GPD(-S): 45.7
+vivo: Overall A(M)GPD(-S) AUC: 62.5
+------------------------------------------------
+------------------------------------------------
+trig-canon-symmetry
+siso: A(M)GPD AUC: 65.5
+siso: A(M)GPD-S AUC: 65.5
+siso: A(M)GPD(-S) AUC: 65.5
+siso: <2cm A(M)GPD: 50.6
+siso: <2cm A(M)GPD-S: 50.6
+siso: <2cm A(M)GPD(-S): 50.6
+siso: Overall A(M)GPD(-S) AUC: 66.3
+------------------------------------------------
+trig-canon-symmetry
+vivo: A(M)GPD AUC: 66.0
+vivo: A(M)GPD-S AUC: 66.0
+vivo: A(M)GPD(-S) AUC: 66.0
+vivo: <2cm A(M)GPD: 49.4
+vivo: <2cm A(M)GPD-S: 49.4
+vivo: <2cm A(M)GPD(-S): 49.4
+vivo: Overall A(M)GPD(-S) AUC: 66.6
+------------------------------------------------
+------------------------------------------------
+trig-canon-dataset
+siso: A(M)GPD AUC: 63.3
+siso: A(M)GPD-S AUC: 63.3
+siso: A(M)GPD(-S) AUC: 63.3
+siso: <2cm A(M)GPD: 49.1
+siso: <2cm A(M)GPD-S: 49.1
+siso: <2cm A(M)GPD(-S): 49.1
+siso: Overall A(M)GPD(-S) AUC: 64.1
+------------------------------------------------
+trig-canon-dataset
+vivo: A(M)GPD AUC: 63.4
+vivo: A(M)GPD-S AUC: 63.4
+vivo: A(M)GPD(-S) AUC: 63.4
+vivo: <2cm A(M)GPD: 48.0
+vivo: <2cm A(M)GPD-S: 48.0
+vivo: <2cm A(M)GPD(-S): 48.0
+vivo: Overall A(M)GPD(-S) AUC: 63.4
+------------------------------------------------
+------------------------------------------------
+sarr-object
+siso: A(M)GPD AUC: 67.7
+siso: A(M)GPD-S AUC: 67.7
+siso: A(M)GPD(-S) AUC: 67.7
+siso: <2cm A(M)GPD: 53.7
+siso: <2cm A(M)GPD-S: 53.7
+siso: <2cm A(M)GPD(-S): 53.7
+siso: Overall A(M)GPD(-S) AUC: 68.4
+------------------------------------------------
+sarr-object
+vivo: A(M)GPD AUC: 68.0
+vivo: A(M)GPD-S AUC: 68.0
+vivo: A(M)GPD(-S) AUC: 68.0
+vivo: <2cm A(M)GPD: 52.7
+vivo: <2cm A(M)GPD-S: 52.7
+vivo: <2cm A(M)GPD(-S): 52.7
+vivo: Overall A(M)GPD(-S) AUC: 67.0
+------------------------------------------------
+------------------------------------------------
+sarr-symmetry
+siso: A(M)GPD AUC: 69.0
+siso: A(M)GPD-S AUC: 69.0
+siso: A(M)GPD(-S) AUC: 69.0
+siso: <2cm A(M)GPD: 56.5
+siso: <2cm A(M)GPD-S: 56.5
+siso: <2cm A(M)GPD(-S): 56.5
+siso: Overall A(M)GPD(-S) AUC: 70.0
+------------------------------------------------
+sarr-symmetry
+vivo: A(M)GPD AUC: 69.1
+vivo: A(M)GPD-S AUC: 69.1
+vivo: A(M)GPD(-S) AUC: 69.1
+vivo: <2cm A(M)GPD: 54.9
+vivo: <2cm A(M)GPD-S: 54.9
+vivo: <2cm A(M)GPD(-S): 54.9
+vivo: Overall A(M)GPD(-S) AUC: 69.4
+------------------------------------------------
+------------------------------------------------
+sarr-dataset
+siso: A(M)GPD AUC: 68.8
+siso: A(M)GPD-S AUC: 68.8
+siso: A(M)GPD(-S) AUC: 68.8
+siso: <2cm A(M)GPD: 57.2
+siso: <2cm A(M)GPD-S: 57.2
+siso: <2cm A(M)GPD(-S): 57.2
+siso: Overall A(M)GPD(-S) AUC: 69.8
+------------------------------------------------
+sarr-dataset
+vivo: A(M)GPD AUC: 69.0
+vivo: A(M)GPD-S AUC: 69.0
+vivo: A(M)GPD(-S) AUC: 69.0
+vivo: <2cm A(M)GPD: 55.9
+vivo: <2cm A(M)GPD-S: 55.9
+vivo: <2cm A(M)GPD(-S): 55.9
+vivo: Overall A(M)GPD(-S) AUC: 69.4
+------------------------------------------------
+------------------------------------------------
+sarr-dataset*
+siso: A(M)GPD AUC: 68.1
+siso: A(M)GPD-S AUC: 68.1
+siso: A(M)GPD(-S) AUC: 68.1
+siso: <2cm A(M)GPD: 56.1
+siso: <2cm A(M)GPD-S: 56.1
+siso: <2cm A(M)GPD(-S): 56.1
+siso: Overall A(M)GPD(-S) AUC: 68.8
+------------------------------------------------
+sarr-dataset*
+vivo: A(M)GPD AUC: 67.8
+vivo: A(M)GPD-S AUC: 67.8
+vivo: A(M)GPD(-S) AUC: 67.8
+vivo: <2cm A(M)GPD: 54.9
+vivo: <2cm A(M)GPD-S: 54.9
+vivo: <2cm A(M)GPD(-S): 54.9
+vivo: Overall A(M)GPD(-S) AUC: 66.7
+------------------------------------------------
+------------------------------------------------
+sarr-object-rgb
+siso: A(M)GPD AUC: 56.8
+siso: A(M)GPD-S AUC: 56.8
+siso: A(M)GPD(-S) AUC: 56.8
+siso: <2cm A(M)GPD: 36.4
+siso: <2cm A(M)GPD-S: 36.4
+siso: <2cm A(M)GPD(-S): 36.4
+siso: Overall A(M)GPD(-S) AUC: 58.2
+------------------------------------------------
+sarr-object-rgb
+vivo: A(M)GPD AUC: 56.2
+vivo: A(M)GPD-S AUC: 56.2
+vivo: A(M)GPD(-S) AUC: 56.2
+vivo: <2cm A(M)GPD: 35.0
+vivo: <2cm A(M)GPD-S: 35.0
+vivo: <2cm A(M)GPD(-S): 35.0
+vivo: Overall A(M)GPD(-S) AUC: 58.8
+------------------------------------------------
+------------------------------------------------
+sarr-symmetry-rgb
+siso: A(M)GPD AUC: 47.9
+siso: A(M)GPD-S AUC: 47.9
+siso: A(M)GPD(-S) AUC: 47.9
+siso: <2cm A(M)GPD: 30.4
+siso: <2cm A(M)GPD-S: 30.4
+siso: <2cm A(M)GPD(-S): 30.4
+siso: Overall A(M)GPD(-S) AUC: 49.9
+------------------------------------------------
+sarr-symmetry-rgb
+vivo: A(M)GPD AUC: 48.1
+vivo: A(M)GPD-S AUC: 48.1
+vivo: A(M)GPD(-S) AUC: 48.1
+vivo: <2cm A(M)GPD: 29.1
+vivo: <2cm A(M)GPD-S: 29.1
+vivo: <2cm A(M)GPD(-S): 29.1
+vivo: Overall A(M)GPD(-S) AUC: 53.3
+------------------------------------------------
+------------------------------------------------
+sarr-dataset-rgb
+siso: A(M)GPD AUC: 68.2
+siso: A(M)GPD-S AUC: 68.2
+siso: A(M)GPD(-S) AUC: 68.2
+siso: <2cm A(M)GPD: 56.6
+siso: <2cm A(M)GPD-S: 56.6
+siso: <2cm A(M)GPD(-S): 56.6
+siso: Overall A(M)GPD(-S) AUC: 69.3
+------------------------------------------------
+sarr-dataset-rgb
+vivo: A(M)GPD AUC: 68.4
+vivo: A(M)GPD-S AUC: 68.4
+vivo: A(M)GPD(-S) AUC: 68.4
+vivo: <2cm A(M)GPD: 55.0
+vivo: <2cm A(M)GPD-S: 55.0
+vivo: <2cm A(M)GPD(-S): 55.0
+vivo: Overall A(M)GPD(-S) AUC: 69.1
+------------------------------------------------
+------------------------------------------------
+sarr-dataset*-rgb
+siso: A(M)GPD AUC: 68.5
+siso: A(M)GPD-S AUC: 68.5
+siso: A(M)GPD(-S) AUC: 68.5
+siso: <2cm A(M)GPD: 56.1
+siso: <2cm A(M)GPD-S: 56.1
+siso: <2cm A(M)GPD(-S): 56.1
+siso: Overall A(M)GPD(-S) AUC: 69.1
+------------------------------------------------
+sarr-dataset*-rgb
+vivo: A(M)GPD AUC: 68.4
+vivo: A(M)GPD-S AUC: 68.4
+vivo: A(M)GPD(-S) AUC: 68.4
+vivo: <2cm A(M)GPD: 54.4
+vivo: <2cm A(M)GPD-S: 54.4
+vivo: <2cm A(M)GPD(-S): 54.4
+vivo: Overall A(M)GPD(-S) AUC: 67.4
+------------------------------------------------
+------------------------------------------------

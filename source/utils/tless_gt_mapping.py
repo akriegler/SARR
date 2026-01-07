@@ -10,8 +10,6 @@ from source.utils.utils import easydict_constructor
 from source.utils.dataset_definitions import TLESS_OBJECTS
 from source.SARR.sym_aware_representation import map_R_to_canonic_R
 
-tless_path = '/mnt/01_Disk/krieglera/RAL/tless'
-
 def main(f_path, f_mod_path, test_targets):
     header = "scene_id,im_id,obj_id,score,R,t,time"
     with open(f_path, "r") as f, open(f_mod_path, "w", newline="") as f_mod:
@@ -54,7 +52,7 @@ def main(f_path, f_mod_path, test_targets):
 
 # As the T-LESS (BOP) annotations are ambiguous in rotation due to symmetry, this script maps them to a canonic rotation
 if __name__ == '__main__':
-    with open(tless_path + r'/base/test_targets_bop19.json', 'r') as f:
+    with open(os.path.join(os.getcwd(), 'results/T-LESS/gt/test_targets_bop19.json'), 'r') as f:
         yaml.add_constructor('tag:yaml.org,2002:python/object/new:easydict.EasyDict', easydict_constructor)
         test_targets_raw = yaml.load(f, Loader=yaml.FullLoader)
 

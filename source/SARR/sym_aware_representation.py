@@ -10,17 +10,17 @@ atol = 0.0000000001
 
 
 def map_R_to_canonic_R(R, sym_v, clamp=False):
-    rot_sym_mat = map_R_to_sarr(R, sym_v, clamp)
-    R = map_sarr_to_R(rot_sym_mat, sym_v, clamp)
+    sarr = map_R_to_sarr(R, sym_v, clamp)
+    R = map_sarr_to_R(sarr, sym_v, clamp)
 
     return R
 
 
 def map_R_to_sarr(R, sym_v=None, clamp=False):
     alpha, beta, gamma = map_R_to_euler(R)
-    rot_sym_mat = sym_aware_rotation(alpha, beta, gamma, sym_v, clamp=clamp)
+    sarr = sym_aware_rotation(alpha, beta, gamma, sym_v, clamp=clamp)
 
-    return rot_sym_mat
+    return sarr
 
 
 def map_R_to_euler(R, sym_v=None, clamp=False):
@@ -34,8 +34,8 @@ def map_R_to_euler(R, sym_v=None, clamp=False):
     return alpha, beta, gamma
 
 
-def map_sarr_to_R(rot_sym_mat, sym_v, clamp=False):
-    alpha, beta, gamma = inv_sym_aware_rotation(rot_sym_mat, sym_v)
+def map_sarr_to_R(sarr, sym_v, clamp=False):
+    alpha, beta, gamma = inv_sym_aware_rotation(sarr, sym_v)
 
     if clamp:
         alpha, beta, gamma = clamp_rot(alpha, beta, gamma, sym_v)
@@ -112,105 +112,105 @@ def sym_aware_rotation(alpha, beta, gamma, sym_class, clamp=False):
     y_vec = np.expand_dims(np.round(np.array([s_b_, c_b_]), 10), axis=1)
     z_vec = np.expand_dims(np.round(np.array([s_g_, c_g_]), 10), axis=1)
 
-    rot_sym_mat = np.concatenate((x_vec, y_vec, z_vec), axis=1)
+    sarr = np.concatenate((x_vec, y_vec, z_vec), axis=1)
 
-    return rot_sym_mat
+    return sarr
 
 
-def inv_sym_aware_rotation(rot_sym_mat, sym_class):
+def inv_sym_aware_rotation(sarr, sym_class):
     if type(sym_class) is np.ndarray:
         sym_v = sym_class
     else:
         sym_v = sym_class_to_sym_v(sym_class)
 
     if max(sym_v) == 1:
-        if rot_sym_mat[0, 0] < 0.0:
-            alpha = 2 * np.pi - math.acos(rot_sym_mat[1, 0])
+        if sarr[0, 0] < 0.0:
+            alpha = 2 * np.pi - math.acos(sarr[1, 0])
         else:
-            alpha = math.acos(rot_sym_mat[1, 0])
+            alpha = math.acos(sarr[1, 0])
 
-        if rot_sym_mat[0, 1] < 0.0:
-            beta = 2 * np.pi - math.acos(rot_sym_mat[1, 1])
+        if sarr[0, 1] < 0.0:
+            beta = 2 * np.pi - math.acos(sarr[1, 1])
         else:
-            beta = math.acos(rot_sym_mat[1, 1])
+            beta = math.acos(sarr[1, 1])
 
-        if rot_sym_mat[0, 2] < 0.0:
-            gamma = 2 * np.pi - math.acos(rot_sym_mat[1, 2])
+        if sarr[0, 2] < 0.0:
+            gamma = 2 * np.pi - math.acos(sarr[1, 2])
         else:
-            gamma = math.acos(rot_sym_mat[1, 2])
+            gamma = math.acos(sarr[1, 2])
 
     elif sym_v[2] > 1 and sym_v[0] == 1 and sym_v[1] == 1:
-        if rot_sym_mat[0, 2] < 0.0:
-            gamma = (2 * np.pi - math.acos(rot_sym_mat[1, 2]))
+        if sarr[0, 2] < 0.0:
+            gamma = (2 * np.pi - math.acos(sarr[1, 2]))
         else:
-            gamma = math.acos(rot_sym_mat[1, 2])
+            gamma = math.acos(sarr[1, 2])
         gamma /= sym_v[2]
 
-        if rot_sym_mat[0, 0] < 0.0:
-            alpha = 2 * np.pi - math.acos(rot_sym_mat[1, 0])
+        if sarr[0, 0] < 0.0:
+            alpha = 2 * np.pi - math.acos(sarr[1, 0])
         else:
-            alpha = math.acos(rot_sym_mat[1, 0])
+            alpha = math.acos(sarr[1, 0])
 
-        if rot_sym_mat[0, 1] < 0.0:
-            beta = 2 * np.pi - math.acos(rot_sym_mat[1, 1])
+        if sarr[0, 1] < 0.0:
+            beta = 2 * np.pi - math.acos(sarr[1, 1])
         else:
-            beta = math.acos(rot_sym_mat[1, 1])
+            beta = math.acos(sarr[1, 1])
 
     elif sym_v[1] > 1 and sym_v[0] == 1 and sym_v[2] == 1:
-        if rot_sym_mat[0, 1] < 0.0:
-            beta = (2 * np.pi / sym_v[1]) - (math.acos(rot_sym_mat[1, 1]) / sym_v[1])
+        if sarr[0, 1] < 0.0:
+            beta = (2 * np.pi / sym_v[1]) - (math.acos(sarr[1, 1]) / sym_v[1])
             bf = -1
         else:
-            beta = math.acos(rot_sym_mat[1, 1])
+            beta = math.acos(sarr[1, 1])
             beta /= sym_v[1]
             bf = 1
 
-        if rot_sym_mat[0, 0] < 0.0:
-            alpha = 2 * np.pi - math.acos(rot_sym_mat[1, 0])
+        if sarr[0, 0] < 0.0:
+            alpha = 2 * np.pi - math.acos(sarr[1, 0])
         else:
-            alpha = math.acos(rot_sym_mat[1, 0])
+            alpha = math.acos(sarr[1, 0])
 
-        if rot_sym_mat[0, 2] < 0.0:
-            gamma = 2 * np.pi - math.acos(rot_sym_mat[1, 2])
+        if sarr[0, 2] < 0.0:
+            gamma = 2 * np.pi - math.acos(sarr[1, 2])
         else:
-            gamma = math.acos(rot_sym_mat[1, 2])
+            gamma = math.acos(sarr[1, 2])
         gamma *= bf
 
     elif sym_v[0] > 1 and sym_v[2] == 1 and sym_v[1] == 1:
-        if rot_sym_mat[0, 0] < 0.0:
-            alpha = 2 * np.pi - (math.acos(rot_sym_mat[1, 0]) / sym_v[0])
+        if sarr[0, 0] < 0.0:
+            alpha = 2 * np.pi - (math.acos(sarr[1, 0]) / sym_v[0])
         else:
-            alpha = math.acos(rot_sym_mat[1, 0])
+            alpha = math.acos(sarr[1, 0])
             alpha /= sym_v[0]
 
-        if rot_sym_mat[0, 2] / math.cos(alpha) < 0.0:
-            gamma = 2 * np.pi - math.acos(rot_sym_mat[1, 2])
+        if sarr[0, 2] / math.cos(alpha) < 0.0:
+            gamma = 2 * np.pi - math.acos(sarr[1, 2])
         else:
-            gamma = math.acos(rot_sym_mat[1, 2])
+            gamma = math.acos(sarr[1, 2])
 
-        if rot_sym_mat[0, 1] / math.cos(alpha) < 0.0:
-            beta = 2 * np.pi - math.acos(rot_sym_mat[1, 1])
+        if sarr[0, 1] / math.cos(alpha) < 0.0:
+            beta = 2 * np.pi - math.acos(sarr[1, 1])
         else:
-            beta = math.acos(rot_sym_mat[1, 1])
+            beta = math.acos(sarr[1, 1])
     elif np.any(sym_v == 1):
         raise NotImplementedError
     else:
-        if rot_sym_mat[0, 0] < 0.0:
-            alpha = 2 * np.pi - math.acos(rot_sym_mat[1, 0])
+        if sarr[0, 0] < 0.0:
+            alpha = 2 * np.pi - math.acos(sarr[1, 0])
         else:
-            alpha = math.acos(rot_sym_mat[1, 0])
+            alpha = math.acos(sarr[1, 0])
         alpha /= sym_v[0]
 
-        if rot_sym_mat[0, 1] / math.cos(alpha) < 0.0:
-            beta = 2 * np.pi - math.acos(rot_sym_mat[1, 1])
+        if sarr[0, 1] / math.cos(alpha) < 0.0:
+            beta = 2 * np.pi - math.acos(sarr[1, 1])
         else:
-            beta = math.acos(rot_sym_mat[1, 1])
+            beta = math.acos(sarr[1, 1])
         beta /= sym_v[1]
 
-        if rot_sym_mat[0, 2] / math.cos(beta) / math.cos(alpha) < 0.0:
-            gamma = 2 * np.pi - (math.acos(rot_sym_mat[1, 2]) / sym_v[2])
+        if sarr[0, 2] / math.cos(beta) / math.cos(alpha) < 0.0:
+            gamma = 2 * np.pi - (math.acos(sarr[1, 2]) / sym_v[2])
         else:
-            gamma = math.acos(rot_sym_mat[1, 2])
+            gamma = math.acos(sarr[1, 2])
 
         gamma /= sym_v[2]
 
