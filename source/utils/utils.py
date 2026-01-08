@@ -1,5 +1,3 @@
-import math
-
 import numpy as np
 
 from easydict import EasyDict as edict
@@ -108,6 +106,9 @@ def unpack_csv_gt(file, task):
                 raise ValueError("A line does not have 7 comma-sep. elements: {}".format(line))
             elif line_id == 1 and header in line:
                 continue
+            # There isnt any rigorously defined method to choose the instance for siso evaluation. One could
+            # choose the first one as is done here, or the one with highest visibility, or with most model confidence,
+            # or with least pose error in a sorting step. SiSo task is not of a lot of interest anymore anyhow.
             elif obj_id == prev_obj_id and prev_img_id == img_id  and task == 'siso':
                 continue
             prev_obj_id = obj_id
@@ -151,6 +152,9 @@ def unpack_csv_pred(file, gt_rotations, task, foreign=False):
                 raise ValueError("A line does not have 7 comma-sep. elements: {}".format(line))
             elif line_id == 1 and header in line:
                 continue
+            # There isnt any rigorously defined method to choose the instance for siso evaluation. One could
+            # choose the first one as is done here, or the one with highest visibility, or with most model confidence,
+            # or with least pose error in a sorting step. SiSo task is not of a lot of interest anymore anyhow.
             elif obj_id == prev_obj_id and prev_img_id == img_id and task == 'siso':
                 continue
             elif line.split(',')[4 if foreign else 7].split(' ')[0] == 'nan':
@@ -178,44 +182,3 @@ def unpack_csv_pred(file, gt_rotations, task, foreign=False):
                 prev_img_id = img_id
 
     return rotations, translations, class_ids
-
-
-def get_erot_matches(gt_rots, gt_trans, gt_cls, pd_rots, pd_trans, pd_cls):
-    for (k, img_gt_rots), (_, img_gt_trans) in zip(gt_rots.items(), gt_trans.items()):
-        try:
-            img_pd_rots = pd_rots[k]
-            img_pd_cls = pd_cls[k]
-        except KeyError:
-            img_pd_rots = []
-            img_pd_cls = []
-        img_cost_mat = np.zeros((len(img_gt_rots), len(img_pd_rots)), dtype=np.float64)
-        for i, gt_rot in enumerate(img_gt_rots):
-            for j, pd_rot in enumerate(img_pd_rots):
-                img_cost_mat[i, j] = rotational_error(gt_rot, pd_rot)
-        row_ind, col_ind = linear_sum_assignment(img_cost_mat)
-        new_entry_rot = []
-        new_entry_trans = []
-        new_entry_cls = []
-        col_ind = list(col_ind)
-        row_ind = list(row_ind)
-        for gt_index in range(len(img_gt_rots)):
-            if gt_index not in row_ind:
-                new_entry_rot.append(None)
-                new_entry_trans.append(None)
-                new_entry_cls.append(None)
-            else:
-                try:
-                    ind = col_ind.pop(0)
-                    new_entry_rot.append(img_pd_rots[ind])
-                    new_entry_trans.append(img_gt_trans[gt_index])
-                    new_entry_cls.append(img_pd_cls[ind])
-                except IndexError:
-                    new_entry_rot.append(None)
-                    new_entry_trans.append(None)
-                    new_entry_cls.append(None)
-
-        pd_rots[k] = new_entry_rot
-        pd_trans[k] = new_entry_trans
-        pd_cls[k] = new_entry_cls
-
-    return gt_rots, gt_trans, gt_cls, pd_rots, pd_trans, pd_cls

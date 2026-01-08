@@ -1,7 +1,5 @@
 import math
-
 import numpy as np
-
 from scipy.spatial.transform import Rotation
 
 from source.utils.utils import clamp_rot, clamp_rot_adv, rotation_matrix
@@ -58,7 +56,7 @@ def sym_aware_rotation(alpha, beta, gamma, sym_class, clamp=False):
 
     c_a = math.cos(alpha)
     c_b = math.cos(beta)
-    #c_g = math.cos(gamma)
+    #c_g = math.cos(gamma)  # For other symmetry classes beyon these necessary
 
     if max(sym_v) == 1:
         s_a_ = math.sin(alpha)
@@ -121,7 +119,7 @@ def inv_sym_aware_rotation(sarr, sym_class):
     if type(sym_class) is np.ndarray:
         sym_v = sym_class
     else:
-        sym_v = sym_class_to_sym_v(sym_class)
+        sym_v = np.asarray(sym_class)
 
     if max(sym_v) == 1:
         if sarr[0, 0] < 0.0:

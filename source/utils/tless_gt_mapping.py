@@ -1,14 +1,12 @@
 import os
 import csv
 import yaml
-
 import numpy as np
-
 from easydict import EasyDict as edict
-from source.utils.utils import easydict_constructor
 
+from source.utils.utils import easydict_constructor
 from source.utils.dataset_definitions import TLESS_OBJECTS
-from source.SARR.sym_aware_representation import map_R_to_canonic_R
+from source.sym_aware_representation import map_R_to_canonic_R
 
 def main(f_path, f_mod_path, test_targets):
     header = "scene_id,im_id,obj_id,score,R,t,time"

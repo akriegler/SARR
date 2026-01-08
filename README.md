@@ -24,7 +24,7 @@ A video showcasing and explaining these plots for symmetry class II is available
 
 
 ###  SARR representation mapping
-Implementation of the SARR representation and its inverse mapping is available in [sym_aware_representation.py](source/SARR/sym_aware_representation.py).
+Implementation of the SARR representation and its inverse mapping is available in [sym_aware_representation.py](source/sym_aware_representation.py).
 
 For example, we mapped to SARR and back to obtain symmetry-resolved (canonic) rotation matrices as ground-truths for our experiments:
 ```

@@ -1,10 +1,9 @@
 import os
 import csv
-
 import numpy as np
 
 from source.utils.dataset_definitions import ITODD_OBJECTS
-from source.SARR.sym_aware_representation import map_R_to_canonic_R
+from source.sym_aware_representation import map_R_to_canonic_R
 
 
 def main(f_path, f_mod_path):
@@ -20,7 +19,6 @@ def main(f_path, f_mod_path):
                 writer.writerow([elem for elem in header.split(',')])
                 continue
             R = elems[4]
-            t = elems[5]
             R = np.array([float(entry) for entry in R.split(' ')]).reshape(3, 3)
             sym_v = ITODD_OBJECTS[int(obj_id)]['sym_v']
             R_new = map_R_to_canonic_R(R, sym_v, clamp=True)

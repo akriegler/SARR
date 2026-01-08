@@ -1,10 +1,8 @@
 import os
-import yaml
 import numpy as np
-
 from scipy.optimize import linear_sum_assignment
 
-from source.utils.utils import easydict_constructor, rotational_error, unpack_csv_gt, unpack_csv_pred
+from source.utils.utils import rotational_error, unpack_csv_gt, unpack_csv_pred
 
 
 def get_erot_matches(gt_rots, pd_rots):
@@ -40,6 +38,7 @@ def calc_erot_error(gt_rots, pd_rots):
             img_pd_rots = pd_rots[k]
         except KeyError:
             print(k)
+            continue
         for gt_rot, pd_rot in zip(img_gt_rots, img_pd_rots):
             if pd_rot is None:
                 errors.append(180.0)
