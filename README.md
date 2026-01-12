@@ -50,6 +50,11 @@ A(M)GPD is only supported for the T-LESS dataset. The A(M)GPD calculation in [am
 
 To reproduce our AR_B scores use the [bop-toolkit](https://github.com/thodan/bop_toolkit), specifically <eval_bop19_pose.py> (with ground-truth translation).
 
+
+## COMING SOON
+Training + inference code
+
+
 ### Contact
 For questions contact *andreas.kriegler@tuwien.ac.at*
 
