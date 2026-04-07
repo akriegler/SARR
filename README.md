@@ -1,6 +1,6 @@
 # Towards Symmetry-sensitive Pose Estimation: A Rotation Representation for Symmetric Object Classes
 
-Under review at IJCV
+Published in [IJCV](https://doi.org/10.1007/s11263-026-02770-x).
 
 ## Setup
 Create a virtual environment and install dependencies:
