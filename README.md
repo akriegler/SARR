@@ -1,6 +1,29 @@
 # Towards Symmetry-sensitive Pose Estimation: A Rotation Representation for Symmetric Object Classes
 
-Published in [IJCV](https://doi.org/10.1007/s11263-026-02770-x).
+## Publication 
+
+Paper: [IJCV (open access)](https://doi.org/10.1007/s11263-026-02770-x), [arXiv](https://arxiv.org/abs/2604.18208) 
+
+Authors: [Andreas Kriegler](https://andreaskriegler.eu/), 
+[Csaba Beleznai](https://publications.ait.ac.at/de/persons/csaba.beleznai/),
+and [Margrit Gelautz](https://informatics.tuwien.ac.at/people/margrit-gelautz) 
+
+If you use this project, please cite:
+
+```bibtex
+@article{Kriegler2026,
+  title = {Towards Symmetry-sensitive Pose Estimation: A Rotation Representation for Symmetric Object Classes},
+  author = {Kriegler, Andreas and Csaba, Beleznai and Gelautz, Margrit},
+  journal = {International Journal of Computer Vision},
+  publisher = {Springer Nature},
+  year = {2026},
+  volume = {134},
+  number = {212},
+  pages = {1--24},
+  doi = {10.1007/s11263-026-02770-x},
+}
+```
+Contact: *andreas.kriegler@tuwien.ac.at*
 
 ## Setup
 Create a virtual environment and install dependencies:
@@ -53,9 +76,5 @@ To reproduce our AR_B scores use the [bop-toolkit](https://github.com/thodan/bop
 
 ## COMING SOON
 Training + inference code
-
-
-### Contact
-For questions contact *andreas.kriegler@tuwien.ac.at*
 
 **MIT license**
