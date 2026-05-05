@@ -14,7 +14,7 @@ let axisColorX= 0xFF0000
 let axisColorY= 0x00FF00
 let axisColorZ= 0x0000FF
 let BOPSO3 = false; // if true, use full SO(3) range instead of BOP subset
-let colorPalette = 'RGB';
+let colorPalette = 'GRAY';
 let config = null;
 
 loadConfig().then(cfg => {
@@ -375,7 +375,7 @@ const COLOR_PALETTES = {
 };
 
 // Get colors for the current palette
-function getPaletteColors(paletteName = 'RGB') {
+function getPaletteColors(paletteName = 'GRAY') {
   const palette = COLOR_PALETTES[paletteName] || COLOR_PALETTES.default;
   const colors = {};
   for (const [key, rgb] of Object.entries(palette)) {
@@ -384,7 +384,7 @@ function getPaletteColors(paletteName = 'RGB') {
   return colors;
 }
 
-function getConeGradientColors(paletteName = 'RGB', numColors = 16) {
+function getConeGradientColors(paletteName = 'GRAY', numColors = 16) {
   if (paletteName === 'RGB') {
     return [
       [255, 115, 0],
@@ -623,8 +623,8 @@ function createObjectPrimitive(symClass) {
     else if (symClass === '8') {
       numPoints = 100;
     }
-    const height = 2.25;
-    const radius = 0.75;
+    const height = 2.0;
+    const radius = 0.4;
 
     vertices = [[0, 0, height/2]]; // Apex
 
@@ -675,8 +675,8 @@ function createObjectPrimitive(symClass) {
       [-0.25, -0.5, -0.75], [0.25, -0.5, -0.75], [0.25, 0.5, -0.75], [-0.25, 0.5, -0.75],
       [-0.25, -0.5, 0.75], [0.25, -0.5, 0.75], [0.25, 0.5, 0.75], [-0.25, 0.5, 0.75],
       // Extension vertices (8-15)
-      [-0.125, -0.25, 0], [0.125, -0.25, 0], [0.125, 0.25, 0], [-0.125, 0.25, 0],
-      [-0.125, -0.25, 1.5], [0.125, -0.25, 1.5], [0.125, 0.25, 1.5], [-0.125, 0.25, 1.5]
+      [-0.125, 0, -0.375], [0.125, 0, -0.375], [0.125, 1, -0.375], [-0.125, 1, -0.375],
+      [-0.125, 0, 0.375], [0.125, 0, 0.375], [0.125, 1, 0.375], [-0.125, 1, 0.375]
     ];
 
     vertices = vertices.map(v => [v[0], v[1], v[2]]);
@@ -741,8 +741,8 @@ function createObjectPrimitive(symClass) {
   } else if (symClass === '11') {
 
     const numPoints = 100;
-    const height = 2.25;
-    const radius = 0.75;
+    const height = 2.0;
+    const radius = 0.4;
 
     vertices = [];
 
