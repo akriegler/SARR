@@ -1,0 +1,230 @@
+<html lang="en">
+<head><meta charset="utf-8" /><title>SARR Visualizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 5px; /* Adjust as needed */
+            background-color: #f0f0f0; /* Optional: Light background color */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000; /* Ensure it's above other content */
+            border-bottom: 1px solid #ccc; /* Bottom border */
+        }
+        .navbar-brand {
+            color: #000; /* Black text color */
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: #000; /* Text color */
+        }
+        .navbar-links label {
+            color: black; /* Label text color */
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .navbar-links select {
+            padding: 8px;
+            color: black; /* Text color */
+            border: 1px solid black; /* Black border */
+            background-color: #fff; /* Background color */
+            appearance: none; /* Remove default appearance */
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .navbar-links a {
+            color: #000;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            background-color: #eee; /* Light gray background */
+            transition: background-color 0.3s;
+            border: 1px solid #ccc; /* Light border */
+            font-weight: bold;
+            margin-left: 10px; /* Space between items */
+        }
+        .navbar-links a:hover {
+            background-color: #ddd; /* Darker gray on hover */
+        }
+        .content {
+            padding: 5px;
+            margin-top: 30px; /* Ensure content starts below navbar */
+        }
+        .page-container {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+    </style>
+</head>
+
+<body onload="showDefaultPage()">
+<!-- Dropdown menu for page selection -->
+<div class="navbar">
+    <a href="#" class="navbar-brand">SARR visualization toolkit</a>
+            <div class="navbar-links">
+                <label for="pageSelect">Select a symmetry class:</label>
+                <select id="pageSelect" onchange="showSelectedPage()">
+                    <option value="page1">I - [1, 1, 1] (T-LESS)</option>
+                    <option value="page2">II - [1, 1, 2] (T-LESS)</option>
+                    <option value="page3">III - [1, 1, 4] (T-LESS)</option>
+                    <option value="page4">IV - [1, 1, ∞] (T-LESS)</option>
+                    <option value="page5">V - [1, 2, 1] (T-LESS)</option>
+                    <option value="page6">I - [1, 1, 1] (SO(3))</option>
+                    <option value="page7">II - [1, 1, 2] (SO(3))</option>
+                    <option value="page8">III - [1, 1, 4] (SO(3))</option>
+                    <option value="page9">IV - [1, 1, ∞] (SO(3))</option>
+                    <option value="page10">V - [1, 2, 1] (SO(3))</option>
+                </select>
+            </div>
+            <div>
+                <!-- Link to the repository -->
+                <a class="repo-link" href="https://github.com/akriegler/symmetry-aware_rotation_representation" target="_blank">
+                    Go to repository
+                </a>
+            </div>
+            <div>
+                <!-- Link to video -->
+                <a class="repo-link" href="https://github.com/akriegler/symmetry-aware_rotation_representation/tree/main/video/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4" target="_blank">
+                    View verification video
+                </a>
+            </div>
+</div>
+
+<!-- Page containers -->
+<div id="page1" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/I_T-LESS.html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class I, T-LESS rotation space. <br />
+        Loading takes approximately 1 minute. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="page2" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/II_T-LESS.html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class II, T-LESS rotation space. <br />
+        Loading takes approximately 1 minute. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="page3" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/III_T-LESS.html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class III, T-LESS rotation space. <br />
+        Loading takes approximately 1 minute. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="page4" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/IV_T-LESS.html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class IV, T-LESS rotation space. <br />
+        Loading takes approximately 1 minute. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="page5" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/V_T-LESS.html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class V, T-LESS rotation space. <br />
+        Loading takes approximately 1 minute. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="page6" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/I_SO(3).html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class I, SO(3) rotation space. <br />
+        Loading takes approximately 3 minutes. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="page7" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/II_SO(3).html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class II, SO(3) rotation space. <br />
+        Loading takes approximately 3 minutes. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="page8" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/III_SO(3).html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class III, SO(3) rotation space. <br />
+        Loading takes approximately 3 minutes. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="page9" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/IV_SO(3).html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class IV, SO(3) rotation space. <br />
+        Loading takes approximately 3 minutes. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="page10" class="page-container content">
+    <p>
+    <button onclick="location.href='renders/V_SO(3).html'">Open visualization.</button><br />
+        Click "Open visualization" to load the interactive visualization for T-LESS symmetry class V, SO(3) rotation space. <br />
+        Loading takes approximately 3 minutes. <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<div id="pageDefault" class="page-container content">
+    <p>
+        Choose a symmetry class and rotation space for visualization. Loading can be slow, especially for the SO(3) space.  <br />
+        Alternatively select 'View verification video'.
+    </p>
+</div>
+
+<script>
+    function showSelectedPage() {
+        var select = document.getElementById('pageSelect');
+        var selectedPageId = select.value;
+
+        // Hide all pages
+        var pages = document.getElementsByClassName('page-container');
+        for (var i = 0; i < pages.length; i++) {
+            pages[i].style.display = 'none';
+        }
+
+        // Show the selected page
+        document.getElementById(selectedPageId).style.display = 'block';
+    }
+    function showDefaultPage() {
+            var defaultPageId = 'pageDefault'; // Set your default page ID here
+            document.getElementById('pageSelect').value = defaultPageId;
+            showSelectedPage();
+    }
+</script>
+
+</body>
+</html>

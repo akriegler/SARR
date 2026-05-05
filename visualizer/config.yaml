@@ -1,0 +1,401 @@
+# ============================================================================
+# Symmetry Visualization Configuration File
+# ============================================================================
+# 
+# VISUALIZATION CONTROLS:
+#   Controls for the symmetry-aware rotation representation visualization
+# 
+# PARAMETER STRUCTURE:
+#   min: Minimum value
+#   max: Maximum value
+#   default: Default/initial value
+#   step: Increment step for sliders
+#   label: Display name in UI
+# 
+# ============================================================================
+
+# Visualization Control Parameters
+visualization:
+  pointSparsity:
+    min: 1
+    max: 30
+    default: 10
+    step: 1
+    label: "Point Sparsity"
+    unit: "°"
+
+  objectSparsityX:
+    min: 1
+    max: 20
+    default: 2
+    step: 1
+    label: "Object Sparsity (X)"
+    unit: ""
+  
+  objectSparsityY:
+    min: 1
+    max: 20
+    default: -1
+    step: 1
+    label: "Object Sparsity (Y)"
+    unit: ""
+
+  objectSparsityZ:
+    min: 1
+    max: 20
+    default: 6
+    step: 1
+    label: "Object Sparsity (Z)"
+    unit: ""
+
+  axisColor: "#FFD700"
+  axisColorX: "#FF0000"
+  axisColorY: "#00FF00"
+  axisColorZ: "#0000FF"
+
+# Default visibility states
+defaults:
+  showPointCloud: true
+  showGrid: false
+
+  showAxes: true
+  showObjects: true
+  BOPSO3: false
+
+# BOP mode automatic adjustments
+BOPAutoAdjust:
+  pointSparsity: 10
+  objectSparsityX: 2
+  objectSparsityY: -1
+  objectSparsityZ: 6
+
+SO3AutoAdjust:
+  pointSparsity: 10
+  objectSparsityX: 3
+  objectSparsityY: 3
+  objectSparsityZ: 3
+
+# ============================================================================
+# Legacy Node Graph Configuration (deprecated)
+# ============================================================================
+
+# Node Graph Configuration File
+# 
+# This configuration file centralizes all parameter definitions for node types.
+# 
+# GLOBAL SETTINGS:
+#   grid_toggle: true/false               - Controls default visibility of 3D grid
+#   display_mode: wireframe|shaded|matcap - Controls default render mode on startup
+# 
+# PARAMETER STRUCTURE:
+#   range: [min, max, step]  - Numeric bounds and increment value
+#   label: "Display Name"     - UI label shown next to the slider
+#   decimals: N               - Number of decimal places (0 for integers, 2 for floats)
+#   strict: true/false        - Controls dynamic range behavior:
+#                               * true  = Range is HARDWIRED (cannot be expanded by user input)
+#                               * false = User can expand range by entering values beyond initial bounds
+#
+# STRICT MODE USAGE:
+#   - Use strict: true  for bounded parameters (e.g., angles 0-360, binary flags 0-1)
+#   - Use strict: false for unbounded parameters (e.g., frequencies, amplitudes, offsets)
+#
+# ============================================================================
+
+# Global Settings
+grid_toggle: true     # Default visibility of the 3D grid overlay
+display_mode: matcap  # Default render mode: wireframe | shaded | matcap
+
+nodes:
+  # Function Nodes
+  sinX:
+    frequency:
+      range: [0, 0.05, 0.001]
+      label: "Frequency"
+      decimals: 2
+      strict: false  # User can expand range beyond 0.5
+    amplitude:
+      range: [0, 10, 0.1]
+      label: "Amplitude"
+      decimals: 2
+      strict: false  # User can expand range beyond 10
+  
+  sinY:
+    frequency:
+      range: [0, 0.05, 0.001]
+      label: "Frequency"
+      decimals: 2
+      strict: false
+    amplitude:
+      range: [0, 10, 0.1]
+      label: "Amplitude"
+      decimals: 2
+      strict: false
+  
+  sinXY:
+    freqX:
+      range: [0, 0.05, 0.001]
+      label: "X-Freq"
+      decimals: 2
+      strict: false
+    freqY:
+      range: [0, 0.05, 0.001]
+      label: "Y-Freq"
+      decimals: 2
+      strict: false
+    amplitude:
+      range: [0, 10, 0.1]
+      label: "Amplitude"
+      decimals: 2
+      strict: false
+  
+  hemisphere:
+    centerx:
+      range: [-1024, 1024, 1]
+      label: "Center X"
+      decimals: 0
+      strict: false
+    centery:
+      range: [-1024, 1024, 1]
+      label: "Center Y"
+      decimals: 0
+      strict: false
+    radiusX:
+      range: [0, 512, 1]
+      label: "Radius X"
+      decimals: 0
+      strict: false
+    radiusY:
+      range: [0, 512, 1]
+      label: "Radius Y"
+      decimals: 0
+      strict: false
+    zscale:
+      range: [0, 512, 1]
+      label: "Z Scale"
+      decimals: 0
+      strict: false
+  
+  rampX:
+    amplitude:
+      range: [0, 1.0, 0.05]
+      label: "Amplitude (k)"
+      decimals: 2
+      strict: false
+    xoffset:
+      range: [-512, 512, 1]
+      label: "X Offset"
+      decimals: 0
+      strict: false
+    cutoffx:
+      range: [-512, 1024, 1]
+      label: "X Cutoff"
+      decimals: 0
+      strict: false
+    flipx:
+      range: [0, 1, 1]
+      label: "Flip X"
+      decimals: 0
+      strict: true  # Binary toggle, should not expand
+
+  rampY:
+    amplitude:
+      range: [0, 1.0, 0.05]
+      label: "Amplitude (k)"
+      decimals: 2
+      strict: false
+    yoffset:
+      range: [-512, 512, 1]
+      label: "Y Offset"
+      decimals: 0
+      strict: false
+    cutoffy:
+      range: [-512, 1024, 1]
+      label: "Y Cutoff"
+      decimals: 0
+      strict: false
+    flipy:
+      range: [0, 1, 1]
+      label: "Flip Y"
+      decimals: 0
+      strict: true  # Binary toggle, should not expand
+
+  noise:
+    value:
+      range: [0, 1, 0.01]
+      label: "Value"
+      decimals: 2
+      strict: false
+
+  pyramid:
+    a:
+      range: [0, 0.6, 0.01]
+      label: "Slope a"
+      decimals: 2
+      strict: false
+      default: 0.5
+    b:
+      range: [0, 0.6, 0.01]
+      label: "Slope b"
+      decimals: 2
+      strict: false
+      default: 0.5
+    c:
+      range: [0, 0.6, 0.01]
+      label: "Slope c"
+      decimals: 2
+      strict: false
+      default: 0.5
+    d:
+      range: [0, 0.6, 0.01]
+      label: "Slope d"
+      decimals: 2
+      strict: false
+      default: 0.5
+    x1:
+      range: [-512, 512, 1]
+      label: "Offset x1"
+      decimals: 0
+      strict: false
+      default: -512
+    x2:
+      range: [-512, 512, 1]
+      label: "Offset x2"
+      decimals: 0
+      strict: false
+      default: -512
+    y1:
+      range: [-512, 512, 1]
+      label: "Offset y1"
+      decimals: 0
+      strict: false
+      default: -512
+    y2:
+      range: [-512, 512, 1]
+      label: "Offset y2"
+      decimals: 0
+      strict: false
+      default: -512
+
+  semicylinder:
+    x0:
+      range: [-512, 512, 1]
+      label: "Center (x0)"
+      decimals: 0
+      strict: false
+      default: 0
+    R:
+      range: [0, 1024, 1]
+      label: "Radius (R)"
+      decimals: 0
+      strict: false
+      default: 512
+
+  xGradientMask:
+    value0:
+      range: [0, 1, 0.01]
+      label: "Point 1"
+      decimals: 2
+      strict: true
+    value1:
+      range: [0, 1, 0.01]
+      label: "Point 2"
+      decimals: 2
+      strict: true
+    value2:
+      range: [0, 1, 0.01]
+      label: "Point 3"
+      decimals: 2
+      strict: true
+    value3:
+      range: [0, 1, 0.01]
+      label: "Point 4"
+      decimals: 2
+      strict: true
+  
+  # Operator Nodes
+  add:
+    offset:
+      range: [-2048, 2048, 1]
+      label: "Offset"
+      decimals: 0
+      strict: false
+  
+  scale:
+    factor:
+      range: [0, 5, 0.1]
+      label: "Factor"
+      decimals: 2
+      strict: false
+  
+  normalizeScale:
+    factor:
+      range: [0, 80, 0.1]
+      label: "Scaling"
+      decimals: 2
+      strict: false
+  
+  minmax:
+    min:
+      range: [-100, 100, 1]
+      label: "Min val"
+      decimals: 0
+      strict: false
+    max:
+      range: [-100, 100, 1]
+      label: "Max val"
+      decimals: 0
+      strict: false
+  
+  rotz:
+    angle:
+      range: [0, 360, 1]
+      label: "Angle"
+      decimals: 0
+      strict: true  # Angle must stay within [0, 360] - hardwired range
+  
+  # Grid and Display nodes have no parameters
+  grid: {}
+  display: {}
+  invertZ: {}
+
+# UI Configuration
+ui:
+  magneticSnap:
+    enabled: true
+    distance: 40  # pixels
+  
+  slider:
+    defaultDecimals: 2
+    dynamicRangeExpansion: true  # Allow sliders to expand beyond initial max/min
+  
+  graph:
+    defaultScale: 1.0
+    minScale: 0.2
+    maxScale: 3.0
+
+# Raycast Shadow Detection Parameters
+raycast:
+  x-step: 5           # Sample every x-step-th vertex in X direction
+  y-step: 5           # Sample every y-step-th vertex in Y direction
+  shadow-color: "#ff0000"  # color for shadow markers (red)
+
+# Connection Rules
+connections:
+  grid:
+    allowedTargets: ["function"]
+  
+  function:
+    allowedTargets: ["operator", "display"]
+  
+  operator:
+    allowedTargets: ["operator", "display"]
+  
+  display:
+    allowedTargets: []
+
+# Future extensions can be added here
+# For example:
+# - Custom color schemes per node type
+# - Keyboard shortcuts
+# - Export/import settings
+# - Node presets with predefined parameter values

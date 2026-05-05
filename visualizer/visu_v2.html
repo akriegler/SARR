@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetry-Aware Rotation Representation Viewer</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Configure MathJax before loading the library -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        startup: {
+          pageReady: () => {
+            return MathJax.startup.defaultPageReady().then(() => {
+              MathJax.typesetPromise();
+            });
+          }
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+
+      <div class="brand">
+        <span class="title">SARR Viewer: plots of the six parameters. "XYZ" intrinsic order, i.e. X(α) -> Y'(β) -> Z''(γ). Angles in radians. Click toggle in the bottom left to switch between restricted BOP and full SO(3) rotation space (in SO(3), SARR is not guaranteed to be unique for all symmetry classes).</span>
+      </div>
+      <div class="symmetry-buttons">
+        <span class="symmetry-label">Symmetry class:</span>
+        <button id="symClass1" class="btn btn-sym active" data-class="1" title="asymmetric" type="button">$[1, 1, 1]$</button>
+        <button id="symClass2" class="btn btn-sym" data-class="2" title="z-180° flip" type="button">$[1, 1, 2]$</button>
+        <button id="symClass3" class="btn btn-sym" data-class="3" title="z-90° flip" type="button">$[1, 1, 4]$</button>
+        <button id="symClass4" class="btn btn-sym" data-class="4" title="z-72° flip" type="button">$[1, 1, 5]$</button>
+        <button id="symClass5" class="btn btn-sym" data-class="5" title="z-30° flip" type="button">$[1, 1, 12]$</button>
+        <button id="symClass6" class="btn btn-sym" data-class="6" title="z-20° flip" type="button">$[1, 1, 18]$</button>
+        <button id="symClass7" class="btn btn-sym" data-class="7" title="z-15.6° flip" type="button">$[1, 1, 23]$</button>
+        <button id="symClass8" class="btn btn-sym" data-class="8" title="z-continuous" type="button">$[1, 1, \infty]$</button>
+        <button id="symClass9" class="btn btn-sym" data-class="9" title="y-180° flip" type="button">$[1, 2, 1]$</button>
+        <button id="symClass10" class="btn btn-sym" data-class="10" title="regular cuboid" type="button">$[2, 2, 2]$</button>
+        <button id="symClass11" class="btn btn-sym" data-class="11" title="regular cylinder" type="button">$[2, 2, \infty]$</button>
+      </div>
+      <div class="top-actions">
+        <select id="themeSelect" class="theme-select" title="Theme">
+          <option value="dark">Theme: Dark</option>
+          <option value="bright">Theme: Bright</option>
+          <option value="gray" selected>Theme: Gray</option>
+          <option value="plastic">Theme: Plastic</option>
+        </select>
+        <div class="divider"></div>
+        <button id="btnOrbitAll" class="btn" title="Toggle automatic orbit rotation for all views" type="button">Orbit all</button>
+        <div class="divider"></div>
+        <a class="btn github-btn" href="https://github.com/akriegler/SARR" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </div>
+    </header> 
+    <main class="workspace">
+
+      <div id="controlsPanel" class="hud panel bottom-left">
+        <div class="panel-header">
+          <div class="panel-title">Visualization Controls</div>
+          <select id="colorPaletteSelect" class="color-palette-select" title="Objects color palette">
+              <option value="RGB">RGB</option>
+              <option value="GRAY">GRAY</option>
+              <option value="VIRIDIS">VIRIDIS</option>
+              <option value="PLASMA">PLASMA</option>
+              <option value="INFERNO">INFERNO</option>
+              <option value="MAGMA">MAGMA</option>
+              <option value="CIVIDIS">CIVIDIS</option>
+              <option value="TWILIGHT">TWILIGHT</option>
+              <option value="RAINBOW">RAINBOW</option>
+              <option value="JET">JET</option>
+              <option value="SEISMIC">SEISMIC</option>
+              <option value="COOLWARM">COOLWARM</option>
+          </select>
+          <button id="btnMinimizeControls" class="btn-minimize" title="Minimize panel">−</button>
+        </div>
+        <div id="controlsContent" class="panel-content">
+        <div class="control-row">
+          <label for="sparsitySlider" class="control-label">Point Sparsity:</label>
+          <input type="range" id="sparsitySlider" class="slider-control" min="1" max="30" value="10" step="1">
+          <span id="sparsityValue" class="control-value">30°</span>
+        </div>
+        <div class="control-row">
+          <label for="objectSparsityXSlider" class="control-label">Object Sparsity (X):</label>
+          <input type="range" id="objectSparsityXSlider" class="slider-control" min="1" max="20" value="2" step="1">
+          <span id="objectSparsityXValue" class="control-value">2</span>
+        </div>
+        <div class="control-row">
+          <label for="objectSparsityYSlider" class="control-label">Object Sparsity (Y):</label>
+          <input type="range" id="objectSparsityYSlider" class="slider-control" min="-1" max="20" value="-1" step="1">
+          <span id="objectSparsityYValue" class="control-value">-1</span>
+        </div>
+          <div class="control-row">
+          <label for="objectSparsityZSlider" class="control-label">Object Sparsity (Z):</label>
+          <input type="range" id="objectSparsityZSlider" class="slider-control" min="1" max="20" value="6" step="1">
+          <span id="objectSparsityZValue" class="control-value">6</span>
+        </div>
+        <div class="control-row toggles-row">
+          <div class="toggles-column">
+            <label class="switch">
+              <input id="toggleBOPSO3" type="checkbox">
+              <span class="slider"></span>
+              <span class="switch-label">BOP / SO(3) space</span>
+            </label>
+            <label class="switch">
+              <input id="togglePoints" type="checkbox" checked>
+              <span class="slider"></span>
+              <span class="switch-label">Point Cloud</span>
+            </label>
+            <label class="switch">
+              <input id="toggleGrid" type="checkbox">
+              <span class="slider"></span>
+              <span class="switch-label">Base Grid</span>
+            </label>
+          </div>
+          <div class="toggles-column">
+            <label class="switch">
+              <input id="toggleAxes" type="checkbox" checked>
+              <span class="slider"></span>
+              <span class="switch-label">Axes</span>
+            </label>
+            <label class="switch">
+              <input id="toggleObjects" type="checkbox" checked>
+              <span class="slider"></span>
+              <span class="switch-label">Objects</span>
+            </label>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div id="equationPanel" class="hud panel bottom-right">
+        <div class="panel-title">Symmetry-Aware Representation (Eq. 12-17)</div>
+        <div class="equation-content">
+          $$
+          \text{SARR}_i(\alpha|_{C_i}, \beta|_{C_i}, \gamma|_{C_i}) = \begin{bmatrix} s_{i,\alpha} & s_{i,\beta} & s_{i,\gamma} \\ c_{i,\alpha} & c_{i,\beta} & c_{i,\gamma} \end{bmatrix} :=
+          $$
+          $$
+          \begin{bmatrix} 
+          \sin(\lambda_{\alpha}\alpha|_{C_i}) & \sin(\lambda_{\beta}\beta|_{C_i})\nu_{\alpha} & \sin(\lambda_{\gamma}\gamma|_{C_i})\nu_{\alpha}\nu_{\beta} \\
+          \cos(\lambda_{\alpha}\alpha|_{C_i}) & \cos(\lambda_{\beta}\beta|_{C_i}) & \cos(\lambda_{\gamma}\gamma|_{C_i})
+          \end{bmatrix}
+          $$
+        </div>
+      </div>
+
+      <div class="subplot-grid">
+        <!-- Row 1: s_α, s_β, s_γ -->
+        <div class="subplot-container" data-param="s_alpha" data-viewer="0">
+          <div class="subplot-title">s<sub>α</sub></div>
+          <button class="btn-maximize" title="Maximize panel" data-viewer="0">⛶</button>
+          <div id="viewer-0" class="subplot-viewer"></div>
+        </div>
+        <div class="subplot-container" data-param="s_beta" data-viewer="1">
+          <div class="subplot-title">s<sub>β</sub></div>
+          <button class="btn-maximize" title="Maximize panel" data-viewer="1">⛶</button>
+          <div id="viewer-1" class="subplot-viewer"></div>
+        </div>
+        <div class="subplot-container" data-param="s_gamma" data-viewer="2">
+          <div class="subplot-title">s<sub>γ</sub></div>
+          <button class="btn-maximize" title="Maximize panel" data-viewer="2">⛶</button>
+          <div id="viewer-2" class="subplot-viewer"></div>
+        </div>
+        
+        <!-- Row 2: c_α, c_β, c_γ -->
+        <div class="subplot-container" data-param="c_alpha" data-viewer="3">
+          <div class="subplot-title">c<sub>α</sub></div>
+          <button class="btn-maximize" title="Maximize panel" data-viewer="3">⛶</button>
+          <div id="viewer-3" class="subplot-viewer"></div>
+        </div>
+        <div class="subplot-container" data-param="c_beta" data-viewer="4">
+          <div class="subplot-title">c<sub>β</sub></div>
+          <button class="btn-maximize" title="Maximize panel" data-viewer="4">⛶</button>
+          <div id="viewer-4" class="subplot-viewer"></div>
+        </div>
+        <div class="subplot-container" data-param="c_gamma" data-viewer="5">
+          <div class="subplot-title">c<sub>γ</sub></div>
+          <button class="btn-maximize" title="Maximize panel" data-viewer="5">⛶</button>
+          <div id="viewer-5" class="subplot-viewer"></div>
+        </div>
+      </div>
+
+<div class="legend">
+  <div class="legend-title">Dots (Viridis)</div>
+  <div class="legend-wrap">
+    <div class="legend-bar"></div>
+    <div class="legend-scale">
+      <span>1</span>
+      <span>0</span>
+      <span>-1</span>
+    </div>
+  </div>
+</div>
+
+      <!-- Inset rotation reference (shown when a panel is maximized) -->
+      <div id="insetViewer" class="inset-viewer">
+        <div class="inset-title">Rotation Reference</div>
+        <div id="insetCanvas"></div>
+      </div>
+    </main>
+
+    <!-- Import map to resolve bare specifiers for local three.js modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./lib/three/three.module.js",
+          "three/addons/": "./lib/three/examples/jsm/"
+        }
+      }
+    </script>
+
+    <!-- Load config loader first -->
+    <script src="./config-loader.js"></script>
+    
+    <!-- Load the app as an ES module; three.js is imported inside main.js -->
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
+
