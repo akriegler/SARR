@@ -69,7 +69,10 @@ To reproduce our AR_B scores use the [bop-toolkit](https://github.com/thodan/bop
 
 ## COMING SOON
 Training code
+
 Inference code
+
 Model Weights
 
-**MIT license**
+
+[**MIT license**](LICENSE)
