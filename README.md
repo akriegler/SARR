@@ -25,6 +25,11 @@ If you use this project, please cite:
 ```
 Contact: *andreas.kriegler@tuwien.ac.at*
 
+## Visualizer
+You can use the newer and faster THREE.js-based [interactive visualizer](https://akriegler.github.io/SARR/visualizer/visu_v2.html) to explore and better understand the SARR representation. For details see the paper.
+
+For the old, unmaintained visualization toolkit used to create figures for the paper, visit [this page](visualizer/old/visu_v1.html) or run [visualization.py](visualizer/old/visualization.py). Plots for the T-LESS symmetry classes have been pre-rendered using this visualizer, see [here](visualizer/old/renders). A video explaining the plots for T-LESS symmetry class II is available [here](visualizer/old/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4).
+
 ## Setup
 Create a virtual environment and install dependencies:
 ```
@@ -34,18 +39,6 @@ $ pip install -r requirements.txt
 ```
 
 ## Usage
-### Visualization toolkit
-For the  visual verification and exploration of the SARR representation run [visualization.py](source/visu/visualization.py).
-
-```
-$ python -m source.visu.visualization
-```
-
-Plots for the T-LESS symmetry classes have been pre-rendered into interactive html-files, accessible via the visualization toolkit:  [SARR visualizer](https://akriegler.github.io/SARR/).
-
-A video showcasing and explaining these plots for symmetry class II is available here: [explanation video](video/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4).
-
-
 ###  SARR representation mapping
 Implementation of the SARR representation and its inverse mapping is available in [sym_aware_representation.py](source/sym_aware_representation.py).
 
@@ -75,6 +68,8 @@ To reproduce our AR_B scores use the [bop-toolkit](https://github.com/thodan/bop
 
 
 ## COMING SOON
-Training + inference code
+Training code
+Inference code
+Model Weights
 
 **MIT license**
