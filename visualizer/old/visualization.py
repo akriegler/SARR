@@ -2,7 +2,7 @@ import itertools
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from source.symmetry_aware_representation import *
+from source.SARR import *
 from source.utils.dataset_definitions import TLESS_OBJECTS
 
 

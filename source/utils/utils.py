@@ -1,5 +1,8 @@
 import numpy as np
 
+from math import pi as PI
+from math import sin, cos, acos
+
 from easydict import EasyDict as edict
 
 atol = 0.0000000001
@@ -11,7 +14,7 @@ def easydict_constructor(loader, node):
     return edict(fields)
 
 
-def rotation_matrix(theta, order='XYZ'):
+def rotation_matrix(alpha, beta, gamma, order='XYZ'):
     """
     NOTE: These rotatin matrices correspond to the rotations around Tait-Bryan angles as given by
     https://en.wikipedia.org/wiki/Euler_angles#cite_note-4
@@ -23,9 +26,13 @@ def rotation_matrix(theta, order='XYZ'):
     output
         3x3 rotation matrix (numpy array)
     """
+    sx = sin(alpha)
+    cx = cos(alpha)
+    sy = sin(beta)
+    cy = cos(beta)
+    sz = sin(gamma)
+    cz = cos(gamma)
 
-    cx, cy, cz = np.cos(theta)
-    sx, sy, sz = np.sin(theta)
 
     if order == 'XYZ':
         matrix = np.array([[cy * cz, -cy * sz, sy],
@@ -42,35 +49,40 @@ def rotation_matrix(theta, order='XYZ'):
     return matrix
 
 
-def clamp_rot(alpha, beta, gamma, sym_v=None):
-    alpha = alpha % (2 * np.pi / sym_v[0])
-    beta = beta % (2 * np.pi / sym_v[1])
-    gamma = gamma % (2 * np.pi / sym_v[2])
+def clamp_rot(alpha, beta, gamma, kappa=None):
+    alpha = mod(alpha, (2 * PI / kappa[0]))
+    beta = mod(beta, (2 * PI / kappa[1]))
+    gamma = mod(gamma, (2 * PI / kappa[2]))
 
     return alpha, beta, gamma
 
 
-def clamp_rot_adv(alpha, beta, gamma, sym_v=None):
-    if sym_v[1] > 1:
-        if alpha % (2 * np.pi) > np.pi:
-            alpha = (alpha - np.pi) % (2 * np.pi)
-            gamma = (np.pi - gamma) % (2 * np.pi)
-            beta *= -1
+def mod(a, b):
+    return ((a % b) + b) % b
+
+
+def clamp_rot_adv(alpha, beta, gamma, kappa=None):
+    if kappa[0] == kappa[1] == kappa[2] == 2:
+        if alpha > mod(alpha, PI):
+            alpha = mod(alpha, PI)
+            beta = mod((2 * PI - beta), PI)
+            gamma = mod((2 * PI - gamma), PI)
+        elif beta > mod(beta, PI):
+            alpha = mod(alpha, PI)
+            beta = mod(beta, PI)
+            gamma = mod((2 * PI - gamma), PI)
+        else:
+            alpha = mod(alpha, PI)
+            beta = mod(beta, PI)
+            gamma = mod(gamma, PI)
     else:
-        alpha = (alpha % (2 * np.pi / sym_v[0])) * ((sym_v[0] % 10 ** 3) / sym_v[0])
-        beta = (beta % (2 * np.pi / sym_v[1])) * ((sym_v[1] % 10 ** 3) / sym_v[1])
-        gamma = (gamma % (2 * np.pi / sym_v[2])) * ((sym_v[2] % 10 ** 3) / sym_v[2])
+        alpha = mod(alpha, (2 * PI / kappa[0])) * (mod(kappa[0], 10 ** 3) / kappa[0])
+        beta = mod(beta, (2 * PI / kappa[1])) * (mod(kappa[1], 10 ** 3) / kappa[1])
+        gamma = mod(gamma, (2 * PI / kappa[2])) * (mod(kappa[2], 10 ** 3) / kappa[2])
 
-    angs = [alpha, beta, gamma]
-
-    for idx, ang in enumerate(angs):
-        if np.isclose(2 * np.pi, ang, atol=atol) or np.isclose(0.0, ang, atol=atol):
-            ang = 0.0
-        angs[idx] = ang
-
-    alpha = angs[0]
-    beta = angs[1]
-    gamma = angs[2]
+    alpha = 0.0 if np.isclose(2 * PI, alpha, atol=atol) or np.isclose(0.0, alpha, atol=atol) else alpha
+    beta = 0.0 if np.isclose(2 * PI, beta, atol=atol) or np.isclose(0.0, beta, atol=atol) else beta
+    gamma = 0.0 if np.isclose(2 * PI, gamma, atol=atol) or np.isclose(0.0, gamma, atol=atol) else gamma
 
     return alpha, beta, gamma
 
@@ -79,8 +91,8 @@ def rotational_error(gt_rot_mat, pd_rot_mat):
     inv_gt_rot = np.linalg.inv(gt_rot_mat)
     matmul = pd_rot_mat @ inv_gt_rot
     trace_minus_1 = np.trace(np.squeeze(matmul)) - 1
-    arccos = np.arccos(max(min(trace_minus_1, 2), -2) / 2.0)
-    error = arccos * 180 / np.pi
+    arccos = acos(max(min(trace_minus_1, 2), -2) / 2.0)
+    error = arccos * 180 / PI
 
     return error
 

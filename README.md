@@ -28,19 +28,20 @@ Contact: *andreas.kriegler@tuwien.ac.at*
 ## Visualizer
 You can use the newer and faster THREE.js-based [interactive visualizer](https://akriegler.github.io/SARR/visualizer/visu_v2.html) to explore and better understand the SARR representation. For details see the paper.
 
-For the old, unmaintained visualization toolkit used to create figures for the paper, open [this html](visualizer/old/SARR_viewer_v1.html) or run [visualization.py](visualizer/old/visualization.py). Plots for the T-LESS symmetry classes have been pre-rendered using this visualizer, see [here](visualizer/old/renders). A video explaining the plots for T-LESS symmetry class II is available [here](visualizer/old/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4).
+For the old, unmaintained, visualization toolkit used to create figures for the paper, open [this html](visualizer/old/SARR_viewer_v1.html) or run [visualization.py](visualizer/old/visualization.py). Plots for the T-LESS symmetry classes have been pre-rendered using this visualizer, see [here](visualizer/old/renders). A video explaining the plots for T-LESS symmetry class II is available [here](visualizer/old/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4).
 
 ## Setup
 Create a virtual environment and install dependencies:
 ```
-$ python3.10 -m venv SARR_env
-$ source ./SARR_env/bin/activate
+$ python -m venv SARR_env
+$ source ./SARR_env/bin/activate   (LINUX) or
+$ .\SARR_env\Scripts\activate     (WINDOWS)
 $ pip install -r requirements.txt
 ```
 
 ## Usage
-###  SARR representation mapping
-Implementation of the SARR representation and its inverse mapping is available in [sym_aware_representation.py](source/sym_aware_representation.py).
+###  T-LESS/ITODD ground-truth SARR mapping 
+Implementation of the SARR representation and its inverse mapping is available in [SARR.py](source/SARR.py).
 
 For example, we mapped to SARR and back to obtain symmetry-resolved (canonic) rotation matrices as ground-truths for our experiments:
 ```
@@ -62,17 +63,21 @@ $ python -m source.metrics.amgpd
 ```
 for the AR_G metric.
 
-A(M)GPD is only supported for the T-LESS dataset. The A(M)GPD calculation in [amgpd.py](source/metrics/amgpd.py) is our own reimplementation of [this script](https://github.com/GANWANSHUI/ES6D/blob/master/lib/tless_gadd_evaluator.py).
+A(M)GPD is only supported for the T-LESS dataset. The A(M)GPD calculation in [amgpd.py](source/metrics/amgpd.py) is our own, non-Torch reimplementation of [this script](https://github.com/GANWANSHUI/ES6D/blob/master/lib/tless_gadd_evaluator.py).
 
 To reproduce our AR_B scores use the [bop-toolkit](https://github.com/thodan/bop_toolkit), specifically <eval_bop19_pose.py> (with ground-truth translation).
 
+**NOTE (2026/05/06)**: We have added additional failsafes for edge-cases during the SARR representation mapping step, relevant for 7/123 instances (ITODD) and 16/6423 (TLESS). This results in slightly different ground-truths, available as *_v2.csv-files. Metric scripts described above still call original ground-truths, as was done for the results in paper. 
+
+### Custom Dataset SARR mapping + results
 
 ## COMING SOON
+Boilerplates for custom predictions/ground-truth
+
 Training code
 
 Inference code
 
 Model Weights
-
 
 [**MIT license**](LICENSE)
