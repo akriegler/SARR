@@ -14,7 +14,7 @@ let axisColorX= 0xFF0000
 let axisColorY= 0x00FF00
 let axisColorZ= 0x0000FF
 let BOPSO3 = false; // if true, use full SO(3) range instead of BOP subset
-let colorPalette = 'GRAY';
+let colorPalette = 'RGB';
 let config = null;
 
 loadConfig().then(cfg => {
@@ -375,7 +375,7 @@ const COLOR_PALETTES = {
 };
 
 // Get colors for the current palette
-function getPaletteColors(paletteName = 'GRAY') {
+function getPaletteColors(paletteName = 'RGB') {
   const palette = COLOR_PALETTES[paletteName] || COLOR_PALETTES.default;
   const colors = {};
   for (const [key, rgb] of Object.entries(palette)) {
@@ -384,7 +384,7 @@ function getPaletteColors(paletteName = 'GRAY') {
   return colors;
 }
 
-function getConeGradientColors(paletteName = 'GRAY', numColors = 16) {
+function getConeGradientColors(paletteName = 'RGB', numColors = 16) {
   if (paletteName === 'RGB') {
     return [
       [255, 115, 0],
@@ -1318,11 +1318,42 @@ class SubplotViewer {
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
+    function createCircleTexture(size = 64) {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+
+      const ctx = canvas.getContext('2d');
+      const r = size / 2;
+
+      const gradient = ctx.createRadialGradient(r, r, 0, r, r, r);
+      gradient.addColorStop(0.0, 'rgba(255,255,255,1)');
+      gradient.addColorStop(0.8, 'rgba(255,255,255,1)');
+      gradient.addColorStop(1.0, 'rgba(255,255,255,0)');
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(r, r, r, 0, Math.PI * 2);
+      ctx.fill();
+
+      return new THREE.CanvasTexture(canvas);
+    }
+
     const material = new THREE.PointsMaterial({
       size: 0.08,
+      map: createCircleTexture(),
+      transparent: true,
+      alphaTest: 0.3,
+      depthWrite: false,
       vertexColors: true,
       sizeAttenuation: true
     });
+
+    //const material = new THREE.PointsMaterial({
+    //  size: 0.08,
+    //  vertexColors: true,
+    //  sizeAttenuation: true
+    //});
 
     this.pointCloud = new THREE.Points(geometry, material);
     this.pointCloud.visible = showPointCloud;
@@ -1647,6 +1678,10 @@ function updateUIFromConfig() {
   if (toggleGrid) toggleGrid.checked = showGrid;
   if (toggleAxes) toggleAxes.checked = showAxes;
   if (toggleObjects) toggleObjects.checked = showObjects;
+
+  if (BOPSO3 === false){
+
+  }
 }
 const sparsitySlider = document.getElementById('sparsitySlider');
 const sparsityValue = document.getElementById('sparsityValue');
@@ -1661,6 +1696,7 @@ const togglePoints = document.getElementById('togglePoints');
 const toggleGrid = document.getElementById('toggleGrid');
 const toggleAxes = document.getElementById('toggleAxes');
 const toggleObjects = document.getElementById('toggleObjects');
+
 if (sparsitySlider) {
   pointSparsityStep = parseInt(sparsitySlider.value);
   if (sparsityValue) sparsityValue.textContent = `${pointSparsityStep}°`;
@@ -1682,9 +1718,18 @@ if (togglePoints) showPointCloud = togglePoints.checked;
 if (toggleGrid) showGrid = toggleGrid.checked;
 if (toggleAxes) showAxes = toggleAxes.checked;
 if (toggleObjects) showObjects = toggleObjects.checked;
+
+if (BOPSO3 === false){
+  sparsitySlider.disabled = true;
+  objectSparsityXSlider.disabled = true;
+  objectSparsityYSlider.disabled = true;
+  objectSparsityZSlider.disabled = true;
+}
 let currentSymmetryClass = '1';
 const viewers = [];
 const paramNames = ['s_alpha', 's_beta', 's_gamma', 'c_alpha', 'c_beta', 'c_gamma'];
+
+
 
 for (let i = 0; i < 6; i++) {
   const viewer = new SubplotViewer(`viewer-${i}`, paramNames[i], i);
@@ -1802,6 +1847,7 @@ if (toggleBOPSO3) {
       objectSparsityY = autoAdjust.objectSparsityY;
       if (sparsitySlider) {
         sparsitySlider.value = pointSparsityStep;
+        sparsitySlider.disabled = false;
         if (sparsityValue) {
           const unit = config?.visualization?.pointSparsity?.unit || '°';
           sparsityValue.textContent = `${pointSparsityStep}${unit}`;

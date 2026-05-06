@@ -28,7 +28,7 @@ Contact: *andreas.kriegler@tuwien.ac.at*
 ## Visualizer
 You can use the newer and faster THREE.js-based [interactive visualizer](https://akriegler.github.io/SARR/visualizer/visu_v2.html) to explore and better understand the SARR representation. For details see the paper.
 
-For the old, unmaintained visualization toolkit used to create figures for the paper, open [this html](visualizer/old/visu_v1.html) or run [visualization.py](visualizer/old/visualization.py). Plots for the T-LESS symmetry classes have been pre-rendered using this visualizer, see [here](visualizer/old/renders). A video explaining the plots for T-LESS symmetry class II is available [here](visualizer/old/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4).
+For the old, unmaintained visualization toolkit used to create figures for the paper, open [this html](visualizer/old/SARR_viewer_v1.html) or run [visualization.py](visualizer/old/visualization.py). Plots for the T-LESS symmetry classes have been pre-rendered using this visualizer, see [here](visualizer/old/renders). A video explaining the plots for T-LESS symmetry class II is available [here](visualizer/old/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4).
 
 ## Setup
 Create a virtual environment and install dependencies:
