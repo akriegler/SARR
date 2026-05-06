@@ -274,6 +274,7 @@ def main():
             'results/T-LESS/ours/SARR/sarr-datasetast-rgb_tless-test.csv'
         ]
     gt_file = os.path.join(os.getcwd(), 'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
+    #gt_file = os.path.join(os.getcwd(), 'results/T-LESS/gt/tless_gt_bop19_canonic-test_v2.csv')
     eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_tless_other]  # eval_files_tless_other, eval_files_tless_ours
 
     model_groups_list = load_grouped_primitives(os.path.join(os.getcwd(), 'results/T-LESS/others/ES6D_tless_gp.json'))  # Source: https://github.com/GANWANSHUI/ES6D/blob/master/datasets/tless/tless_gp.json

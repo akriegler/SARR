@@ -3,7 +3,7 @@ import csv
 import numpy as np
 
 from source.utils.dataset_definitions import ITODD_OBJECTS
-from source.sym_aware_representation import map_R_to_canonic_R
+from source.SARR import map_R_to_canonic_R
 
 
 def main(f_path, f_mod_path):
@@ -20,8 +20,8 @@ def main(f_path, f_mod_path):
                 continue
             R = elems[4]
             R = np.array([float(entry) for entry in R.split(' ')]).reshape(3, 3)
-            sym_v = ITODD_OBJECTS[int(obj_id)]['sym_v']
-            R_new = map_R_to_canonic_R(R, sym_v, clamp=True)
+            kappa = ITODD_OBJECTS[int(obj_id)]['kappa']
+            R_new = map_R_to_canonic_R(R, kappa, clamp=True)
             flattened_matrix = [str(np.round(entry, 8)) for row in R_new for entry in row]
             R_new_str = ' '.join(flattened_matrix)
             elems[4] = R_new_str
@@ -32,5 +32,6 @@ def main(f_path, f_mod_path):
 # As the ITODD (BOP) annotations are ambiguous in rotation due to symmetry, this script maps them to a canonic rotation
 if __name__ == '__main__':
     gt_file_path = os.path.join(os.getcwd(), r'results/ITODD/gt/gt_itodd-val.csv')
-    gt_canon_path = os.path.join(os.getcwd(), r'results/ITODD/gt/itodd_gt_bop19_canonic-val.csv')
+    #gt_canon_path = os.path.join(os.getcwd(), r'results/ITODD/gt/itodd_gt_bop19_canonic-val.csv')
+    gt_canon_path = os.path.join(os.getcwd(), r'results/ITODD/gt/itodd_gt_bop19_canonic-val_v2.csv')
     main(gt_file_path, gt_canon_path)

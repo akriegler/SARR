@@ -6,7 +6,8 @@ from easydict import EasyDict as edict
 
 from source.utils.utils import easydict_constructor
 from source.utils.dataset_definitions import TLESS_OBJECTS
-from source.sym_aware_representation import map_R_to_canonic_R
+from source.SARR import map_R_to_canonic_R
+
 
 def main(f_path, f_mod_path, test_targets):
     header = "scene_id,im_id,obj_id,score,R,t,time"
@@ -38,14 +39,13 @@ def main(f_path, f_mod_path, test_targets):
                 prev_img_id = img_id
                 R = elems[4]
                 R = np.array([float(entry) for entry in R.split(' ')]).reshape(3, 3)
-                sym_v = TLESS_OBJECTS[int(obj_id)]['sym_v']
-                R_new = map_R_to_canonic_R(R, sym_v, clamp=True)
+                kappa = TLESS_OBJECTS[int(obj_id)]['kappa']
+                R_new = map_R_to_canonic_R(R, kappa, clamp=True)
                 flattened_matrix = [str(np.round(entry, 8)) for row in R_new for entry in row]
                 R_new_str = ' '.join(flattened_matrix)
                 elems[4] = R_new_str
                 new_line = ','.join(elems)
                 writer.writerow([entry for entry in new_line.split(',')])
-
 
 
 # As the T-LESS (BOP) annotations are ambiguous in rotation due to symmetry, this script maps them to a canonic rotation
@@ -69,5 +69,6 @@ if __name__ == '__main__':
         test_targets[f'{entry["scene_id"]}-{entry["im_id"]}-{entry["obj_id"]}'] = entry['inst_count']
 
     gt_file_path = os.path.join(os.getcwd(), r'results/T-LESS/gt/gt_tless-test.csv')
-    gt_canon_path = os.path.join(os.getcwd(), r'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
+    #gt_canon_path = os.path.join(os.getcwd(), r'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
+    gt_canon_path = os.path.join(os.getcwd(), r'results/T-LESS/gt/tless_gt_bop19_canonic-test_v2.csv')
     main(gt_file_path, gt_canon_path, test_targets)
