@@ -1340,7 +1340,7 @@ class SubplotViewer {
     }
 
     const material = new THREE.PointsMaterial({
-      size: 0.08,
+      size: 0.15,
       map: createCircleTexture(),
       transparent: true,
       alphaTest: 0.3,

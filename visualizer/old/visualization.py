@@ -1,9 +1,8 @@
 import itertools
 import plotly.graph_objects as go
-from scipy.spatial.transform import Rotation as R
 from plotly.subplots import make_subplots
 
-from source.sym_aware_representation import *
+from source.symmetry_aware_representation import *
 from source.utils.dataset_definitions import TLESS_OBJECTS
 
 
@@ -36,12 +35,12 @@ def set_obj_visu_params_tless(obj_cls, colours='RGB'):
 
     if sym_cls == 'I':
         edges = np.array([[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2, 15, 8, 8, 8, 12, 12, 14, 14, 12, 8, 11, 10, 23, 16, 16, 16, 20, 20, 22, 22, 20, 16, 19, 18],
-                                       [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11, 19, 20, 17, 18, 21, 22, 21, 18, 16, 17, 22, 19],
-                                       [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14, 16, 23, 18, 19, 22, 23, 17, 17, 21, 21, 23, 22]])
+                          [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11, 19, 20, 17, 18, 21, 22, 21, 18, 16, 17, 22, 19],
+                          [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14, 16, 23, 18, 19, 22, 23, 17, 17, 21, 21, 23, 22]])
 
         vertices = np.array([[-1, -1, 1, 1, -1, -1, 1, 1, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5],
-                                           [-1, 1, 1, -1, -1, 1, 1, -1, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0, 2, 2, 0, 0, 2, 2, 0],
-                                           [-1, -1, -1, -1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5]], dtype=np.float32)
+                             [-1, 1, 1, -1, -1, 1, 1, -1, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0, 2, 2, 0, 0, 2, 2, 0],
+                             [-1, -1, -1, -1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5]], dtype=np.float32)
 
         vertices[0] *= 0.25
         vertices[1] *= 0.5
@@ -49,12 +48,12 @@ def set_obj_visu_params_tless(obj_cls, colours='RGB'):
 
     elif sym_cls == 'II':
         edges = np.array([[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2, 15, 8, 8, 8, 12, 12, 14, 14, 12, 8, 11, 10],
-                                       [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11],
-                                       [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14]])
+                          [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11],
+                          [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14]])
 
         vertices = np.array([[-1, -1, 1, 1, -1, -1, 1, 1, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5],
-                                           [-1, 1, 1, -1, -1, 1, 1, -1, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5],
-                                           [-1, -1, -1, -1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2]], dtype=np.float32)
+                             [-1, 1, 1, -1, -1, 1, 1, -1, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5],
+                             [-1, -1, -1, -1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2]], dtype=np.float32)
 
         vertices[0] *= 0.25
         vertices[1] *= 0.5
@@ -62,12 +61,12 @@ def set_obj_visu_params_tless(obj_cls, colours='RGB'):
 
     elif sym_cls == 'III':
         edges = np.array([[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2, 15, 8, 8, 8, 12, 12, 14, 14, 12, 8, 11, 10],
-                                       [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11],
-                                       [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14]])
+                          [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11],
+                          [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14]])
 
         vertices = np.array([[-1, -1, 1, 1, -1, -1, 1, 1, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5],
-                                           [-1, 1, 1, -1, -1, 1, 1, -1, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5],
-                                           [-1, -1, -1, -1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2]], dtype=np.float32)
+                             [-1, 1, 1, -1, -1, 1, 1, -1, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5],
+                             [-1, -1, -1, -1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2]], dtype=np.float32)
 
         vertices[0] *= 0.4
         vertices[1] *= 0.4
@@ -84,11 +83,11 @@ def set_obj_visu_params_tless(obj_cls, colours='RGB'):
 
         # Base of the cone
         # Base vertices
-        angle_step = 2 * math.pi / num_points
+        angle_step = 2 * PI / num_points
         for i in range(num_points):
             angle = i * angle_step
-            x = radius * np.cos(angle)
-            y = radius * np.sin(angle)
+            x = radius * cos(angle)
+            y = radius * sin(angle)
             z = -height / 2
             vertices.append([x, y, z])
 
@@ -114,17 +113,17 @@ def set_obj_visu_params_tless(obj_cls, colours='RGB'):
         edges = np.array(faces).T
 
         face_colours = [p_x_color, p_xxy_color, p_xy_color, p_xyy_color, p_y_color, p_yy_n_x_color, p_y_n_x_color, p_y_n_xx_color, n_x_color, n_xxy_color, n_xy_color, n_xyy_color, n_y_color, n_yy_p_x_color,
-                                   n_y_p_x_color, n_y_p_xx_color, p_x_color, p_xxy_color, p_xy_color, p_xyy_color, p_y_color, p_yy_n_x_color, p_y_n_x_color, p_y_n_xx_color, n_x_color, n_xxy_color, n_xy_color, n_xyy_color, n_y_color,
-                                   n_yy_p_x_color, n_y_p_x_color, n_y_p_xx_color]
+                        n_y_p_x_color, n_y_p_xx_color, p_x_color, p_xxy_color, p_xy_color, p_xyy_color, p_y_color, p_yy_n_x_color, p_y_n_x_color, p_y_n_xx_color, n_x_color, n_xxy_color, n_xy_color, n_xyy_color, n_y_color,
+                        n_yy_p_x_color, n_y_p_x_color, n_y_p_xx_color]
 
     elif sym_cls == 'V':
         edges = np.array([[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2, 15, 8, 8, 8, 12, 12, 14, 14, 12, 8, 11, 10],
-                                        [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11],
-                                        [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14]])
+                          [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3, 11, 12, 9, 10, 13, 14, 13, 10, 8, 9, 14, 11],
+                          [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6, 8, 15, 10, 11, 14, 15, 9, 9, 13, 13, 15, 14]])
 
         vertices = np.array([[-1, -1, 1, 1, -1, -1, 1, 1, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5],
-                                           [-1, 1, 1, -1, -1, 1, 1, -1, 0, 2, 2, 0, 0, 2, 2, 0],
-                                           [-1, -1, -1, -1, 1, 1, 1, 1, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5]], dtype=np.float32)
+                             [-1, 1, 1, -1, -1, 1, 1, -1, 0, 2, 2, 0, 0, 2, 2, 0],
+                             [-1, -1, -1, -1, 1, 1, 1, 1, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5]], dtype=np.float32)
 
         vertices[0] *= 0.25
         vertices[1] *= 0.5
@@ -135,7 +134,7 @@ def set_obj_visu_params_tless(obj_cls, colours='RGB'):
     return vertices, edges, face_colours
 
 
-def map_to_sym_representation(rots, sym_v):
+def map_to_sym_representation(rots, kappa):
     # This maps to our representation
     s_a_ = []
     c_a_ = []
@@ -149,7 +148,7 @@ def map_to_sym_representation(rots, sym_v):
         alpha = rot[0]
         beta = rot[1]
         gamma = rot[2]
-        rot_sym = sym_aware_rotation(alpha, beta, gamma, sym_v)
+        rot_sym = sym_aware_rotation(alpha, beta, gamma, kappa)
         s_a_.append(rot_sym[0][0])
         c_a_.append(rot_sym[1][0])
         s_b_.append(rot_sym[0][1])
@@ -171,18 +170,18 @@ def map_to_sym_representation(rots, sym_v):
 def plot_mapping_tless(obj_cls=None, colours='RGB', drag_mode=None, save_html=False):
     sym_cls = TLESS_OBJECTS[obj_cls]['sym_cls']
     ### SETUP ###
-    sym_v = TLESS_OBJECTS[obj_cls]['sym_v']
+    kappa = TLESS_OBJECTS[obj_cls]['kappa']
     vertices, edges, face_colours = set_obj_visu_params_tless(obj_cls, colours)
     vertices /= 5
     axis_outer_bound_offset = 0.3
 
     s_titles = [
-                    rf'$s_{{{sym_cls}, \alpha}}$',
-                    rf'$s_{{{sym_cls}, \beta}}$',
-                    rf'$s_{{{sym_cls}, \gamma}}$',
-                    rf'$c_{{{sym_cls}, \alpha}}$',
-                    rf'$c_{{{sym_cls}, \beta}}$',
-                    rf'$c_{{{sym_cls}, \gamma}}$'
+        rf'$s_{{{sym_cls}, \alpha}}$',
+        rf'$s_{{{sym_cls}, \beta}}$',
+        rf'$s_{{{sym_cls}, \gamma}}$',
+        rf'$c_{{{sym_cls}, \alpha}}$',
+        rf'$c_{{{sym_cls}, \beta}}$',
+        rf'$c_{{{sym_cls}, \gamma}}$'
     ]
 
     fig = make_subplots(rows=2, cols=3, specs=[[{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}], [{"type": "scatter3d"}, {"type": "scatter3d"}, {"type": "scatter3d"}]], subplot_titles=s_titles, horizontal_spacing=0.01, vertical_spacing=0.02)
@@ -197,28 +196,27 @@ def plot_mapping_tless(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
     t1 = [(a, b, g) for a, b, g in itertools.product(a1, b1, g1)]
     t2 = [(a, b, g) for a, b, g in itertools.product(a2, b2, g2)]
 
-    s_a_1, c_a_1, s_b_1, c_b_1, s_g_1, c_g_1 = map_to_sym_representation(t1, sym_v=sym_v)
-    s_a_2, c_a_2, s_b_2, c_b_2, s_g_2, c_g_2 = map_to_sym_representation(t2, sym_v=sym_v)
+    s_a_1, c_a_1, s_b_1, c_b_1, s_g_1, c_g_1 = map_to_sym_representation(t1, kappa=kappa)
+    s_a_2, c_a_2, s_b_2, c_b_2, s_g_2, c_g_2 = map_to_sym_representation(t2, kappa=kappa)
 
     x_grid_1, y_grid_1, z_grid_1 = np.meshgrid(a1, b1, g1, indexing='ij')
     z1_flat = z_grid_1.flatten()
     y1_flat = y_grid_1.flatten()
     x1_flat = x_grid_1.flatten()
-    
+
     x_grid_2, y_grid_2, z_grid_2 = np.meshgrid(a2, b2, g2, indexing='ij')
     z2_flat = z_grid_2.flatten()
     y2_flat = y_grid_2.flatten()
     x2_flat = x_grid_2.flatten()
-    
 
     ### ALPHA ###
     scatter_s_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_a_1, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_s_1, row=1, col=1)
-    scatter_s_2= go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_a_2, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
+    scatter_s_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=s_a_2, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_s_2, row=1, col=1)
     scatter_c_1 = go.Scatter3d(x=x1_flat, y=y1_flat, z=z1_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_a_1, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_c_1, row=2, col=1)
-    scatter_c_2= go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_a_2, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
+    scatter_c_2 = go.Scatter3d(x=x2_flat, y=y2_flat, z=z2_flat, mode='markers', marker=dict(size=3, opacity=1.0, color=c_a_2, colorscale='viridis', cmin=-1, cmax=1, showscale=False), showlegend=False)
     fig.add_trace(scatter_c_2, row=2, col=1)
 
     ### BETA ###
@@ -251,7 +249,7 @@ def plot_mapping_tless(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
                         if (a_idx % 4 != 0):
                             continue
                         vertex = vertices.copy()
-                        r = R.from_euler('XYZ', [alpha, beta, gamma])
+                        r = Rotation.from_euler('XYZ', [alpha, beta, gamma])
                         mat = r.as_matrix()
                         # apply transformation
                         vertex = np.dot(mat, vertex)
@@ -270,7 +268,7 @@ def plot_mapping_tless(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
                         if (a_idx % 4 != 0):
                             continue
                         vertex = vertices.copy()
-                        r = R.from_euler('XYZ', [alpha, beta, gamma])
+                        r = Rotation.from_euler('XYZ', [alpha, beta, gamma])
                         mat = r.as_matrix()
                         # apply transformation
                         vertex = np.dot(mat, vertex)
@@ -281,11 +279,11 @@ def plot_mapping_tless(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
                         fig.add_trace(mesh, row=i, col=j)
 
             fig.update_scenes(row=i, col=j, xaxis_title_text='alpha', yaxis_title_text='beta', zaxis_title_text='gamma',
-                              xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                              yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                              zaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
+                              xaxis_range=[0 - axis_outer_bound_offset, 2 * PI + axis_outer_bound_offset],
+                              yaxis_range=[0 - axis_outer_bound_offset, 2 * PI + axis_outer_bound_offset],
+                              zaxis_range=[0 - axis_outer_bound_offset, 2 * PI + axis_outer_bound_offset], aspectmode='cube')
 
-    fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={sym_v} \text{{ ("XYZ" intrinsic rotation order, T-LESS rotation subspace, angles in radians)}}$'
+    fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={kappa} \text{{ ("XYZ" intrinsic rotation order, T-LESS rotation subspace, angles in radians)}}$'
     fig['layout']['dragmode'] = drag_mode
 
     fig.show()
@@ -295,7 +293,7 @@ def plot_mapping_tless(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
 
 def plot_mapping_whole(obj_cls=None, colours='RGB', drag_mode=None, save_html=False):
     ### SETUP ###
-    sym_v = TLESS_OBJECTS[obj_cls]['sym_v']
+    kappa = TLESS_OBJECTS[obj_cls]['kappa']
     sym_cls = TLESS_OBJECTS[obj_cls]['sym_cls']
     vertices, edges, face_colours = set_obj_visu_params_tless(obj_cls, colours)
     vertices /= 5
@@ -317,8 +315,8 @@ def plot_mapping_whole(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
     g = np.deg2rad(np.arange(0, 360, 20))
 
     t = [(a, b, g) for a, b, g in itertools.product(a, b, g)]
-    s_a, c_a, s_b, c_b, s_g, c_g = map_to_sym_representation(t, sym_v=sym_v)
-    
+    s_a, c_a, s_b, c_b, s_g, c_g = map_to_sym_representation(t, kappa=kappa)
+
     x_grid, y_grid, z_grid = np.meshgrid(a, b, g, indexing='ij')
     z_flat = z_grid.flatten()
     y_flat = y_grid.flatten()
@@ -354,7 +352,7 @@ def plot_mapping_whole(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
                         if (a_idx % 3 != 0) and (a_idx != (len(a) - 1)):
                             continue
                         vertex = vertices.copy()
-                        r = R.from_euler('XYZ', [alpha, beta, gamma])
+                        r = Rotation.from_euler('XYZ', [alpha, beta, gamma])
                         mat = r.as_matrix()
                         # apply transformation
                         vertex = np.dot(mat, vertex)
@@ -365,10 +363,10 @@ def plot_mapping_whole(obj_cls=None, colours='RGB', drag_mode=None, save_html=Fa
                         fig.add_trace(mesh, row=i, col=j)
 
             fig.update_scenes(row=i, col=j, xaxis_title_text='alpha', yaxis_title_text='beta', zaxis_title_text='gamma',
-                              xaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                              yaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset],
-                              zaxis_range=[0 - axis_outer_bound_offset, 2 * np.pi + axis_outer_bound_offset], aspectmode='cube')
-    fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={sym_v} \text{{ ("XYZ" intrinsic rotation order, SO(3) rotation space, angles in radians)}}$'
+                              xaxis_range=[0 - axis_outer_bound_offset, 2 * PI + axis_outer_bound_offset],
+                              yaxis_range=[0 - axis_outer_bound_offset, 2 * PI + axis_outer_bound_offset],
+                              zaxis_range=[0 - axis_outer_bound_offset, 2 * PI + axis_outer_bound_offset], aspectmode='cube')
+    fig['layout']['title'] = rf'$\text{{Plots of the six parameters that make up our representation }}\mathcal{{S}}_{{{sym_cls}}}, \kappa_{{{sym_cls}}}={kappa} \text{{ ("XYZ" intrinsic rotation order, SO(3) rotation space, angles in radians)}}$'
     fig['layout']['dragmode'] = drag_mode
 
     fig.show()
@@ -380,7 +378,7 @@ if __name__ == '__main__':
     obj_classes = [21, 11, 27, 2, 23]  # see source.utils.dataset_definitions.py or Table 2 in the paper
     colours = 'RGB'  # 'RGB', 'GREY'
     subspaces = ['T-LESS']  # 'T-LESS', 'SO(3)'
-    drag_mode = None   # None, 'orbit'
+    drag_mode = None  # None, 'orbit'
     save_html = True  # True, False
 
     for subspace in subspaces:
@@ -393,4 +391,4 @@ if __name__ == '__main__':
                 raise NotImplementedError
 
             print(f'Plots of the six parameters that make up our representation for object {obj_cls}, {subspace} rotation space')
-            #time.sleep(30)  # sometimes useful for SO(3) space
+            # time.sleep(30)  # sometimes useful for SO(3) space
