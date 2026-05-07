@@ -2,7 +2,7 @@
 
 ## Publication 
 
-Paper: [IJCV (open access)](https://doi.org/10.1007/s11263-026-02770-x), [arXiv](https://arxiv.org/abs/2604.18208) 
+Paper: [IJCV (open access)](https://doi.org/10.1007/s11263-026-02770-x), [arXiv](https://arxiv.org/abs/2604.18208), [PDF](Kriegler2026_VoR.pdf)
 
 Authors: [Andreas Kriegler](https://andreaskriegler.eu/), 
 [Csaba Beleznai](https://publications.ait.ac.at/de/persons/csaba.beleznai/),
@@ -80,4 +80,4 @@ Inference code
 
 Model Weights
 
-[**MIT license**](LICENSE)
+**LICENSE:** [CC BY 4.0](LICENSE)
