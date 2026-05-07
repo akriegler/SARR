@@ -2,7 +2,7 @@
 
 ## Publication 
 
-Paper: [IJCV (open access)](https://doi.org/10.1007/s11263-026-02770-x), [arXiv](https://arxiv.org/abs/2604.18208), [PDF](Kriegler2026_VoR.pdf)
+Paper: [IJCV (open access)](https://doi.org/10.1007/s11263-026-02770-x), [arXiv](https://arxiv.org/abs/2604.18208), [PDF](IJCV_Version_of_Record.pdf)
 
 Authors: [Andreas Kriegler](https://andreaskriegler.eu/), 
 [Csaba Beleznai](https://publications.ait.ac.at/de/persons/csaba.beleznai/),
@@ -71,7 +71,7 @@ To reproduce our AR_B scores use the [bop-toolkit](https://github.com/thodan/bop
 
 ### Custom Dataset SARR mapping + results
 
-## COMING SOON
+## Coming soon
 Boilerplates for custom predictions/ground-truth
 
 Training code
