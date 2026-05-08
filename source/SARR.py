@@ -4,7 +4,7 @@ from math import pi as PI
 from math import sin, cos, acos
 from scipy.spatial.transform import Rotation
 
-from source.utils.utils import clamp_rot, clamp_rot_adv, rotation_matrix, mod
+from source.utils.rot_utils import clamp_rot, rotation_matrix, mod
 
 atol = 0.0000000001
 
@@ -44,6 +44,31 @@ def map_sarr_to_R(sarr, kappa, clamp=False):
 
     return R
 
+
+def clamp_rot_adv(alpha, beta, gamma, kappa=None):
+    if kappa[0] == kappa[1] == kappa[2] == 2:
+        if alpha > mod(alpha, PI):
+            alpha = mod(alpha, PI)
+            beta = mod((2 * PI - beta), PI)
+            gamma = mod((2 * PI - gamma), PI)
+        elif beta > mod(beta, PI):
+            alpha = mod(alpha, PI)
+            beta = mod(beta, PI)
+            gamma = mod((2 * PI - gamma), PI)
+        else:
+            alpha = mod(alpha, PI)
+            beta = mod(beta, PI)
+            gamma = mod(gamma, PI)
+    else:
+        alpha = mod(alpha, (2 * PI / kappa[0])) * (mod(kappa[0], 10 ** 3) / kappa[0])
+        beta = mod(beta, (2 * PI / kappa[1])) * (mod(kappa[1], 10 ** 3) / kappa[1])
+        gamma = mod(gamma, (2 * PI / kappa[2])) * (mod(kappa[2], 10 ** 3) / kappa[2])
+
+    alpha = 0.0 if np.isclose(2 * PI, alpha, atol=atol) or np.isclose(0.0, alpha, atol=atol) else alpha
+    beta = 0.0 if np.isclose(2 * PI, beta, atol=atol) or np.isclose(0.0, beta, atol=atol) else beta
+    gamma = 0.0 if np.isclose(2 * PI, gamma, atol=atol) or np.isclose(0.0, gamma, atol=atol) else gamma
+
+    return alpha, beta, gamma
 
 # From regular euler angles construct sym aware representation
 # ASSUMES INTRINSIC XYZ ORDER
