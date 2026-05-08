@@ -2,7 +2,7 @@ import os
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 
-from source.utils.utils import rotational_error, unpack_csv_gt, unpack_csv_pred
+from source.utils.result_utils import rotational_error, unpack_csv_gt, unpack_csv_pred
 
 
 def get_erot_matches(gt_rots, pd_rots):

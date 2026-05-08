@@ -4,9 +4,9 @@ import yaml
 import numpy as np
 from easydict import EasyDict as edict
 
-from source.utils.utils import easydict_constructor
+from source.utils.result_utils import easydict_constructor
 from source.utils.dataset_definitions import TLESS_OBJECTS
-from source.SARR import map_R_to_canonic_R
+from source.utils.rot_utils import map_R_to_R_canon
 
 
 def main(f_path, f_mod_path, test_targets):
@@ -40,7 +40,7 @@ def main(f_path, f_mod_path, test_targets):
                 R = elems[4]
                 R = np.array([float(entry) for entry in R.split(' ')]).reshape(3, 3)
                 kappa = TLESS_OBJECTS[int(obj_id)]['kappa']
-                R_new = map_R_to_canonic_R(R, kappa, clamp=True)
+                R_new = map_R_to_R_canon(R, kappa, clamp=True)
                 flattened_matrix = [str(np.round(entry, 8)) for row in R_new for entry in row]
                 R_new_str = ' '.join(flattened_matrix)
                 elems[4] = R_new_str
