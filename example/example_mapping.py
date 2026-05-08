@@ -58,6 +58,6 @@ if __name__ == '__main__':
     header = "scene_id,img_id,obj_id,score,rotation"
 
     for f_type in to_map:
-        file_path = os.path.join(os.getcwd(), f'{f_type}.csv')
-        canon_file_path = os.path.join(os.getcwd(), f'{f_type}_canon.csv')
+        file_path = os.path.join(os.getcwd(), f'example/{f_type}.csv')
+        canon_file_path = os.path.join(os.getcwd(), f'example/{f_type}_canon.csv')
         main(file_path, canon_file_path, rot_representation, header)

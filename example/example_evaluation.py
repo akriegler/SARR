@@ -82,9 +82,10 @@ def unpack_csv_pred(file, gt_rotations, task):
 
 
 def main():
+    gt_fname = 'gt_canon'
     pred_fname = 'prediction_canon'
-    gt_file = os.path.join(os.getcwd(), 'gt_canon.csv')
-    pred_file = os.path.join(os.getcwd(), f'{pred_fname}.csv')
+    gt_file = os.path.join(os.getcwd(), f'example/{gt_fname}.csv')
+    pred_file = os.path.join(os.getcwd(), f'example/{pred_fname}.csv')
     res_file = 'AR_Cosine.txt'
 
     with open(res_file, 'w') as f:

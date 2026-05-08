@@ -70,10 +70,10 @@ To reproduce our AR_B scores use the [bop-toolkit](https://github.com/thodan/bop
 **NOTE (2026/05/06)**: We have added additional failsafes for edge-cases during the SARR representation mapping step, relevant for 7/123 instances (ITODD) and 16/6423 (TLESS). This results in slightly different ground-truths, available as *_v2.csv-files. Metric scripts described above still call original ground-truths, as was done for the results in paper. 
 
 ### Custom dataset SARR mapping & evaluation
-You can try out to map your own rotation predictions and ground-truth for your own dataset using the examples from [example](example). The tool expects results to be in a format very similar to BOP, although it assumes column-major flattening, see [gt](example/gt.csv) and [pred](example/prediction.csv) files.
+You can try out mapping your own orientation predictions and ground-truth for your own dataset using the examples provided in the [example folder](example). The tool expects results to be in a format very similar to BOP, although it assumes column-major flattening, see [gt](example/gt.csv) and [pred](example/prediction.csv) files.
 
 Information regarding the objects, i.e. their name and symmetry-class, go to the [dataset definitions](example/example_dataset_definitions.py).
 
-Then, use the [example_mapping.py](example/example_mapping.py) to map to canonic rotations through SARR. The AR_C metric can be calculated with [example_evaluation.py](example/example_evaluation.py).
+Then, use the [example_mapping.py](example/example_mapping.py) to map to canonic rotations through SARR. The AR_C metric can then be calculated with [example_evaluation.py](example/example_evaluation.py).
 
 **LICENSE:** [CC BY 4.0](LICENSE)
