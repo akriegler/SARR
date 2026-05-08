@@ -76,10 +76,4 @@ Information regarding the objects, i.e. their name and symmetry-class, go to the
 
 Then, use the [example_mapping.py](example/example_mapping.py) to map to canonic rotations through SARR. The AR_C metric can be calculated with [example_evaluation.py](example/example_evaluation.py).
 
-
-## Coming soon
-Inference code
-
-Model Weights
-
 **LICENSE:** [CC BY 4.0](LICENSE)
