@@ -2,7 +2,7 @@
 
 ## Publication 
 
-Paper: [IJCV (open access)](https://doi.org/10.1007/s11263-026-02770-x), [arXiv](https://arxiv.org/abs/2604.18208) 
+Paper: [IJCV (open access)](https://doi.org/10.1007/s11263-026-02770-x), [arXiv](https://arxiv.org/abs/2604.18208), [PDF](IJCV_Version_of_Record.pdf)
 
 Authors: [Andreas Kriegler](https://andreaskriegler.eu/), 
 [Csaba Beleznai](https://publications.ait.ac.at/de/persons/csaba.beleznai/),
@@ -26,7 +26,7 @@ If you use this project, please cite:
 Contact: *andreas.kriegler@tuwien.ac.at*
 
 ## Visualizer
-You can use the newer and faster THREE.js-based [interactive visualizer](https://akriegler.github.io/SARR/visualizer/visu_v2.html) to explore and better understand the SARR representation. For details see the paper.
+You can use the newer and faster THREE.js-based [interactive visualizer](https://akriegler.github.io/SARR/visualizer/SARR_viewer_v2.html) to explore and better understand the SARR representation. For details see the paper.
 
 For the old, unmaintained, visualization toolkit used to create figures for the paper, open [this html](visualizer/old/SARR_viewer_v1.html) or run [visualization.py](visualizer/old/visualization.py). Plots for the T-LESS symmetry classes have been pre-rendered using this visualizer, see [here](visualizer/old/renders). A video explaining the plots for T-LESS symmetry class II is available [here](visualizer/old/supplementary_video_visualization-toolkit_T-LESS_symmetry_II.mp4).
 
@@ -71,7 +71,7 @@ To reproduce our AR_B scores use the [bop-toolkit](https://github.com/thodan/bop
 
 ### Custom Dataset SARR mapping + results
 
-## COMING SOON
+## Coming soon
 Boilerplates for custom predictions/ground-truth
 
 Training code
@@ -80,4 +80,4 @@ Inference code
 
 Model Weights
 
-[**MIT license**](LICENSE)
+**LICENSE:** [CC BY 4.0](LICENSE)
