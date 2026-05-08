@@ -78,10 +78,6 @@ Then, use the [example_mapping.py](example/example_mapping.py) to map to canonic
 
 
 ## Coming soon
-Boilerplates for custom predictions/ground-truth
-
-Training code
-
 Inference code
 
 Model Weights
