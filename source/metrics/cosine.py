@@ -119,7 +119,6 @@ def main():
             'results/T-LESS/ours/SARR/sarr-datasetast-rgb_tless-test.csv'
         ]
     gt_file_tless = os.path.join(os.getcwd(), 'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
-    #gt_file_tless = os.path.join(os.getcwd(), 'results/T-LESS/gt/tless_gt_bop19_canonic-test_v2.csv')
 
     eval_files_itodd_other = \
         [
@@ -167,7 +166,6 @@ def main():
             'results/ITODD/ours/SARR/sarr-datasetast-rgb_itodd-test.csv'
         ]
     gt_file_itodd = os.path.join(os.getcwd(), 'results/ITODD/gt/itodd_gt_bop19_canonic-val.csv')
-    #gt_file_itodd = os.path.join(os.getcwd(), 'results/ITODD/gt/itodd_gt_bop19_canonic-val_v2.csv')
 
     gt_file = gt_file_itodd  #gt_file_tless, gt_file_itodd
     eval_file_full_paths = [os.path.join(os.getcwd(), file) for file in eval_files_itodd_ours]    #  eval_files_tless_other, eval_files_tless_ours, eval_files_itodd_other, eval_files_itodd_ours

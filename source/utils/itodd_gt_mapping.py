@@ -32,6 +32,5 @@ def main(f_path, f_mod_path):
 # As the ITODD (BOP) annotations are ambiguous in rotation due to symmetry, this script maps them to a canonic rotation
 if __name__ == '__main__':
     gt_file_path = os.path.join(os.getcwd(), r'results/ITODD/gt/gt_itodd-val.csv')
-    #gt_canon_path = os.path.join(os.getcwd(), r'results/ITODD/gt/itodd_gt_bop19_canonic-val.csv')
-    gt_canon_path = os.path.join(os.getcwd(), r'results/ITODD/gt/itodd_gt_bop19_canonic-val_v2.csv')
+    gt_canon_path = os.path.join(os.getcwd(), r'results/ITODD/gt/itodd_gt_bop19_canonic-val.csv')
     main(gt_file_path, gt_canon_path)

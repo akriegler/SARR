@@ -69,6 +69,5 @@ if __name__ == '__main__':
         test_targets[f'{entry["scene_id"]}-{entry["im_id"]}-{entry["obj_id"]}'] = entry['inst_count']
 
     gt_file_path = os.path.join(os.getcwd(), r'results/T-LESS/gt/gt_tless-test.csv')
-    #gt_canon_path = os.path.join(os.getcwd(), r'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
-    gt_canon_path = os.path.join(os.getcwd(), r'results/T-LESS/gt/tless_gt_bop19_canonic-test_v2.csv')
+    gt_canon_path = os.path.join(os.getcwd(), r'results/T-LESS/gt/tless_gt_bop19_canonic-test.csv')
     main(gt_file_path, gt_canon_path, test_targets)
