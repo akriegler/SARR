@@ -4,3 +4,4 @@ easydict
 pyyaml
 plotly
 scipy
+scikit-learn
