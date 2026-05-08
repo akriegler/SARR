@@ -74,6 +74,18 @@ You can try out mapping your own orientation predictions and ground-truth for yo
 
 Information regarding the objects, i.e. their name and symmetry-class, go to the [dataset definitions](example/example_dataset_definitions.py).
 
-Then, use the [example_mapping.py](example/example_mapping.py) to map to canonic rotations through SARR. The AR_C metric can then be calculated with [example_evaluation.py](example/example_evaluation.py).
+Then, run
+```
+$ python -m example.example_mapping
+```
+ to map to canonic rotations through SARR.
+ 
+The AR_C metric can then be calculated using
+```
+$ python -m example/example_evaluation.py
+```
+
+<br>
+<br>
 
 **LICENSE:** [CC BY 4.0](LICENSE)

@@ -116,5 +116,5 @@ def main():
 
 
 if __name__ == "__main__":
-    print('Dont sort CSV result files for this metric. This can skew SiSo scores since only the first instance per image is considered (assumed to be most visible, from prior sorting).')
+    #print('Dont sort CSV result files for this metric. This can skew SiSo scores since only the first instance per image is considered (assumed to be most visible, from prior sorting).')
     main()
