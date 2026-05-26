@@ -1041,6 +1041,8 @@ class InsetViewer {
       // Add new object
       const obj = createObjectPrimitive(symClass);
       obj.scale.setScalar(1.0); // override the 0.2 scale from createObjectPrimitive
+      obj.rotation.order = 'XYZ';
+      obj.rotation.set(-Math.PI / 2, 0.0, -Math.PI / 2)
       this.objectGroup.add(obj);
     }
 
