@@ -895,7 +895,7 @@ class InsetViewer {
     this.controls.enableZoom = false;
     this.controls.enablePan = false;
     this.controls.autoRotate = true;
-    this.controls.autoRotateSpeed = 1.0;
+    this.controls.autoRotateSpeed = 0.0;
     this.controls.target.set(0, 0, 0);
 
     this.scene.add(new THREE.AmbientLight(0xffffff, 0.7));
@@ -930,9 +930,9 @@ class InsetViewer {
 
     // Axis colors: X=red (alpha), Y=green (beta), Z=blue (gamma)
     const axisConfigs = [
-      { color: axisColorX, dir: new THREE.Vector3(1, 0, 0), label: 'α', arcNormal: new THREE.Vector3(1, 0, 0) },
-      { color: axisColorY, dir: new THREE.Vector3(0, 1, 0), label: 'β', arcNormal: new THREE.Vector3(0, 1, 0) },
-      { color: axisColorZ, dir: new THREE.Vector3(0, 0, 1), label: 'γ', arcNormal: new THREE.Vector3(0, 0, 1) },
+      { color: axisColorY, dir: new THREE.Vector3(1, 0, 0), label: 'α', arcNormal: new THREE.Vector3(1, 0, 0) },
+      { color: axisColorZ, dir: new THREE.Vector3(0, 1, 0), label: 'β', arcNormal: new THREE.Vector3(0, 1, 0) },
+      { color: axisColorX, dir: new THREE.Vector3(0, 0, 1), label: 'γ', arcNormal: new THREE.Vector3(0, 0, 1) },
     ];
 
     for (const cfg of axisConfigs) {
@@ -965,10 +965,9 @@ class InsetViewer {
         arcMesh.rotation.set(0, Math.PI / 2, 0);
       } else if (cfg.label === 'β') {
         // Y-axis rotation: arc in XZ plane
-        arcMesh.rotation.set(Math.PI / 2, 0, 0);
+        arcMesh.rotation.set(-Math.PI / 2, 0, 0);
       } else {
-        // Z-axis rotation: arc in XY plane (default torus orientation)
-        // no rotation needed
+        arcMesh.rotation.set(0, 0, 0);
       }
       this.axesGroup.add(arcMesh);
 
@@ -983,11 +982,11 @@ class InsetViewer {
       const ay = arcRadius * Math.sin(endAngle);
 
       if (cfg.label === 'α') {
-        arcArrowMesh.position.set(0, ay, ax);
+        arcArrowMesh.position.set(0, ay, -ax);
         arcArrowMesh.rotation.set(0, 0, endAngle + Math.PI / 2);
       } else if (cfg.label === 'β') {
-        arcArrowMesh.position.set(ax, 0, ay);
-        arcArrowMesh.rotation.set(endAngle + Math.PI / 2, 0, 0);
+        arcArrowMesh.position.set(ax, 0, -ay);
+        arcArrowMesh.rotation.set(-(endAngle + Math.PI / 2), 0, 0);
       } else {
         arcArrowMesh.position.set(ax, ay, 0);
         arcArrowMesh.rotation.set(0, 0, endAngle + Math.PI / 2);
@@ -1008,9 +1007,9 @@ class InsetViewer {
   _createLabels() {
     this._clearLabels();
     const labelConfigs = [
-      { text: 'α', color: '#ff0000', position: new THREE.Vector3(1.85, 0, 0) },
-      { text: 'β', color: '#00ff00', position: new THREE.Vector3(0, 1.85, 0) },
-      { text: 'γ', color: '#0000ff', position: new THREE.Vector3(0, 0, 1.85) },
+      { text: 'β', color: '#00ff00', position: new THREE.Vector3(1.85, 0, 0) },
+      { text: 'γ', color: '#0000ff', position: new THREE.Vector3(0, 1.85, 0) },
+      { text: 'α', color: '#ff0000', position: new THREE.Vector3(0, 0, 1.85) },
     ];
 
     for (const cfg of labelConfigs) {
